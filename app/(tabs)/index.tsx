@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react'
 import { View, StyleSheet, Animated, Pressable, Dimensions, Image, Text, PanResponder, ScrollView } from 'react-native';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { darkColors, lightColors } from '@/constants/colors';
-import { CheckCircle2, Search, SearchX, X } from 'lucide-react-native';
+import { CheckCircle2, Search, SearchX, X, Hand, Sparkles, Users } from 'lucide-react-native';
 import { useMesh } from '@/contexts/MeshContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import ValueSelectionModal from '@/components/ValueSelectionModal';
@@ -15,7 +15,7 @@ export default function OrbitScreen() {
   const params = useLocalSearchParams();
   const { theme } = useTheme();
   const colors = theme === 'dark' ? darkColors : lightColors;
-  const { peers, userValues, updateUserValues, isExploringMode, toggleExploringMode, getMatchingPeers } = useMesh();
+  const { peers, userValues, updateUserValues, isExploringMode, toggleExploringMode, getMatchingPeers, hasSeenRadarTutorial, completeRadarTutorial } = useMesh();
   const [showSuccessBanner, setShowSuccessBanner] = useState(false);
   const [showValueModal, setShowValueModal] = useState(false);
   const successBannerAnim = useRef(new Animated.Value(-100)).current;
@@ -35,8 +35,34 @@ export default function OrbitScreen() {
   const seekY = useRef(new Animated.Value(0)).current;
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showAllTags, setShowAllTags] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [tutorialStep, setTutorialStep] = useState(0);
+  const tutorialOpacity = useRef(new Animated.Value(0)).current;
+  const tutorialScale = useRef(new Animated.Value(0.9)).current;
+  const handAnim = useRef(new Animated.Value(0)).current;
+  const pulseAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    if (!hasSeenRadarTutorial) {
+      setTimeout(() => {
+        setShowTutorial(true);
+        Animated.parallel([
+          Animated.spring(tutorialOpacity, {
+            toValue: 1,
+            useNativeDriver: true,
+            tension: 50,
+            friction: 7,
+          }),
+          Animated.spring(tutorialScale, {
+            toValue: 1,
+            useNativeDriver: true,
+            tension: 50,
+            friction: 7,
+          }),
+        ]).start();
+      }, 500);
+    }
+    
     if (userValues.length === 0) {
       setShowValueModal(true);
     } else if (isExploringMode && userValues.length === 3) {
@@ -93,7 +119,65 @@ export default function OrbitScreen() {
         });
       }
     }
-  }, [userValues.length, isExploringMode, getMatchingPeers, seekX, seekY, panX, panY, userValues]);
+  }, [userValues.length, isExploringMode, getMatchingPeers, seekX, seekY, panX, panY, userValues, hasSeenRadarTutorial, tutorialOpacity, tutorialScale]);
+
+  useEffect(() => {
+    if (showTutorial && tutorialStep === 0) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(handAnim, {
+            toValue: 1,
+            duration: 1500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(handAnim, {
+            toValue: 0,
+            duration: 1500,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    }
+    
+    if (showTutorial) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(pulseAnim, {
+            toValue: 1,
+            duration: 1000,
+            useNativeDriver: true,
+          }),
+          Animated.timing(pulseAnim, {
+            toValue: 0,
+            duration: 1000,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    }
+  }, [showTutorial, tutorialStep, handAnim, pulseAnim]);
+
+  const nextTutorialStep = useCallback(() => {
+    if (tutorialStep < 2) {
+      setTutorialStep(tutorialStep + 1);
+    } else {
+      Animated.parallel([
+        Animated.timing(tutorialOpacity, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.spring(tutorialScale, {
+          toValue: 0.9,
+          useNativeDriver: true,
+          tension: 50,
+        }),
+      ]).start(() => {
+        setShowTutorial(false);
+        completeRadarTutorial();
+      });
+    }
+  }, [tutorialStep, tutorialOpacity, tutorialScale, completeRadarTutorial]);
 
   const panResponder = useRef(
     PanResponder.create({
@@ -560,6 +644,124 @@ export default function OrbitScreen() {
             </Pressable>
           </View>
         </View>
+        
+        {showTutorial && (
+          <Animated.View
+            style={[
+              styles.tutorialOverlay,
+              {
+                opacity: tutorialOpacity,
+              },
+            ]}
+          >
+            <Pressable style={styles.tutorialBackdrop} onPress={nextTutorialStep} />
+            
+            <Animated.View
+              style={[
+                styles.tutorialCard,
+                {
+                  backgroundColor: colors.surface,
+                  transform: [{ scale: tutorialScale }],
+                  borderColor: colors.primary,
+                },
+              ]}
+            >
+              {tutorialStep === 0 && (
+                <View style={styles.tutorialContent}>
+                  <Animated.View
+                    style={{
+                      transform: [
+                        {
+                          translateX: handAnim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, 30],
+                          }),
+                        },
+                        {
+                          translateY: handAnim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, -30],
+                          }),
+                        },
+                      ],
+                    }}
+                  >
+                    <Hand size={48} color={colors.primary} />
+                  </Animated.View>
+                  <Text style={[styles.tutorialTitle, { color: colors.text }]}>Welcome to the Radar!</Text>
+                  <Text style={[styles.tutorialText, { color: colors.textSecondary }]}>Drag and pan around to explore peers in your decentralized network</Text>
+                </View>
+              )}
+              
+              {tutorialStep === 1 && (
+                <View style={styles.tutorialContent}>
+                  <Animated.View
+                    style={{
+                      transform: [
+                        {
+                          scale: pulseAnim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [1, 1.2],
+                          }),
+                        },
+                      ],
+                    }}
+                  >
+                    <Users size={48} color={colors.primary} />
+                  </Animated.View>
+                  <Text style={[styles.tutorialTitle, { color: colors.text }]}>Tap on Peers</Text>
+                  <Text style={[styles.tutorialText, { color: colors.textSecondary }]}>Tap any peer dot to view their info and auto-center on them</Text>
+                </View>
+              )}
+              
+              {tutorialStep === 2 && (
+                <View style={styles.tutorialContent}>
+                  <Animated.View
+                    style={{
+                      transform: [
+                        {
+                          rotate: pulseAnim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: ['0deg', '15deg'],
+                          }),
+                        },
+                      ],
+                    }}
+                  >
+                    <Sparkles size={48} color={colors.primary} />
+                  </Animated.View>
+                  <Text style={[styles.tutorialTitle, { color: colors.text }]}>Discover by Values</Text>
+                  <Text style={[styles.tutorialText, { color: colors.textSecondary }]}>Use the search tags above to filter peers by shared values and interests</Text>
+                </View>
+              )}
+              
+              <View style={styles.tutorialActions}>
+                <View style={styles.tutorialDots}>
+                  {[0, 1, 2].map((step) => (
+                    <View
+                      key={step}
+                      style={[
+                        styles.tutorialDot,
+                        {
+                          backgroundColor: tutorialStep === step ? colors.primary : colors.border,
+                        },
+                      ]}
+                    />
+                  ))}
+                </View>
+                <Pressable
+                  style={[styles.tutorialButton, { backgroundColor: colors.primary }]}
+                  onPress={nextTutorialStep}
+                >
+                  <Text style={styles.tutorialButtonText}>
+                    {tutorialStep === 2 ? 'Get Started' : 'Next'}
+                  </Text>
+                </Pressable>
+              </View>
+            </Animated.View>
+          </Animated.View>
+        )}
+        
         <ValueSelectionModal
           visible={showValueModal}
           onClose={() => setShowValueModal(false)}
@@ -810,5 +1012,78 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '700' as const,
     color: '#FFFFFF',
+  },
+  tutorialOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 2000,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tutorialBackdrop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+  },
+  tutorialCard: {
+    marginHorizontal: 24,
+    borderRadius: 24,
+    padding: 32,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.3,
+    shadowRadius: 24,
+    elevation: 10,
+    borderWidth: 2,
+    maxWidth: 400,
+  },
+  tutorialContent: {
+    alignItems: 'center',
+    gap: 16,
+  },
+  tutorialTitle: {
+    fontSize: 24,
+    fontWeight: '700' as const,
+    textAlign: 'center',
+    letterSpacing: -0.5,
+  },
+  tutorialText: {
+    fontSize: 16,
+    fontWeight: '400' as const,
+    textAlign: 'center',
+    lineHeight: 24,
+    paddingHorizontal: 8,
+  },
+  tutorialActions: {
+    marginTop: 32,
+    gap: 20,
+    alignItems: 'center',
+  },
+  tutorialDots: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  tutorialDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+  tutorialButton: {
+    paddingHorizontal: 40,
+    paddingVertical: 14,
+    borderRadius: 12,
+    minWidth: 120,
+  },
+  tutorialButtonText: {
+    fontSize: 16,
+    fontWeight: '700' as const,
+    color: '#FFFFFF',
+    textAlign: 'center',
   },
 });

@@ -10,6 +10,7 @@ export const [MeshProvider, useMesh] = createContextHook(() => {
   const [userValues, setUserValues] = useState<string[]>([]);
   const [isExploringMode, setIsExploringMode] = useState<boolean>(false);
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState<boolean>(false);
+  const [hasSeenRadarTutorial, setHasSeenRadarTutorial] = useState<boolean>(false);
   const [isLocked, setIsLocked] = useState<boolean>(true);
   const [isReady, setIsReady] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -41,16 +42,20 @@ export const [MeshProvider, useMesh] = createContextHook(() => {
   const [isConnected] = useState<boolean>(true);
 
   useEffect(() => {
-    AsyncStorage.multiGet(['userValues', 'hasCompletedOnboarding', 'isLocked']).then((result) => {
+    AsyncStorage.multiGet(['userValues', 'hasCompletedOnboarding', 'hasSeenRadarTutorial', 'isLocked']).then((result) => {
       const storedValues = result[0][1];
       const storedOnboarding = result[1][1];
-      const storedLocked = result[2][1];
+      const storedRadarTutorial = result[2][1];
+      const storedLocked = result[3][1];
       
       if (storedValues) {
         setUserValues(JSON.parse(storedValues));
       }
       if (storedOnboarding) {
         setHasCompletedOnboarding(JSON.parse(storedOnboarding));
+      }
+      if (storedRadarTutorial) {
+        setHasSeenRadarTutorial(JSON.parse(storedRadarTutorial));
       }
       if (storedLocked !== null) {
         setIsLocked(JSON.parse(storedLocked));
@@ -79,6 +84,11 @@ export const [MeshProvider, useMesh] = createContextHook(() => {
   const lockApp = useCallback(() => {
     setIsLocked(true);
     AsyncStorage.setItem('isLocked', JSON.stringify(true));
+  }, []);
+
+  const completeRadarTutorial = useCallback(() => {
+    setHasSeenRadarTutorial(true);
+    AsyncStorage.setItem('hasSeenRadarTutorial', JSON.stringify(true));
   }, []);
 
   const getMatchingPeers = useCallback(() => {
@@ -130,6 +140,8 @@ export const [MeshProvider, useMesh] = createContextHook(() => {
     toggleExploringMode,
     getMatchingPeers,
     hasCompletedOnboarding,
+    hasSeenRadarTutorial,
+    completeRadarTutorial,
     isLocked,
     isReady,
     unlockApp,
