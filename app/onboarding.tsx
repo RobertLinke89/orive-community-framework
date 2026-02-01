@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
 import { Image } from 'expo-image';
 import { Stack, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import colors from '@/constants/colors';
+import { lightColors } from '@/constants/colors';
 import { CORE_VALUES } from '@/constants/values';
 import { useMesh } from '@/contexts/MeshContext';
 
@@ -11,8 +11,12 @@ import { useMesh } from '@/contexts/MeshContext';
 
 export default function OnboardingScreen() {
   const router = useRouter();
-  const { updateUserValues, toggleExploringMode } = useMesh();
+  const { updateUserValues, toggleExploringMode, isReady } = useMesh();
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
+
+  useEffect(() => {
+    console.log('Onboarding screen mounted', { isReady });
+  }, [isReady]);
 
   const toggleValue = (value: string) => {
     if (selectedValues.includes(value)) {
@@ -98,7 +102,7 @@ export default function OnboardingScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: lightColors.background,
   },
   header: {
     paddingHorizontal: 24,
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 14,
     borderRadius: 16,
-    backgroundColor: colors.surface,
+    backgroundColor: lightColors.surface,
     borderWidth: 2,
     borderColor: 'rgba(31, 191, 191, 0.2)',
     flexDirection: 'row',
@@ -134,7 +138,7 @@ const styles = StyleSheet.create({
   },
   valueButtonSelected: {
     backgroundColor: 'rgba(31, 191, 191, 0.12)',
-    borderColor: colors.primary,
+    borderColor: lightColors.primary,
   },
   valueText: {
     fontSize: 15,
@@ -142,14 +146,14 @@ const styles = StyleSheet.create({
     color: '#64748B',
   },
   valueTextSelected: {
-    color: colors.primary,
+    color: lightColors.primary,
     fontWeight: '700' as const,
   },
   selectedBadge: {
     width: 22,
     height: 22,
     borderRadius: 11,
-    backgroundColor: colors.primary,
+    backgroundColor: lightColors.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -168,14 +172,14 @@ const styles = StyleSheet.create({
   continueButton: {
     paddingVertical: 18,
     borderRadius: 16,
-    backgroundColor: colors.surface,
+    backgroundColor: lightColors.surface,
     alignItems: 'center',
     borderWidth: 2,
     borderColor: 'rgba(31, 191, 191, 0.2)',
   },
   continueButtonActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: lightColors.primary,
+    borderColor: lightColors.primary,
   },
   continueButtonText: {
     fontSize: 17,

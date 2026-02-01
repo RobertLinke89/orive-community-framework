@@ -23,18 +23,27 @@ function RootLayoutNav() {
     const inLock = segments[0] === 'lock';
     const inOnboarding = segments[0] === 'onboarding';
 
+    console.log('Navigation check:', { isLocked, hasCompletedOnboarding, segments: segments.join('/'), inLock, inOnboarding });
+
     if (isLocked && !inLock) {
+      console.log('Redirecting to lock screen');
       router.replace('/lock');
     } else if (!isLocked && inLock) {
       if (!hasCompletedOnboarding) {
+        console.log('Redirecting to onboarding from lock');
         router.replace('/onboarding');
       } else {
+        console.log('Redirecting to tabs from lock');
         router.replace('/(tabs)');
       }
     } else if (!isLocked && !hasCompletedOnboarding && !inOnboarding) {
+      console.log('Redirecting to onboarding');
       router.replace('/onboarding');
     } else if (!isLocked && hasCompletedOnboarding && (inOnboarding || inLock)) {
+      console.log('Redirecting to tabs');
       router.replace('/(tabs)');
+    } else {
+      console.log('No redirect needed');
     }
   }, [hasCompletedOnboarding, isLocked, isReady, segments, router]);
 

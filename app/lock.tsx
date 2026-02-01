@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, Vibration } from 'react-native';
 import { Image } from 'expo-image';
 import { Stack, useRouter } from 'expo-router';
@@ -8,9 +8,13 @@ const PIN_LENGTH = 6;
 
 export default function LockScreen() {
   const router = useRouter();
-  const { unlockApp, hasCompletedOnboarding } = useMesh();
+  const { unlockApp, hasCompletedOnboarding, isReady } = useMesh();
   const [pin, setPin] = useState<string>('');
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    console.log('Lock screen mounted', { isReady, hasCompletedOnboarding });
+  }, [isReady, hasCompletedOnboarding]);
 
   const handleNumberPress = (num: string) => {
     if (pin.length < PIN_LENGTH) {

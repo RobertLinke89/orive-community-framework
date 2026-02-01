@@ -42,27 +42,35 @@ export const [MeshProvider, useMesh] = createContextHook(() => {
   const [isConnected] = useState<boolean>(true);
 
   useEffect(() => {
-    AsyncStorage.multiGet(['userValues', 'hasCompletedOnboarding', 'hasSeenRadarTutorial', 'isLocked']).then((result) => {
-      const storedValues = result[0][1];
-      const storedOnboarding = result[1][1];
-      const storedRadarTutorial = result[2][1];
-      const storedLocked = result[3][1];
-      
-      if (storedValues) {
-        setUserValues(JSON.parse(storedValues));
-      }
-      if (storedOnboarding) {
-        setHasCompletedOnboarding(JSON.parse(storedOnboarding));
-      }
-      if (storedRadarTutorial) {
-        setHasSeenRadarTutorial(JSON.parse(storedRadarTutorial));
-      }
-      if (storedLocked !== null) {
-        setIsLocked(JSON.parse(storedLocked));
-      }
-      setIsReady(true);
-      SplashScreen.hideAsync();
-    });
+    AsyncStorage.multiGet(['userValues', 'hasCompletedOnboarding', 'hasSeenRadarTutorial', 'isLocked'])
+      .then((result) => {
+        const storedValues = result[0][1];
+        const storedOnboarding = result[1][1];
+        const storedRadarTutorial = result[2][1];
+        const storedLocked = result[3][1];
+        
+        if (storedValues) {
+          setUserValues(JSON.parse(storedValues));
+        }
+        if (storedOnboarding) {
+          setHasCompletedOnboarding(JSON.parse(storedOnboarding));
+        }
+        if (storedRadarTutorial) {
+          setHasSeenRadarTutorial(JSON.parse(storedRadarTutorial));
+        }
+        if (storedLocked !== null) {
+          setIsLocked(JSON.parse(storedLocked));
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to load stored data:', error);
+      })
+      .finally(() => {
+        setIsReady(true);
+        SplashScreen.hideAsync().catch((error) => {
+          console.error('Failed to hide splash screen:', error);
+        });
+      });
   }, []);
 
   const updateUserValues = useCallback((values: string[]) => {
