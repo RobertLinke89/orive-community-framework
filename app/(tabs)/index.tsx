@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
-import { View, StyleSheet, Animated, Pressable, Dimensions, Image, Text, PanResponder, ScrollView } from 'react-native';
+import { View, StyleSheet, Animated, Pressable, Dimensions, Image, Text, PanResponder, ScrollView, Modal } from 'react-native';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { darkColors, lightColors } from '@/constants/colors';
-import { CheckCircle2, Search, SearchX, X, Hand, Sparkles, Users } from 'lucide-react-native';
+import { CheckCircle2, Search, SearchX, X, Hand, Sparkles, Users, Briefcase, Building2, MapPin } from 'lucide-react-native';
 import { useMesh } from '@/contexts/MeshContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import ValueSelectionModal from '@/components/ValueSelectionModal';
 import { CORE_VALUES } from '@/constants/values';
+import { Peer } from '@/types/mesh';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -30,6 +31,7 @@ export default function OrbitScreen() {
   const sonarAnim4 = useRef(new Animated.Value(0)).current;
   
   const [selectedPeer, setSelectedPeer] = useState<string | null>(null);
+  const [profileModalPeer, setProfileModalPeer] = useState<Peer | null>(null);
   const [isSeekingAnimation, setIsSeekingAnimation] = useState(false);
   const seekX = useRef(new Animated.Value(0)).current;
   const seekY = useRef(new Animated.Value(0)).current;
@@ -355,25 +357,7 @@ export default function OrbitScreen() {
         >
           <Pressable
             onPress={() => {
-              if (isSelected) {
-                setSelectedPeer(null);
-              } else {
-                setSelectedPeer(peer.id);
-                Animated.parallel([
-                  Animated.spring(panX, {
-                    toValue: -peer.x,
-                    useNativeDriver: false,
-                    tension: 40,
-                    friction: 7,
-                  }),
-                  Animated.spring(panY, {
-                    toValue: -peer.y,
-                    useNativeDriver: false,
-                    tension: 40,
-                    friction: 7,
-                  }),
-                ]).start();
-              }
+              setProfileModalPeer(peer);
             }}
             style={[
               styles.peerDot,
@@ -381,26 +365,12 @@ export default function OrbitScreen() {
                 width: size,
                 height: size,
                 borderRadius: size / 2,
-                backgroundColor: hasMatch ? colors.primary : '#FFFFFF',
-                opacity: isSelected ? 0.95 : hasMatch ? (0.5 + matchCount * 0.15) : (0.3 + (peer.signal / 100) * 0.6),
-                shadowColor: hasMatch ? colors.primary : '#FFFFFF',
-                shadowOpacity: isSelected ? 0.9 : hasMatch ? 0.7 : 0.5,
-                shadowRadius: isSelected ? 12 : hasMatch ? 8 : 6,
-                elevation: isSelected ? 6 : hasMatch ? 4 : 3,
+                backgroundColor: hasMatch ? colors.primary : colors.text,
+                opacity: hasMatch ? 0.85 : 0.5,
               },
             ]}
           />
-          {isSelected && (
-            <View style={styles.peerLabel}>
-              <Text style={styles.peerLabelText}>{peer.name}</Text>
-              <Text style={styles.peerLabelDistance}>{peer.distance}m</Text>
-              {isExploringMode && matchCount > 0 && (
-                <View style={[styles.matchBadge, { backgroundColor: colors.primary }]}>
-                  <Text style={styles.matchBadgeText}>{matchCount} value{matchCount !== 1 ? 's' : ''} match</Text>
-                </View>
-              )}
-            </View>
-          )}
+
         </View>
       </Animated.View>
     );
@@ -771,6 +741,115 @@ export default function OrbitScreen() {
           }}
           initialValues={userValues}
         />
+        
+        <Modal
+          visible={profileModalPeer !== null}
+          animationType="slide"
+          presentationStyle="pageSheet"
+          onRequestClose={() => setProfileModalPeer(null)}
+        >
+          {profileModalPeer && (
+            <View style={[styles.profileModal, { backgroundColor: colors.background }]}>
+              <View style={[styles.profileHeader, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
+                <Pressable
+                  onPress={() => setProfileModalPeer(null)}
+                  style={[styles.closeButton, { backgroundColor: colors.surfaceLight }]}
+                >
+                  <X size={24} color={colors.text} />
+                </Pressable>
+              </View>
+              
+              <ScrollView style={styles.profileContent} showsVerticalScrollIndicator={false}>
+                <View style={styles.profileTop}>
+                  <View style={[styles.profileAvatar, { backgroundColor: profileModalPeer.color }]}>
+                    <Text style={styles.profileAvatarText}>
+                      {profileModalPeer.name.charAt(0).toUpperCase()}
+                    </Text>
+                  </View>
+                  
+                  <Text style={[styles.profileName, { color: colors.text }]}>
+                    {profileModalPeer.name}
+                  </Text>
+                  
+                  {profileModalPeer.title && (
+                    <View style={styles.profileInfoRow}>
+                      <Briefcase size={16} color={colors.textSecondary} />
+                      <Text style={[styles.profileInfoText, { color: colors.textSecondary }]}>
+                        {profileModalPeer.title}
+                      </Text>
+                    </View>
+                  )}
+                  
+                  {profileModalPeer.company && (
+                    <View style={styles.profileInfoRow}>
+                      <Building2 size={16} color={colors.textSecondary} />
+                      <Text style={[styles.profileInfoText, { color: colors.textSecondary }]}>
+                        {profileModalPeer.company}
+                      </Text>
+                    </View>
+                  )}
+                  
+                  <View style={styles.profileInfoRow}>
+                    <MapPin size={16} color={colors.textSecondary} />
+                    <Text style={[styles.profileInfoText, { color: colors.textSecondary }]}>
+                      {profileModalPeer.distance}m away
+                    </Text>
+                  </View>
+                </View>
+                
+                <View style={[styles.valuesSection, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+                  <Text style={[styles.valuesSectionTitle, { color: colors.text }]}>Values & Interests</Text>
+                  
+                  <View style={styles.valuesGrid}>
+                    {profileModalPeer.values?.map((value) => {
+                      const isMatching = userValues.includes(value);
+                      return (
+                        <View
+                          key={value}
+                          style={[
+                            styles.valueChip,
+                            {
+                              backgroundColor: isMatching ? colors.primary : colors.surfaceLight,
+                              borderColor: isMatching ? colors.primary : colors.border,
+                            },
+                          ]}
+                        >
+                          {isMatching && <CheckCircle2 size={14} color="#FFFFFF" />}
+                          <Text
+                            style={[
+                              styles.valueChipText,
+                              { color: isMatching ? '#FFFFFF' : colors.text },
+                            ]}
+                          >
+                            {value}
+                          </Text>
+                        </View>
+                      );
+                    })}
+                  </View>
+                  
+                  {userValues.length > 0 && (
+                    <View style={styles.matchSummary}>
+                      <Text style={[styles.matchSummaryText, { color: colors.textSecondary }]}>
+                        {profileModalPeer.values?.filter(v => userValues.includes(v)).length || 0} of {profileModalPeer.values?.length || 0} values match with yours
+                      </Text>
+                    </View>
+                  )}
+                </View>
+                
+                <Pressable
+                  style={[styles.connectButton, { backgroundColor: colors.primary }]}
+                  onPress={() => {
+                    setProfileModalPeer(null);
+                    router.push(`/chat/${profileModalPeer.id}`);
+                  }}
+                >
+                  <Text style={styles.connectButtonText}>Start Conversation</Text>
+                </Pressable>
+              </ScrollView>
+            </View>
+          )}
+        </Modal>
       </View>
     </>
   );
@@ -880,27 +959,119 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  peerDot: {
-    shadowOffset: { width: 0, height: 0 },
+  peerDot: {},
+  profileModal: {
+    flex: 1,
   },
-  peerLabel: {
-    marginTop: 8,
-    backgroundColor: 'rgba(0,0,0,0.75)',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
+  profileHeader: {
+    paddingTop: 60,
+    paddingBottom: 16,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'flex-end',
   },
-  peerLabelText: {
-    fontSize: 12,
+  closeButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profileContent: {
+    flex: 1,
+  },
+  profileTop: {
+    alignItems: 'center',
+    paddingVertical: 32,
+    paddingHorizontal: 20,
+  },
+  profileAvatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  profileAvatarText: {
+    fontSize: 42,
     fontWeight: '700' as const,
     color: '#FFFFFF',
   },
-  peerLabelDistance: {
-    fontSize: 10,
-    fontWeight: '500' as const,
-    color: 'rgba(255,255,255,0.7)',
+  profileName: {
+    fontSize: 28,
+    fontWeight: '700' as const,
+    marginBottom: 12,
+    letterSpacing: -0.5,
   },
+  profileInfoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 6,
+  },
+  profileInfoText: {
+    fontSize: 15,
+    fontWeight: '500' as const,
+  },
+  valuesSection: {
+    marginHorizontal: 20,
+    marginBottom: 24,
+    padding: 20,
+    borderRadius: 16,
+    borderWidth: 1,
+  },
+  valuesSectionTitle: {
+    fontSize: 18,
+    fontWeight: '700' as const,
+    marginBottom: 16,
+    letterSpacing: -0.3,
+  },
+  valuesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+  },
+  valueChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 20,
+    borderWidth: 1.5,
+  },
+  valueChipText: {
+    fontSize: 14,
+    fontWeight: '600' as const,
+    letterSpacing: -0.2,
+  },
+  matchSummary: {
+    marginTop: 16,
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(0,0,0,0.06)',
+    alignItems: 'center',
+  },
+  matchSummaryText: {
+    fontSize: 14,
+    fontWeight: '500' as const,
+  },
+  connectButton: {
+    marginHorizontal: 20,
+    marginBottom: 40,
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  connectButtonText: {
+    fontSize: 17,
+    fontWeight: '700' as const,
+    color: '#FFFFFF',
+  },
+
   centerAvatarContainer: {
     position: 'absolute',
     top: SCREEN_HEIGHT / 2 - 120,
