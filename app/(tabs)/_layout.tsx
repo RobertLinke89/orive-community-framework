@@ -2,14 +2,17 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Stack, useSegments } from 'expo-router';
 import CustomTabBar from '@/components/CustomTabBar';
-import colors from '@/constants/colors';
+import { darkColors, lightColors } from '@/constants/colors';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function TabLayout() {
+  const { theme } = useTheme();
+  const colors = theme === 'dark' ? darkColors : lightColors;
   const segments = useSegments();
   const currentRoute = segments.length > 1 ? `/(tabs)/${segments[1]}` : '/(tabs)';
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <Stack
         screenOptions={{
           headerShown: true,
@@ -61,6 +64,5 @@ export default function TabLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
   },
 });
