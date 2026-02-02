@@ -233,12 +233,12 @@ const CustomTabBar = memo(function CustomTabBar({ currentRoute }: TabBarProps) {
 
         <Pressable
           style={styles.tabItem}
-          onPress={() => handleNavigation('/(tabs)/profile')}
+          onPress={() => handleNavigation('/profile/settings')}
         >
           <Newspaper
             size={24}
-            color={currentRoute === '/(tabs)/profile' ? colors.primary : colors.textSecondary}
-            strokeWidth={currentRoute === '/(tabs)/profile' ? 2.5 : 2}
+            color={currentRoute === '/profile/settings' ? colors.primary : colors.textSecondary}
+            strokeWidth={currentRoute === '/profile/settings' ? 2.5 : 2}
           />
         </Pressable>
       </View>
