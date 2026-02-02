@@ -1,11 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Dimensions, Animated } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { MoreHorizontal, ThumbsUp, MessageCircle, Repeat2, Send } from 'lucide-react-native';
 import { useTheme } from '@/contexts/ThemeContext';
 import { darkColors, lightColors } from '@/constants/colors';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 interface Article {
   id: string;

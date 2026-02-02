@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo, useCallback, memo } from 'react';
-import { View, Pressable, StyleSheet, Platform, Image, Animated, Text, TouchableOpacity } from 'react-native';
+import { View, Pressable, StyleSheet, Image, Animated, Text, TouchableOpacity } from 'react-native';
 import { Users, Wallet, Radar, Newspaper, Mic, MessageCircle } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
@@ -78,7 +78,7 @@ const CustomTabBar = memo(function CustomTabBar({ currentRoute }: TabBarProps) {
         ])
       ).start();
     });
-  }, []);
+  }, [pulseAnim, glowAnim, rotateAnim, sparkleAnims]);
 
   const handleNavigation = useCallback((route: string) => {
     router.push(route as any);

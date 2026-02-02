@@ -36,7 +36,6 @@ export default function OrbitScreen() {
   const seekX = useRef(new Animated.Value(0)).current;
   const seekY = useRef(new Animated.Value(0)).current;
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [showAllTags, setShowAllTags] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
   const tutorialOpacity = useRef(new Animated.Value(0)).current;
@@ -374,7 +373,7 @@ export default function OrbitScreen() {
         </View>
       </Animated.View>
     );
-  }, [selectedPeer, isExploringMode, userValues, panX, panY]);
+  }, [selectedPeer, isExploringMode, userValues, panX, panY, colors.primary, colors.text]);
 
   return (
     <>

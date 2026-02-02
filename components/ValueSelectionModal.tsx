@@ -6,13 +6,10 @@ import {
   Modal,
   Pressable,
   ScrollView,
-  Dimensions,
 } from 'react-native';
 import { X, Check } from 'lucide-react-native';
 import colors from '@/constants/colors';
 import { CORE_VALUES } from '@/constants/values';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 interface ValueSelectionModalProps {
   visible: boolean;

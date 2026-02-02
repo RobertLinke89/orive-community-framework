@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, PanResponder, Modal, Pressable } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { Bell, ArrowUpRight, ArrowDownLeft, Plus, Eye, EyeOff, X, CheckCircle, TrendingUp, AlertCircle, Clock, Send, Download, RefreshCw } from 'lucide-react-native';

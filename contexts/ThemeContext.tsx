@@ -13,14 +13,12 @@ interface ThemeContextValue {
 
 export const [ThemeProvider, useTheme] = createContextHook<ThemeContextValue>(() => {
   const [theme, setTheme] = useState<Theme>('dark');
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     AsyncStorage.getItem('app-theme').then((stored) => {
       if (stored === 'light' || stored === 'dark') {
         setTheme(stored);
       }
-      setIsLoaded(true);
     });
   }, []);
 
