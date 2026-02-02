@@ -1,146 +1,253 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from 'react-native';
-import { Stack } from 'expo-router';
-import { Bot, Zap, Shield, MessageSquare, TrendingUp, Settings } from 'lucide-react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import { useTheme } from '@/contexts/ThemeContext';
 import colors from '@/constants/colors';
 
+type Gender = 'male' | 'female';
+type ToneOfVoice = 'formal' | 'informal' | 'factual' | 'directive' | 'assertive' | 'friendly' | 'questioning' | 'conversational';
+type Mood = 'neutral' | 'excited' | 'cheerful' | 'relaxed' | 'calm' | 'sad' | 'bored' | 'irritated' | 'tense';
+
 export default function AIAssistantScreen() {
-  const [aiEnabled, setAiEnabled] = useState(true);
-  const [smartSuggestions, setSmartSuggestions] = useState(true);
-  const [learningMode, setLearningMode] = useState(true);
+  const { isDark } = useTheme();
+  const router = useRouter();
+  const [gender, setGender] = useState<Gender>('male');
+  const [toneOfVoice, setToneOfVoice] = useState<ToneOfVoice>('formal');
+  const [mood, setMood] = useState<Mood>('neutral');
+
+  const bgColor = isDark ? '#0A3A52' : colors.background;
+  const surfaceColor = isDark ? 'rgba(255, 255, 255, 0.08)' : colors.surface;
+  const selectedColor = isDark ? 'rgba(255, 255, 255, 0.15)' : colors.primary + '20';
+  const textColor = isDark ? '#FFFFFF' : colors.text;
+  const secondaryTextColor = isDark ? 'rgba(255, 255, 255, 0.7)' : colors.textSecondary;
 
   return (
     <>
       <Stack.Screen options={{ 
-        title: 'AI Assistant',
-        headerStyle: { backgroundColor: colors.background },
-        headerTintColor: colors.text,
+        title: 'AI assistant setting',
+        headerStyle: { backgroundColor: bgColor },
+        headerTintColor: textColor,
         headerTitleStyle: { fontWeight: '600' as const }
       }} />
-      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-        <View style={styles.heroCard}>
-          <View style={styles.botIcon}>
-            <Bot size={32} color={colors.primary} />
-          </View>
-          <Text style={styles.heroTitle}>Your AI Assistant</Text>
-          <Text style={styles.heroDescription}>
-            Powered by advanced AI to help you make better decisions, manage your network, and optimize your interactions
-          </Text>
-        </View>
-
+      <ScrollView style={[styles.container, { backgroundColor: bgColor }]} contentContainerStyle={styles.content}>
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Core Features</Text>
-          <View style={styles.card}>
-            <View style={styles.settingItem}>
-              <View style={styles.settingLeft}>
-                <View style={styles.iconContainer}>
-                  <Zap size={20} color={colors.primary} />
-                </View>
-                <View style={styles.settingText}>
-                  <Text style={styles.settingTitle}>AI Assistant</Text>
-                  <Text style={styles.settingSubtitle}>Enable AI-powered features</Text>
-                </View>
-              </View>
-              <Switch
-                value={aiEnabled}
-                onValueChange={setAiEnabled}
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor="#FFFFFF"
-              />
-            </View>
-
-            <View style={styles.divider} />
-
-            <View style={styles.settingItem}>
-              <View style={styles.settingLeft}>
-                <View style={styles.iconContainer}>
-                  <MessageSquare size={20} color={colors.primary} />
-                </View>
-                <View style={styles.settingText}>
-                  <Text style={styles.settingTitle}>Smart Suggestions</Text>
-                  <Text style={styles.settingSubtitle}>Get AI recommendations</Text>
-                </View>
-              </View>
-              <Switch
-                value={smartSuggestions}
-                onValueChange={setSmartSuggestions}
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor="#FFFFFF"
-                disabled={!aiEnabled}
-              />
-            </View>
-
-            <View style={styles.divider} />
-
-            <View style={styles.settingItem}>
-              <View style={styles.settingLeft}>
-                <View style={styles.iconContainer}>
-                  <TrendingUp size={20} color={colors.primary} />
-                </View>
-                <View style={styles.settingText}>
-                  <Text style={styles.settingTitle}>Learning Mode</Text>
-                  <Text style={styles.settingSubtitle}>Adapt to your preferences</Text>
-                </View>
-              </View>
-              <Switch
-                value={learningMode}
-                onValueChange={setLearningMode}
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor="#FFFFFF"
-                disabled={!aiEnabled}
-              />
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Advanced Settings</Text>
-          <View style={styles.card}>
-            <TouchableOpacity style={styles.menuItem} activeOpacity={0.7}>
-              <View style={styles.menuItemLeft}>
-                <View style={styles.iconContainer}>
-                  <Settings size={20} color={colors.primary} />
-                </View>
-                <View>
-                  <Text style={styles.menuItemTitle}>Conversation Style</Text>
-                  <Text style={styles.menuItemSubtitle}>Professional</Text>
-                </View>
-              </View>
+          <Text style={[styles.sectionTitle, { color: textColor }]}>Gender</Text>
+          <View style={styles.optionsRow}>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: gender === 'male' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setGender('male')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>👨 Male</Text>
             </TouchableOpacity>
-
-            <View style={styles.divider} />
-
-            <TouchableOpacity style={styles.menuItem} activeOpacity={0.7}>
-              <View style={styles.menuItemLeft}>
-                <View style={styles.iconContainer}>
-                  <Shield size={20} color={colors.primary} />
-                </View>
-                <View>
-                  <Text style={styles.menuItemTitle}>Privacy Settings</Text>
-                  <Text style={styles.menuItemSubtitle}>Manage data usage</Text>
-                </View>
-              </View>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: gender === 'female' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setGender('female')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>👩 Female</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        <View style={styles.statsCard}>
-          <Text style={styles.statsTitle}>AI Usage Statistics</Text>
-          <View style={styles.statsGrid}>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>1,247</Text>
-              <Text style={styles.statLabel}>Suggestions Made</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>94%</Text>
-              <Text style={styles.statLabel}>Accuracy Rate</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>18h</Text>
-              <Text style={styles.statLabel}>Time Saved</Text>
-            </View>
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: textColor }]}>Tone of voice</Text>
+          <View style={styles.optionsGrid}>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: toneOfVoice === 'formal' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setToneOfVoice('formal')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>✍️ Formal tone</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: toneOfVoice === 'informal' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setToneOfVoice('informal')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>🤙 Informal tone</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: toneOfVoice === 'factual' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setToneOfVoice('factual')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>👍 Factual tone</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: toneOfVoice === 'directive' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setToneOfVoice('directive')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>👌 Directive tone</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: toneOfVoice === 'assertive' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setToneOfVoice('assertive')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>✍️ Assertive tone</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: toneOfVoice === 'friendly' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setToneOfVoice('friendly')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>👍 Friendly tone</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: toneOfVoice === 'questioning' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setToneOfVoice('questioning')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>🤙 Questioning tone</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: toneOfVoice === 'conversational' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setToneOfVoice('conversational')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>🗣️ Conversational tone</Text>
+            </TouchableOpacity>
           </View>
         </View>
+
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: textColor }]}>AI's mood</Text>
+          <View style={styles.optionsGrid}>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: mood === 'neutral' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setMood('neutral')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>😐 Neutral</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: mood === 'excited' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setMood('excited')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>😃 Excited</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: mood === 'cheerful' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setMood('cheerful')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>😊 Cheerful</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: mood === 'relaxed' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setMood('relaxed')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>😌 Relaxed</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: mood === 'calm' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setMood('calm')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>😊 Calm</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: mood === 'sad' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setMood('sad')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>😢 Sad</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: mood === 'bored' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setMood('bored')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>😐 Bored</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: mood === 'irritated' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setMood('irritated')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>😠 Irritated</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                { backgroundColor: mood === 'tense' ? selectedColor : surfaceColor }
+              ]}
+              onPress={() => setMood('tense')}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.optionText, { color: textColor }]}>😰 Tense</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() => {
+            console.log('AI settings:', { gender, toneOfVoice, mood });
+            router.back();
+          }}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.submitButtonText}>OK, let's try it</Text>
+        </TouchableOpacity>
       </ScrollView>
     </>
   );
@@ -149,144 +256,48 @@ export default function AIAssistantScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
   },
   content: {
     padding: 20,
     paddingBottom: 40,
   },
-  heroCard: {
-    backgroundColor: colors.surface,
-    borderRadius: 20,
-    padding: 32,
-    alignItems: 'center',
-    marginBottom: 32,
-  },
-  botIcon: {
-    width: 72,
-    height: 72,
-    borderRadius: 20,
-    backgroundColor: 'rgba(31, 191, 191, 0.15)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  heroTitle: {
-    fontSize: 24,
-    fontWeight: '700' as const,
-    color: colors.text,
-    marginBottom: 12,
-  },
-  heroDescription: {
-    fontSize: 15,
-    color: colors.textSecondary,
-    textAlign: 'center' as const,
-    lineHeight: 22,
-  },
   section: {
     marginBottom: 32,
   },
   sectionTitle: {
-    fontSize: 15,
+    fontSize: 22,
     fontWeight: '600' as const,
-    color: colors.textSecondary,
-    marginBottom: 12,
-    marginLeft: 4,
-    textTransform: 'uppercase' as const,
-    letterSpacing: 0.5,
+    marginBottom: 16,
   },
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: 16,
-    padding: 4,
-  },
-  settingItem: {
+  optionsRow: {
     flexDirection: 'row' as const,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 16,
+    gap: 12,
   },
-  settingLeft: {
+  optionsGrid: {
     flexDirection: 'row' as const,
-    alignItems: 'center',
-    flex: 1,
+    flexWrap: 'wrap' as const,
+    gap: 12,
   },
-  iconContainer: {
-    width: 44,
-    height: 44,
+  optionButton: {
+    paddingVertical: 14,
+    paddingHorizontal: 20,
     borderRadius: 12,
-    backgroundColor: 'rgba(31, 191, 191, 0.15)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 16,
+    minWidth: 100,
   },
-  settingText: {
-    flex: 1,
-  },
-  settingTitle: {
+  optionText: {
     fontSize: 16,
-    fontWeight: '600' as const,
-    color: colors.text,
-    marginBottom: 4,
+    fontWeight: '500' as const,
   },
-  settingSubtitle: {
-    fontSize: 14,
-    color: colors.textSecondary,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: colors.border,
-    marginLeft: 76,
-  },
-  menuItem: {
-    flexDirection: 'row' as const,
+  submitButton: {
+    backgroundColor: colors.primary,
+    borderRadius: 16,
+    paddingVertical: 18,
     alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 16,
+    marginTop: 20,
   },
-  menuItemLeft: {
-    flexDirection: 'row' as const,
-    alignItems: 'center',
-    flex: 1,
-  },
-  menuItemTitle: {
-    fontSize: 16,
-    fontWeight: '600' as const,
-    color: colors.text,
-    marginBottom: 4,
-  },
-  menuItemSubtitle: {
-    fontSize: 14,
-    color: colors.textSecondary,
-  },
-  statsCard: {
-    backgroundColor: colors.surface,
-    borderRadius: 20,
-    padding: 24,
-  },
-  statsTitle: {
+  submitButtonText: {
+    color: '#FFFFFF',
     fontSize: 18,
     fontWeight: '600' as const,
-    color: colors.text,
-    marginBottom: 24,
-    textAlign: 'center' as const,
-  },
-  statsGrid: {
-    flexDirection: 'row' as const,
-    justifyContent: 'space-around',
-  },
-  statItem: {
-    alignItems: 'center',
-  },
-  statValue: {
-    fontSize: 28,
-    fontWeight: '700' as const,
-    color: colors.primary,
-    marginBottom: 8,
-  },
-  statLabel: {
-    fontSize: 13,
-    color: colors.textSecondary,
-    textAlign: 'center' as const,
   },
 });
