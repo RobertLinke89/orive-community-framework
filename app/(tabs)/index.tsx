@@ -422,13 +422,6 @@ export default function OrbitScreen() {
               );
             })}
           </ScrollView>
-          {selectedTags.length > 0 && (
-            <View style={styles.selectedTagsInfo}>
-              <Text style={[styles.selectedTagsText, { color: colors.textSecondary }]}>
-                {selectedTags.length} value{selectedTags.length !== 1 ? 's' : ''} selected
-              </Text>
-            </View>
-          )}
         </View>
         {showSuccessBanner && (
           <Animated.View
@@ -916,15 +909,6 @@ const styles = StyleSheet.create({
     fontWeight: '600' as const,
     letterSpacing: -0.2,
   },
-  selectedTagsInfo: {
-    marginTop: 8,
-    alignItems: 'center',
-  },
-  selectedTagsText: {
-    fontSize: 12,
-    fontWeight: '500' as const,
-  },
-
   navigationSpace: {
     flex: 1,
     overflow: 'hidden',
