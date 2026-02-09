@@ -563,12 +563,13 @@ export default function OrbitScreen() {
                   {
                     shadowRadius: breathShadowRadius,
                     shadowOpacity: breathShadowOpacity,
+                    backgroundColor: colors.surface,
                   },
                 ]}
               >
                 <Image
                   source={{ uri: 'https://pub-e001eb4506b145aa938b5d3badbff6a5.r2.dev/attachments/8u1txdk0of4zxscl5v2dq' }}
-                  style={styles.logo}
+                  style={styles.userAvatar}
                   resizeMode="cover"
                 />
               </Animated.View>
@@ -1077,13 +1078,18 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#00FFFF',
     shadowOffset: { width: 0, height: 0 },
-    borderWidth: 3,
-    borderColor: '#FFFFFF',
+    borderWidth: 4,
+    borderColor: '#1FBFBF',
+    overflow: 'hidden',
+  },
+  userAvatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   logo: {
     width: 94,
