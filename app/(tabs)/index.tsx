@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
-import { View, StyleSheet, Animated, Pressable, Dimensions, Image, Text, PanResponder, ScrollView, Modal } from 'react-native';
+import { View, StyleSheet, Animated, Pressable, Dimensions, Image, Text, PanResponder, ScrollView, Modal, TextInput } from 'react-native';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { darkColors, lightColors } from '@/constants/colors';
 import { CheckCircle2, Search, SearchX, X, Hand, Sparkles, Users, Briefcase, Building2, MapPin } from 'lucide-react-native';
@@ -35,7 +35,7 @@ export default function OrbitScreen() {
   const [isSeekingAnimation, setIsSeekingAnimation] = useState(false);
   const seekX = useRef(new Animated.Value(0)).current;
   const seekY = useRef(new Animated.Value(0)).current;
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [showTutorial, setShowTutorial] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
   const tutorialOpacity = useRef(new Animated.Value(0)).current;
@@ -299,27 +299,21 @@ export default function OrbitScreen() {
       filteredPeers = getMatchingPeers();
     }
     
-    if (selectedTags.length > 0) {
+    if (searchQuery.trim().length > 0) {
+      const searchTerms = searchQuery.toLowerCase().split(/[,\s]+/).filter(t => t.length > 0);
       filteredPeers = filteredPeers.filter(peer => {
-        return peer.values?.some((v: string) => selectedTags.includes(v));
+        return searchTerms.some(term => 
+          peer.values?.some((v: string) => v.toLowerCase().includes(term)) ||
+          peer.name.toLowerCase().includes(term)
+        );
       });
     }
     
     return filteredPeers;
   }, [peers, isExploringMode, userValues.length, getMatchingPeers, selectedTags]);
 
-  const toggleTag = useCallback((tag: string) => {
-    setSelectedTags(prev => {
-      if (prev.includes(tag)) {
-        return prev.filter(t => t !== tag);
-      } else {
-        return [...prev, tag];
-      }
-    });
-  }, []);
-
-  const clearAllTags = useCallback(() => {
-    setSelectedTags([]);
+  const clearSearch = useCallback(() => {
+    setSearchQuery('');
   }, []);
 
 
@@ -380,48 +374,23 @@ export default function OrbitScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <View style={[styles.container, { backgroundColor: colors.background }]}>
         <View style={[styles.searchHeader, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
-          <View style={styles.searchHeaderTop}>
-            <View style={styles.searchTitleContainer}>
-              <Search size={20} color={colors.primary} />
-              <Text style={[styles.searchTitle, { color: colors.text }]}>Discover by Values</Text>
-            </View>
-            {selectedTags.length > 0 && (
-              <Pressable onPress={clearAllTags} style={[styles.clearButton, { backgroundColor: colors.surfaceLight }]}>
-                <X size={14} color={colors.textSecondary} />
-                <Text style={[styles.clearButtonText, { color: colors.textSecondary }]}>Clear</Text>
+          <View style={styles.searchInputContainer}>
+            <Search size={20} color={colors.textSecondary} />
+            <TextInput
+              style={[styles.searchInput, { color: colors.text }]}
+              placeholder="Search by values or name..."
+              placeholderTextColor={colors.textSecondary}
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            {searchQuery.length > 0 && (
+              <Pressable onPress={clearSearch} style={styles.clearIconButton}>
+                <X size={18} color={colors.textSecondary} />
               </Pressable>
             )}
           </View>
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.tagsScrollContent}
-            style={styles.tagsScroll}
-          >
-            {CORE_VALUES.map((value) => {
-              const isSelected = selectedTags.includes(value);
-              return (
-                <Pressable
-                  key={value}
-                  onPress={() => toggleTag(value)}
-                  style={[
-                    styles.tagChip,
-                    { 
-                      backgroundColor: isSelected ? colors.primary : colors.surfaceLight,
-                      borderColor: isSelected ? colors.primary : colors.border,
-                    }
-                  ]}
-                >
-                  <Text style={[
-                    styles.tagChipText,
-                    { color: isSelected ? '#FFFFFF' : colors.text }
-                  ]}>
-                    {value}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </ScrollView>
         </View>
         {showSuccessBanner && (
           <Animated.View
@@ -854,7 +823,7 @@ const styles = StyleSheet.create({
   },
   searchHeader: {
     paddingTop: 60,
-    paddingBottom: 12,
+    paddingBottom: 16,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
     shadowColor: '#000',
@@ -863,52 +832,25 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
   },
-  searchHeaderTop: {
+  searchInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 12,
-  },
-  searchTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  searchTitle: {
-    fontSize: 18,
-    fontWeight: '700' as const,
-    letterSpacing: -0.3,
-  },
-  clearButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
-  },
-  clearButtonText: {
-    fontSize: 13,
-    fontWeight: '600' as const,
-  },
-  tagsScroll: {
-    marginHorizontal: -20,
-  },
-  tagsScrollContent: {
-    paddingHorizontal: 20,
-    gap: 8,
-  },
-  tagChip: {
+    gap: 12,
     paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1.5,
-    marginRight: 8,
+    paddingVertical: 12,
+    borderRadius: 12,
+    backgroundColor: 'rgba(31, 191, 191, 0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(31, 191, 191, 0.15)',
   },
-  tagChipText: {
-    fontSize: 14,
-    fontWeight: '600' as const,
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+    fontWeight: '500' as const,
     letterSpacing: -0.2,
+  },
+  clearIconButton: {
+    padding: 4,
   },
   navigationSpace: {
     flex: 1,
@@ -1058,10 +1000,12 @@ const styles = StyleSheet.create({
 
   centerAvatarContainer: {
     position: 'absolute',
-    top: SCREEN_HEIGHT / 2 - 120,
-    left: SCREEN_WIDTH / 2 - 120,
+    top: '50%',
+    left: '50%',
     width: 240,
     height: 240,
+    marginTop: -120,
+    marginLeft: -120,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 50,
