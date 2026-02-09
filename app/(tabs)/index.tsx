@@ -310,7 +310,7 @@ export default function OrbitScreen() {
     }
     
     return filteredPeers;
-  }, [peers, isExploringMode, userValues.length, getMatchingPeers, selectedTags]);
+  }, [peers, isExploringMode, userValues.length, getMatchingPeers, searchQuery]);
 
   const clearSearch = useCallback(() => {
     setSearchQuery('');
