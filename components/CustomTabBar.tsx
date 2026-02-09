@@ -75,7 +75,7 @@ const CustomTabBar = memo(function CustomTabBar({ currentRoute }: TabBarProps) {
 
           <View style={styles.centerButtonContainer}>
             <Pressable
-              style={[styles.centerButton, { backgroundColor: activeColor }]}
+              style={[styles.centerButton, { backgroundColor: '#FFFFFF' }]}
               onPress={handleOrbitPress}
             >
               <Image
