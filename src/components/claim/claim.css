@@ -181,6 +181,7 @@
 @media (max-width:480px){.orive-tpl .cover .chip .chip-t{display:none}}
 /* .oc is also the app page wrapper class (navy, min-height 100vh): neutralise it for template outcome cards */
 .orive-tpl .oc.card{--bg:inherit;--fg:inherit;--card:inherit;color:inherit;background:var(--card);min-height:0;padding:20px}
+@media (max-width:700px){
   .orive-tpl .book-cta .btn-book{width:100%}
   .orive-tpl .book-bar{left:0;right:0;bottom:0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));justify-content:space-between}
   .orive-tpl .book-bar .btn-book{flex:1;max-width:60%}
