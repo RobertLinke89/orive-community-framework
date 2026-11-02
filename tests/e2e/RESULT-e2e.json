@@ -1,0 +1,148 @@
+{
+  "run_at": "2026-10-27T15:05:54.020Z",
+  "mode": "stripe_test_mode",
+  "results": [
+    {
+      "step": "probe customers.create",
+      "status": "denied",
+      "permission": "Customers Write (customer_write)"
+    },
+    {
+      "step": "probe customers.del",
+      "status": "denied",
+      "permission": "Customers Write (customer_write)"
+    },
+    {
+      "step": "probe checkout.sessions.create",
+      "status": "denied",
+      "permission": "Checkout Sessions Write (checkout_session_write)"
+    },
+    {
+      "step": "probe checkout.sessions.retrieve",
+      "status": "denied",
+      "permission": "Checkout Sessions Read (checkout_session_read)"
+    },
+    {
+      "step": "probe setupIntents.create",
+      "status": "denied",
+      "permission": "Setup Intents Write (setup_intent_write)"
+    },
+    {
+      "step": "probe setupIntents.retrieve",
+      "status": "denied",
+      "permission": "Setup Intents Read (setup_intent_read)"
+    },
+    {
+      "step": "probe paymentMethods.attach",
+      "status": "denied",
+      "permission": "Payment Methods Write (payment_method_write)"
+    },
+    {
+      "step": "probe paymentMethods.detach",
+      "status": "denied",
+      "permission": "Payment Methods Write (payment_method_write)"
+    },
+    {
+      "step": "probe paymentIntents.create",
+      "status": "denied",
+      "permission": "nicht per Restricted Key verfügbar (laut Stripe-Meldung)"
+    },
+    {
+      "step": "probe paymentIntents.retrieve",
+      "status": "denied",
+      "permission": "Payment Intents Read (payment_intent_read)"
+    },
+    {
+      "step": "probe refunds.create",
+      "status": "pass",
+      "detail": "erlaubt (Validierung: 404 resource_missing)"
+    },
+    {
+      "step": "probe refunds.list",
+      "status": "denied",
+      "permission": "Charges and Refunds Read (charge_read)"
+    },
+    {
+      "step": "probe charges.retrieve",
+      "status": "denied",
+      "permission": "Charges and Refunds Read (charge_read)"
+    },
+    {
+      "step": "probe applicationFees.list",
+      "status": "denied",
+      "permission": "Application Fees Read (application_fee_read)"
+    },
+    {
+      "step": "probe transfers.list",
+      "status": "denied",
+      "permission": "Transfers Read (transfer_read)"
+    },
+    {
+      "step": "probe accounts.create",
+      "status": "denied",
+      "permission": "Accounts Write (connected_account_write)"
+    },
+    {
+      "step": "probe accounts.retrieve(connected)",
+      "status": "denied",
+      "permission": "inconclusive: account_invalid (Probe-Konto existiert nicht)"
+    },
+    {
+      "step": "probe accounts.del",
+      "status": "denied",
+      "permission": "inconclusive: account_invalid (Probe-Konto existiert nicht)"
+    },
+    {
+      "step": "probe accountLinks.create",
+      "status": "denied",
+      "permission": "Account Links Write (account_link_write)"
+    },
+    {
+      "step": "probe webhookEndpoints.list (für stripe listen/Produktion)",
+      "status": "denied",
+      "permission": "Webhook Endpoints, Event Destinations Read (webhook_read)"
+    },
+    {
+      "step": "connect POST (accounts.create express + accountLinks.create)",
+      "status": "fail",
+      "detail": "  status 500: Something went wrong. Please try again."
+    },
+    {
+      "step": "express status",
+      "status": "note",
+      "detail": "chargesEnabled=false payoutsEnabled=false"
+    },
+    {
+      "step": "connect GET status",
+      "status": "pass"
+    },
+    {
+      "step": "accounts.create custom (DE, Testdaten)",
+      "status": "denied",
+      "permission": "Accounts Write (connected_account_write)",
+      "detail": "StripePermissionError more_permissions_required Permission denied. The provided key '[stripe-key]' does not have the required permissions for this endpoint on account 'acct_1UVBoUGcfBqzjGzy'. Enabling Accounts Write ('connected_account_write') permissions on this key would allow this request to cont"
+    },
+    {
+      "step": "POST /api/session-bookings/checkout (customers.create + checkout.sessions.create setup)",
+      "status": "fail",
+      "detail": "  status 502: Payment provider unavailable."
+    },
+    {
+      "step": "4 übersprungen",
+      "status": "skipped",
+      "detail": "keine Buchung"
+    },
+    {
+      "step": "5. Abgelehnte Karte pm_card_chargeDeclined",
+      "status": "skipped",
+      "detail": "kein Connect-Konto mit charges_enabled"
+    },
+    {
+      "step": "6. SCA-Karte pm_card_authenticationRequired (off-session)",
+      "status": "skipped",
+      "detail": "kein Connect-Konto mit charges_enabled"
+    }
+  ],
+  "created": [],
+  "mails": []
+}

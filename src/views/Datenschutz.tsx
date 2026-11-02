@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { FactList, FactPage, FactSection } from "@/components/FactPage";
 import { useLanguage } from "@/hooks/useLanguage";
+import { RETENTION as R } from "@/lib/retention";
+import { HEALTH_CONSENT_TEXT } from "@/lib/consent-text";
 
 const CONTACT = "robert.linke@me.com";
-const UPDATED_DE = "Stand: 28. September 2026";
-const UPDATED_EN = "Updated: 28 September 2026";
+const UPDATED_DE = "Stand: 27. Oktober 2026";
+const UPDATED_EN = "Updated: 27 October 2026";
 
 export default function Datenschutz() {
   const { language, copy } = useLanguage();
@@ -71,14 +73,14 @@ export default function Datenschutz() {
                   "Art. 6 Abs. 1 lit. c DSGVO — Rechtspflicht: handels- und steuerrechtliche Aufbewahrung, Auskunft gegenüber Behörden.",
                   "Art. 6 Abs. 1 lit. f DSGVO — berechtigtes Interesse: IT-Sicherheit, Missbrauchs- und Betrugsprävention, Plattformstabilität, Produktverbesserung in aggregierter Form.",
                   "Art. 6 Abs. 1 lit. a DSGVO — Einwilligung: optionale Cookies/Tracking oder Newsletter, soweit eingesetzt und gesondert eingeholt.",
-                  "Art. 9 Abs. 2 lit. a DSGVO — soweit besondere Kategorien (z. B. Gesundheitsangaben im Intake) verarbeitet werden: ausdrückliche Einwilligung oder Notwendigkeit für die vom Gast gewünschte Leistung im Rahmen der Buchung.",
+                  "Art. 9 Abs. 2 lit. a DSGVO — soweit besondere Kategorien (z. B. Gesundheitsangaben im Intake) verarbeitet werden: ausdrückliche, gesonderte Einwilligung (siehe Abschnitt 6a).",
                 ]
               : [
                   "Art. 6(1)(b) GDPR — contract: account, booking, payment initiation, facilitator desk, support for the booked service.",
                   "Art. 6(1)(c) GDPR — legal obligation: commercial and tax retention, responses to authorities.",
                   "Art. 6(1)(f) GDPR — legitimate interests: IT security, abuse and fraud prevention, platform stability, aggregated product improvement.",
                   "Art. 6(1)(a) GDPR — consent: optional cookies/tracking or newsletters where used and separately obtained.",
-                  "Art. 9(2)(a) GDPR — where special-category data (e.g. health answers in intake) is processed: explicit consent or necessity for the service the guest requested as part of the booking.",
+                  "Art. 9(2)(a) GDPR — where special-category data (e.g. health answers in intake) is processed: explicit, separate consent (see section 6a).",
                 ]
           }
         />
@@ -93,7 +95,8 @@ export default function Datenschutz() {
                   "Stripe Payments Europe, Ltd. — Zahlungen und Auszahlungen (Stripe Connect). Datenschutz: stripe.com/privacy.",
                   "Vercel Inc. — Hosting und Auslieferung der Website; Übermittlung in die USA mit geeigneten Garantien (u. a. Standardvertragsklauseln).",
                   "Supabase — Datenbank und Authentifizierung (EU-Regionen, soweit konfiguriert).",
-                  "E-Mail-/Benachrichtigungsdienste — Transaktionsmails (Buchung, Erinnerung, Facilitator-Hinweise).",
+                  "Resend (Plus Five Five, Inc., USA) — Versand von Transaktionsmails (Buchung, Erinnerung, Facilitator-Hinweise, Claim-Einladungen, Login-Links) als Auftragsverarbeiter nach Art. 28 DSGVO; Absender ist unsere eigene Domain. Übermittlung in die USA auf Basis des EU-US Data Privacy Framework bzw. Standardvertragsklauseln. Verarbeitet werden E-Mail-Adresse, Name und Mailinhalt.",
+                  "Cloudflare, Inc. — Turnstile-Prüfung gegen automatisierten Missbrauch bei Buchung, Checkout, Profil-Aktivierung und Opt-out (technische Signale wie IP-Adresse, Browser-Merkmale; keine Werbe-Cookies). Rechtsgrundlage Art. 6 Abs. 1 lit. f DSGVO; Übermittlung in die USA auf Basis von DPF/SCC."
                   "Shopify — nur wenn du im ORIVE Shop einen Kauf abschließt.",
                   "Behörden — nur wenn gesetzlich verpflichtet.",
                 ]
@@ -102,7 +105,8 @@ export default function Datenschutz() {
                   "Stripe Payments Europe, Ltd. — payments and payouts (Stripe Connect). Privacy: stripe.com/privacy.",
                   "Vercel Inc. — hosting and delivery of the site; transfers to the USA under appropriate safeguards (including SCCs).",
                   "Supabase — database and authentication (EU regions where configured).",
-                  "Email / notification providers — transactional mail (booking, reminder, facilitator notices).",
+                  "Resend (Plus Five Five, Inc., USA) — sending transactional mail (booking, reminders, facilitator notices, claim invitations, login links) as processor under Art. 28 GDPR; sender is our own domain. Transfers to the USA under the EU-US Data Privacy Framework or SCCs. Processed: e-mail address, name, message content.",
+                  "Cloudflare, Inc. — Turnstile check against automated abuse on booking, checkout, profile activation and opt-out (technical signals such as IP address and browser characteristics; no advertising cookies). Legal basis Art. 6(1)(f) GDPR; transfers to the USA under DPF/SCCs."
                   "Shopify — only if you complete a purchase in the ORIVE Shop.",
                   "Authorities — only when legally required.",
                 ]
@@ -111,10 +115,64 @@ export default function Datenschutz() {
       </FactSection>
 
       <FactSection title={copy("6. Speicherdauer", "6. Retention")}>
-        <p>
-          {copy("Kontodaten bleiben, solange das Konto besteht und danach so lange, wie gesetzliche Aufbewahrungsfristen oder Abwehr von Rechtsansprüchen es erfordern. Buchungs- und Zahlungsbelege typischerweise bis zu 10 Jahre (handels-/steuerrechtlich). Logs kürzer, soweit nicht zur Sicherheit länger nötig. Intake-Antworten: so lange wie für die Buchung und etwaige Nachsorge/Streitfälle erforderlich, danach Löschung oder Anonymisierung.", "Account data lasts while the account exists and thereafter as long as legal retention or defence of claims requires. Booking and payment records typically up to 10 years (commercial/tax law). Logs shorter unless security needs longer. Intake answers: as long as needed for the booking and any aftercare/disputes, then deletion or anonymisation.")}
-        </p>
+        <FactList
+          items={
+            de
+              ? [
+                  "Kontodaten: solange das Konto besteht, danach soweit gesetzliche Aufbewahrungspflichten oder die Abwehr von Rechtsansprüchen es erfordern.",
+                  `Reservierungen (Halte-Zeit ${R.hold_minutes} Minuten): nicht abgeschlossene, abgelaufene, abgelehnte oder ohne Abbuchung stornierte Buchungen löschen wir nach ${R.unpaid_booking_days} Tagen, verwaiste Anfragen nach ${R.stale_pending_days} Tagen.`,
+                  `Bezahlte Buchungen: Name, Kontaktdaten, Notizen und Intake-Antworten werden ${R.anonymise_after_session_days} Tage nach der Session gelöscht bzw. anonymisiert; Beträge und Zahlungs-IDs bewahren wir ${R.accounting_years} Jahre auf (§ 147 AO, § 257 HGB).`,
+                  `Einwilligungsnachweise (Version und Zeitpunkt, keine Gesundheitsdaten): so lange wie der zugehörige Buchungsbeleg.`,
+                  `Technische Zahlungsereignisse (Stripe-Webhooks): ${R.stripe_events_days} Tage. Missbrauchsschutz-Zähler (gehasht, ohne Klar-IP): ${R.rate_limit_hours} Stunden.`,
+                  `Vorbereitete, nicht aktivierte Facilitator-Profile: ${R.unclaimed_draft_days} Tage nach der Einladung; Einladungslinks ${R.claim_token_days} Tage nach Ablauf.`,
+                  "Opt-out-Sperrliste: dauerhaft, aber nur als nicht umkehrbarer Hash, damit wir dich nicht erneut anschreiben.",
+                ]
+              : [
+                  "Account data: while the account exists, thereafter as long as legal retention duties or the defence of claims require.",
+                  `Reservations (hold time ${R.hold_minutes} minutes): incomplete, expired, declined or uncharged cancelled bookings are deleted after ${R.unpaid_booking_days} days, orphaned requests after ${R.stale_pending_days} days.`,
+                  `Paid bookings: name, contact details, notes and intake answers are deleted or anonymised ${R.anonymise_after_session_days} days after the session; amounts and payment IDs are kept for ${R.accounting_years} years (German commercial/tax law).`,
+                  "Consent records (version and time, no health data): as long as the related booking record.",
+                  `Technical payment events (Stripe webhooks): ${R.stripe_events_days} days. Abuse-protection counters (hashed, no plain IP): ${R.rate_limit_hours} hours.`,
+                  `Prepared, not activated facilitator profiles: ${R.unclaimed_draft_days} days after the invitation; invitation links ${R.claim_token_days} days after expiry.`,
+                  "Opt-out suppression list: permanently, but only as an irreversible hash so we do not contact you again.",
+                ]
+          }
+        />
       </FactSection>
+
+      <div id="gesundheitsdaten">
+        <FactSection title={copy("6a. Gesundheitsangaben im Intake (Art. 9 DSGVO)", "6a. Health information in the intake (Art. 9 GDPR)")}>
+          <p>
+            {copy(
+              "Manche Angebote fragen vor der Session nach Gesundheitsangaben. Diese verarbeiten wir nur mit deiner ausdrücklichen Einwilligung (Art. 9 Abs. 2 lit. a DSGVO), die du über ein separates, nicht vorausgewähltes Kästchen erteilst. Wir speichern die Antworten verschlüsselt und geben sie nur an den gebuchten Facilitator weiter. Als Nachweis speichern wir Textversion, Sprache und Zeitpunkt der Einwilligung. Du kannst sie jederzeit widerrufen (Link in der Buchungsbestätigung oder per E-Mail an " + CONTACT + "); die Antworten werden dann sofort gelöscht. Der Einwilligungstext lautet:",
+              "Some offers ask for health information before the session. We process it only with your explicit consent (Art. 9(2)(a) GDPR), given via a separate, unticked checkbox. Answers are stored encrypted and shared only with the booked facilitator. As proof we store text version, language and time of consent. You can withdraw at any time (link in the booking confirmation or by e-mail to " + CONTACT + "); the answers are then deleted immediately. The consent text reads:",
+            )}
+          </p>
+          <blockquote style={{ fontStyle: "italic", opacity: 0.85 }}>{de ? HEALTH_CONSENT_TEXT.de : HEALTH_CONSENT_TEXT.en}</blockquote>
+        </FactSection>
+      </div>
+
+      <div id="facilitator-profile">
+        <FactSection title={copy("6b. Vorbereitete Facilitator-Profile: Herkunft der Daten (Art. 14 DSGVO)", "6b. Prepared facilitator profiles: source of data (Art. 14 GDPR)")}>
+          <FactList
+            items={
+              de
+                ? [
+                    "Für Anbieter:innen aus Yoga, Breathwork, Meditation u. ä. stellen wir aus öffentlich zugänglichen Quellen (eigene Website, öffentliche Verzeichnisse, öffentliche Social-Media-Profile) einen nicht öffentlichen Profilentwurf zusammen: Name bzw. Studioname, Kategorie, Stadt/Land, Website, Instagram-Link sowie die geschäftliche Kontakt-E-Mail.",
+                    "Zweck: einmalige Einladung, das Profil auf ORIVE zu übernehmen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Ansprache von Gewerbetreibenden). Die E-Mail-Adresse wird nie veröffentlicht.",
+                    `Der Entwurf ist bis zur Aktivierung nicht öffentlich und für Suchmaschinen gesperrt (noindex). Erst wenn du dich über den persönlichen Link anmeldest (Google, Apple oder E-Mail-Link) und auf „Jetzt aktivieren“ klickst, wird das Profil veröffentlicht. Ohne Aktivierung löschen wir den Entwurf ${R.unclaimed_draft_days} Tage nach der Einladung.`,
+                    "Widerspruch / Löschung: Über „Das bin nicht ich / Meine Daten löschen“ auf der Einladungsseite oder per E-Mail an " + CONTACT + " löschen wir den Entwurf sofort und setzen dich auf eine Sperrliste (nur Hash), damit keine erneute Ansprache erfolgt (Art. 17, 21 DSGVO).",
+                  ]
+                : [
+                    "For practitioners in yoga, breathwork, meditation and similar fields we compile a non-public draft profile from publicly available sources (own website, public directories, public social-media profiles): name or studio name, category, city/country, website, Instagram link and the business contact e-mail.",
+                    "Purpose: a one-time invitation to claim the profile on ORIVE. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in contacting businesses). The e-mail address is never published.",
+                    `The draft is not public and is blocked for search engines (noindex) until activation. Only when you sign in via your personal link (Google, Apple or e-mail link) and click “Activate now” is the profile published. Without activation we delete the draft ${R.unclaimed_draft_days} days after the invitation.`,
+                    "Objection / deletion: via “This isn't me / Delete my data” on the invitation page or by e-mail to " + CONTACT + " we delete the draft immediately and add you to a suppression list (hash only) so you are not contacted again (Art. 17, 21 GDPR).",
+                  ]
+            }
+          />
+        </FactSection>
+      </div>
 
       <FactSection title={copy("7. Cookies und lokaler Speicher", "7. Cookies and local storage")}>
         <p>

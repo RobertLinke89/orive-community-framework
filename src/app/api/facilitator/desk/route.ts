@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
 import { facilitatorFromRequest } from "@/lib/facilitatorAuth";
-import { profileByEmail } from "@/lib/facilitatorPayout";
+import { payoutAccountFor, profileByEmail } from "@/lib/facilitatorPayout";
 import { listBookings, listFacilitatorInventory } from "@/lib/oriveStore";
-import { isStripeKeyUsable } from "@/lib/payments";
 
 export const dynamic = "force-dynamic";
 
@@ -67,17 +65,9 @@ export async function GET(req: Request) {
     euros: booking.priceCents / 100,
   }));
 
-  let payoutsEnabled = false;
-  const stripeKey = process.env.STRIPE_SECRET_KEY;
-  if (profile?.stripeAccountId && isStripeKeyUsable(stripeKey)) {
-    try {
-      const stripe = new Stripe(stripeKey as string, { apiVersion: "2024-06-20" as Stripe.StripeConfig["apiVersion"] });
-      const account = await stripe.accounts.retrieve(String(profile.stripeAccountId));
-      payoutsEnabled = Boolean(account.payouts_enabled);
-    } catch (error) {
-      console.warn("[desk] stripe account", error);
-    }
-  }
+  // Flags are kept current by the account.updated webhook and GET /api/facilitator/connect.
+  const payout = await payoutAccountFor({ userId: actor.userId, facilitatorId: actor.id }).catch(() => null);
+  const payoutsEnabled = Boolean(payout?.payouts_enabled);
 
   return NextResponse.json({
     actor: { id: actor.id, email: actor.email, name: profile?.name || actor.name },
@@ -86,7 +76,8 @@ export async function GET(req: Request) {
       practice: profile?.practice || "",
       onboardingComplete: Boolean(profile?.onboardingComplete) || offers.length > 0,
       payoutsEnabled,
-      stripeConnected: Boolean(profile?.stripeAccountId),
+      stripeConnected: Boolean(payout?.stripe_account_id),
+      chargesEnabled: Boolean(payout?.charges_enabled),
     },
     offers,
     guests,

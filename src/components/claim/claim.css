@@ -1,0 +1,189 @@
+/* Orive claim/profile styles – derived from /orive-mockups/style.css (Dark Blue / White colourways). */
+.oc{--bg:#01223F;--fg:#fff;--card:#0a3358;color:var(--fg);background:var(--bg);min-height:100vh;font-family:Inter,system-ui,sans-serif;padding-bottom:48px}
+.oc-white{--bg:#fff;--fg:#0b1b2b;--card:#f2f5f7}
+.oc *{box-sizing:border-box}
+.oc-ic{vertical-align:-3px}
+.oc-draft{background:#f6c34a;color:#000;font-weight:600;padding:10px 24px;text-align:center;font-size:14px}
+.oc-cover{height:260px;position:relative;background:linear-gradient(135deg,var(--acc),var(--acc2));background-size:cover;background-position:center}
+.oc-chip{position:absolute;left:24px;bottom:72px;background:var(--acc);color:#fff;font-weight:800;padding:6px 12px;border-radius:999px;font-size:13px;text-shadow:0 1px 2px #0005;border:1px solid #fff5}
+.oc-wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+.oc-head{display:flex;gap:20px;align-items:flex-end;margin-top:-55px;position:relative}
+.oc-avatar{width:120px;height:120px;flex:none;border-radius:50%;background:var(--card);border:5px solid var(--acc);display:grid;place-items:center;font-size:40px;font-weight:800;color:var(--acc)}
+.oc h1{margin:0;font-size:32px;line-height:1.15}.oc h2{margin:36px 0 14px}.oc-head p{margin:6px 0 0}
+.oc-muted{opacity:.72}
+.oc-ex{font-size:11px;background:#f6c34a;color:#000;padding:2px 6px;border-radius:4px;font-weight:600;vertical-align:middle}
+.oc-card{background:var(--card);border-radius:16px;padding:20px}.oc-card h3{margin:0 0 8px}
+.oc-offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.oc-offers .oc-card{display:flex;flex-direction:column;gap:6px}.oc-meta{display:flex;gap:14px;font-size:14px;opacity:.8;margin:0}
+.oc-price{font-size:22px;color:var(--acc);margin-top:auto}
+.oc-links{display:flex;flex-wrap:wrap;gap:20px;margin-top:24px}.oc-links a{color:var(--acc);font-weight:600;text-decoration:none}
+.oc-btn{background:var(--acc);color:#fff;border:0;border-radius:999px;padding:12px 22px;font:700 15px Inter,system-ui,sans-serif;cursor:pointer;display:inline-flex;gap:8px;align-items:center;justify-content:center}
+.oc-btn.big{padding:16px 30px;font-size:17px}.oc-btn.dark{background:#000}.oc-btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--acc)}
+.oc-btn:disabled{opacity:.6;cursor:wait}.oc-btn:focus-visible,.oc-link-btn:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
+.oc-activate{margin-top:28px;border:1px dashed var(--acc)}.oc-activate h2{margin-top:0}
+.oc-auth{display:grid;gap:12px;max-width:440px}.oc-mail{display:flex;gap:8px}.oc-mail input,.oc-edit-row input,.oc-edit-row select{flex:1;min-width:0;padding:12px 14px;border-radius:12px;border:1px solid #8886;background:transparent;color:inherit;font:inherit}
+.oc-err{color:#ff7a7a}.oc-optout{margin-top:28px;text-align:center}.oc-link-btn{background:none;border:0;color:var(--acc);text-decoration:underline;cursor:pointer;font:inherit;margin-top:8px}
+.oc-editor{margin-top:24px}.oc-edit-row{display:grid;grid-template-columns:2fr 2fr 80px 140px 90px auto auto;gap:8px;margin-bottom:10px}
+.oc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.oc-msg{max-width:560px;margin:15vh auto;text-align:center}
+/* Celebration */
+.oc-cel{font-family:Inter,system-ui,sans-serif;position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--acc) 35%,#01223F),#01223F 70%);color:#fff;overflow:hidden}
+.oc-cel-box{position:relative;text-align:center;padding:24px;max-width:960px}
+.oc-cel-kicker{font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--acc2)}
+.oc-cel h2{font-size:clamp(22px,3vw,30px);margin:8px 0 20px}
+.oc-share-link{display:block;font-size:clamp(30px,6vw,64px);font-weight:900;line-height:1.1;color:#fff;text-decoration:none;word-break:break-all;margin-bottom:28px;text-shadow:0 0 30px var(--acc)}
+.oc-cel-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}.oc-cel .oc-btn.ghost{color:#fff}
+.oc-cel-fallback{display:flex;gap:18px;justify-content:center;margin-top:18px}.oc-cel-fallback a{color:var(--acc2)}
+.oc-fx{position:absolute;inset:0;pointer-events:none}
+.oc-fx i{position:absolute;display:block;width:14px;height:14px;transform:scale(var(--s));animation:oc-rise 5s ease-in-out infinite;opacity:.8}
+/* per-category themes */
+.oc-theme-wind .oc-fx i{width:140px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--acc2),transparent);animation-name:oc-wind}
+.oc-theme-lotus .oc-fx i{width:26px;height:44px;border-radius:50% 50% 50% 50%/80% 80% 20% 20%;background:var(--acc2);opacity:.45;animation-name:oc-unfold}
+.oc-theme-frost .oc-fx i{width:18px;height:18px;background:none;border:1px solid var(--acc2);transform:rotate(45deg) scale(var(--s));box-shadow:0 0 8px var(--acc2);animation-name:oc-fall}
+.oc-theme-steam .oc-fx i{width:60px;height:60px;border-radius:50%;background:radial-gradient(#fff6,transparent 70%);animation-name:oc-rise}
+.oc-theme-ripples .oc-fx i{width:40px;height:40px;border-radius:50%;border:2px solid var(--acc2);background:none;animation-name:oc-ripple}
+.oc-theme-light .oc-fx i{width:80px;height:80px;border-radius:50%;background:radial-gradient(var(--acc2),transparent 70%);animation-name:oc-glow}
+.oc-theme-leaves .oc-fx i{width:16px;height:24px;border-radius:0 100% 0 100%;background:var(--acc2);animation-name:oc-fall}
+.oc-theme-flow .oc-fx i{width:180px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--acc2),transparent);animation-name:oc-wave}
+.oc-theme-stars .oc-fx i{width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px var(--acc2);animation-name:oc-twinkle}
+.oc-theme-path .oc-fx i{width:3px;height:90px;background:linear-gradient(0deg,transparent,var(--acc2));animation-name:oc-rise}
+.oc-theme-pulse .oc-fx i{width:120px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--acc),transparent);animation-name:oc-wave}
+.oc-theme-forest .oc-fx i{width:20px;height:30px;border-radius:0 100% 0 100%;background:var(--acc);opacity:.7;animation-name:oc-fall}
+@keyframes oc-rise{0%{transform:translateY(40vh) scale(var(--s));opacity:0}30%{opacity:.8}100%{transform:translateY(-60vh) scale(var(--s));opacity:0}}
+@keyframes oc-fall{0%{transform:translateY(-50vh) rotate(0) scale(var(--s));opacity:0}20%{opacity:.9}100%{transform:translateY(60vh) rotate(260deg) scale(var(--s));opacity:0}}
+@keyframes oc-wind{0%{transform:translateX(-60vw) scale(var(--s));opacity:0}40%{opacity:.9}100%{transform:translateX(60vw) scale(var(--s));opacity:0}}
+@keyframes oc-wave{0%,100%{transform:translateX(-10vw) translateY(0) scale(var(--s))}50%{transform:translateX(10vw) translateY(-20px) scale(var(--s))}}
+@keyframes oc-unfold{0%{transform:scale(0) rotate(-30deg);opacity:0}60%{opacity:.5}100%{transform:scale(calc(var(--s)*1.6)) rotate(30deg);opacity:0}}
+@keyframes oc-ripple{0%{transform:scale(.2);opacity:.9}100%{transform:scale(calc(var(--s)*5));opacity:0}}
+@keyframes oc-glow{0%,100%{transform:scale(calc(var(--s)*.6));opacity:.2}50%{transform:scale(calc(var(--s)*1.8));opacity:.7}}
+@keyframes oc-twinkle{0%,100%{opacity:.1;transform:scale(.5)}50%{opacity:1;transform:scale(calc(var(--s)*1.4))}}
+@media (prefers-reduced-motion:reduce){.oc-fx i{animation:none!important;opacity:.35}}
+@media (max-width:640px){.oc-head{flex-direction:column;align-items:flex-start}.oc-edit-row{grid-template-columns:1fr 1fr}}
+/* Go-live top bar (claim preview) */
+.oc-page{min-height:100vh;background:#01223F}
+.oc-golive{position:sticky;top:0;z-index:40;background:#01223Ff2;color:#fff;backdrop-filter:blur(8px);border-bottom:1px solid #ffffff1f;font-family:Inter,system-ui,sans-serif;--acc:#00CDAC}
+.oc-golive-row{display:flex;align-items:center;gap:14px;padding:10px 24px}
+.oc-brand{color:#00CDAC;font-size:18px}.oc-golive-state{opacity:.8;font-size:14px;margin-right:auto}
+.oc-switch{display:inline-flex;align-items:center;gap:10px;background:#00CDAC;color:#01223F;border:0;border-radius:999px;padding:8px 18px 8px 8px;font:800 15px Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 18px #00cdac55}
+.oc-switch:disabled{cursor:default}.oc-switch:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.oc-switch-track{width:44px;height:24px;border-radius:999px;background:#01223F;position:relative;display:inline-block}
+.oc-switch-knob{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#7a8a99;transition:left .2s,background .2s}
+.oc-switch[aria-checked="true"] .oc-switch-knob{left:23px;background:#00CDAC}
+.oc-golive-panel{padding:6px 24px 18px;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.oc-golive-panel .oc-activate{width:min(440px,100%)}.oc-golive-panel .oc-btn{width:100%}
+.oc-golive-panel .oc-mail input{color:#fff}
+.oc-q{font:700 12px Inter,system-ui,sans-serif;padding:4px 8px;border-radius:6px;border:1px solid currentColor}
+.oc-q-A{color:#22c55e}.oc-q-B{color:#84cc16}.oc-q-C{color:#f59e0b}.oc-q-reject{color:#ef4444}
+.oc-page .oc-optout{color:#fff;padding:0 24px 32px}
+@media (prefers-reduced-motion:reduce){.oc-switch-knob{transition:none}}
+
+/* ---- gallery, offer/product images, empty states (patch 0004) ---- */
+.orive-tpl .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.orive-tpl .gallery{margin:20px 0 8px;position:relative}
+.orive-tpl .ggrid{display:grid;gap:8px;grid-template-columns:2fr 1fr 1fr;grid-template-rows:180px 180px;border-radius:18px;overflow:hidden}
+.orive-tpl .gallery.n1 .ggrid{grid-template-columns:1fr;grid-template-rows:360px}
+.orive-tpl .gallery.n2 .ggrid{grid-template-columns:2fr 1fr;grid-template-rows:360px}
+.orive-tpl .gallery.n3 .ggrid{grid-template-columns:2fr 1fr}
+.orive-tpl .gallery.n4 .ggrid .gcell:nth-child(4){grid-column:span 2}
+.orive-tpl .gcell{position:relative;padding:0;border:0;margin:0;cursor:zoom-in;background:var(--card);overflow:hidden;min-height:0}
+.orive-tpl .gcell.hero{grid-row:span 2}
+.orive-tpl .gcell:focus-visible{outline:3px solid var(--acc);outline-offset:-3px}
+.orive-tpl figure{margin:0;position:relative;height:100%}
+.orive-tpl .gimg img,.orive-tpl .oimg img,.orive-tpl .pimg img{display:block;width:100%;height:100%;object-fit:cover}
+.orive-tpl .gcell .more{position:absolute;inset:0;display:grid;place-items:center;background:#0008;color:#fff;font-size:24px;font-weight:700}
+.orive-tpl .gall{position:absolute;right:12px;bottom:12px;border:0;border-radius:999px;padding:8px 14px;background:#fffe;color:#0f172a;font-weight:600;cursor:pointer}
+.orive-tpl .imglabel{position:absolute;left:8px;top:8px;background:#f5c542;color:#111;font:700 11px/1 Inter,system-ui,sans-serif;padding:4px 7px;border-radius:6px;letter-spacing:.02em}
+.orive-tpl .card.has-img{padding-top:0;overflow:hidden}
+.orive-tpl .card .oimg,.orive-tpl .card .pimg{margin:0 -20px 14px;height:auto;aspect-ratio:4/3;overflow:hidden;background:#f1f5f9}
+.orive-tpl .card .oimg img,.orive-tpl .card .pimg img{position:absolute;inset:0}
+.orive-tpl .offers.stack .card.has-img,.orive-tpl .c-breath .offers .card.has-img{padding-top:20px;align-items:center;gap:16px}
+.orive-tpl .offers.stack .card .oimg,.orive-tpl .c-breath .offers .card .oimg{margin:0;width:96px;height:72px;flex:none;border-radius:10px;overflow:hidden}
+.orive-tpl .empty-offers{text-align:center;padding:28px 20px;border:1px dashed var(--acc)}
+.orive-tpl .empty-offers b{font-size:16px}
+.orive-tpl .products .btn.ghost{background:transparent;border:1px solid var(--acc);color:inherit}
+@media (max-width:700px){
+  .orive-tpl .gallery{margin:12px -16px 4px}
+  .orive-tpl .ggrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:0;grid-template-rows:none}
+  .orive-tpl .gcell{flex:0 0 86%;height:240px;scroll-snap-align:center}
+  .orive-tpl .gallery.n1 .gcell{flex-basis:100%}
+  .orive-tpl .gcell .more{display:none}
+}
+/* lightbox (client: GalleryLightbox) */
+.oc-lb{position:fixed;inset:0;z-index:1000;background:#000e;display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.oc-lb img{max-width:92vw;max-height:82vh;object-fit:contain;border-radius:8px}
+.oc-lb figure{margin:0;position:relative;text-align:center}
+.oc-lb figcaption{color:#fffc;font:14px/1.4 Inter,system-ui,sans-serif;margin-top:10px}
+.oc-lb button{position:absolute;border:0;background:#fff2;color:#fff;width:48px;height:48px;border-radius:999px;font-size:24px;cursor:pointer}
+.oc-lb .x{top:16px;right:16px}.oc-lb .p{left:16px;top:50%}.oc-lb .n{right:16px;top:50%}
+.oc-lb .imglabel{position:absolute;left:8px;top:8px;background:#f5c542;color:#111;font:700 11px/1 Inter,system-ui,sans-serif;padding:4px 7px;border-radius:6px}
+
+/* ---- Day (default) / Night theme (patch 0004) ---- */
+.orive-tpl.variant{max-width:100%;margin:0 auto}
+.orive-tpl.variant[data-theme="night"]{--bg:#01223F;--fg:#fff;--card:#0a3358}
+@media (prefers-color-scheme: dark){ .orive-tpl.variant[data-theme="auto"]{--bg:#01223F;--fg:#fff;--card:#0a3358} }
+/* accent as TEXT on white needs more contrast (WCAG AA): darken the category colour for ink use only */
+.orive-tpl.variant{--acc-ink:color-mix(in srgb, var(--acc) 62%, #000)}
+.orive-tpl.variant[data-theme="night"]{--acc-ink:var(--acc2)}
+@media (prefers-color-scheme: dark){ .orive-tpl.variant[data-theme="auto"]{--acc-ink:var(--acc2)} }
+.orive-tpl .links a,.orive-tpl .price,.orive-tpl h2 .ic,.orive-tpl .muted .ic{color:var(--acc-ink)}
+.orive-tpl.variant .muted{color:color-mix(in srgb, var(--fg) 68%, transparent)}
+.orive-tpl.variant .card{box-shadow:0 1px 0 color-mix(in srgb, var(--fg) 8%, transparent)}
+.oc-theme-toggle{position:fixed;right:16px;bottom:16px;z-index:50;border:1px solid #0003;background:#fff;color:#01223F;border-radius:999px;padding:8px 14px;font:600 13px Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 14px #0002}
+.oc-theme-toggle[aria-pressed="true"]{background:#01223F;color:#fff;border-color:#fff3}
+/* mobile: the mockups were 1200px fixed */
+@media (max-width:700px){
+  .orive-tpl.variant{width:100%}
+  .orive-tpl .wrap,.orive-tpl .narrow{padding-left:16px;padding-right:16px;max-width:100%;box-sizing:border-box}
+  .orive-tpl .offers,.orive-tpl .two,.orive-tpl .aufg{grid-template-columns:1fr !important}
+  .orive-tpl .week{display:flex;overflow-x:auto;gap:8px}.orive-tpl .week .day{flex:0 0 42%}
+  /* mobile overflow fixes (390px): yoga legend, sauna meter/bands, sound instruments, stacked list cards (breath/kambo) */
+  .orive-tpl .legend{flex-wrap:wrap;row-gap:6px}
+  .orive-tpl .heat>*{min-width:0}.orive-tpl .meter{flex-wrap:wrap}
+  .orive-tpl .inst{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .orive-tpl .offers.stack .card,.orive-tpl .c-breath .offers .card.has-img{flex-wrap:wrap;row-gap:6px}
+  .orive-tpl .offers.stack .card>h3,.orive-tpl .c-breath .offers .card.has-img>h3{flex:1 1 0;min-width:0;overflow-wrap:anywhere}
+  .orive-tpl .offers.stack .card>p,.orive-tpl .offers.stack .card>.price,.orive-tpl .c-breath .offers .card.has-img>p,.orive-tpl .c-breath .offers .card.has-img>.price{flex:1 0 100%;min-width:0}
+  .orive-tpl .head{gap:12px}.orive-tpl .head h1{font-size:22px}
+  .orive-tpl .cta{flex-direction:column;gap:12px;align-items:stretch;text-align:center}
+}
+.oc-media-list{list-style:none;padding:0;display:grid;gap:8px}
+.oc-media-list li{display:flex;gap:8px;align-items:center}
+.oc-media-list img{border-radius:8px;object-fit:cover}
+.oc-thumb-missing{width:96px;height:72px;border-radius:8px;background:#0001}
+.oc-upload{display:grid;gap:8px;margin-top:10px}
+.oc-rights{display:flex;gap:8px;align-items:flex-start;font-size:13px}
+.oc-product{display:grid;gap:8px;padding:12px 0;border-top:1px solid #0001}
+.oc-product-head{display:flex;gap:10px;align-items:center}
+.oc-row{display:flex;gap:8px;flex-wrap:wrap}
+.oc-pill{font-size:12px;padding:2px 8px;border-radius:99px;background:#0001}
+.oc-pill.published{background:#00CDAC33;color:#01574a}
+
+/* ---- single booking CTA: overlaid top-right in the cover. Teal #0F766E + white text: contrast 5.47:1 (WCAG AA) ---- */
+.orive-tpl .book-cta{position:absolute;top:20px;right:24px;z-index:3}
+.orive-tpl .btn-book{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:14px;
+  background:#0F766E;color:#fff;font-weight:800;font-size:17px;letter-spacing:.01em;text-decoration:none;border:1px solid #ffffff40;cursor:pointer;
+  box-shadow:0 10px 28px -6px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.25);text-shadow:0 1px 1px #0003;transition:transform .15s,box-shadow .15s,background .15s}
+.orive-tpl .btn-book:hover{background:#115E59;transform:translateY(-1px)}
+.orive-tpl .btn-book:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px #01223F}
+.orive-tpl .btn-book .ic{width:20px;height:20px;stroke-width:2}
+.orive-tpl .btn-book .from{font-size:13px;font-weight:600;padding-left:10px;border-left:1px solid #ffffff66}
+.orive-tpl .card.bookable{cursor:pointer}
+.orive-tpl .card.bookable:hover{border-color:#0F766E}
+.orive-tpl .card.bookable:focus-visible{outline:3px solid #0F766E;outline-offset:2px}
+@media (max-width:700px){
+  .orive-tpl .book-cta{top:12px;right:12px}
+  .orive-tpl .btn-book{min-height:44px;padding:0 14px;font-size:15px;gap:8px}
+  .orive-tpl .btn-book .from{font-size:12px;padding-left:8px}
+  /* sample player: let the button drop below instead of squeezing the text column */
+  .orive-tpl .player.fb{flex-wrap:wrap;gap:16px}.orive-tpl .player.fb .pl{flex:1 1 0;min-width:0}.orive-tpl .player.fb>.btn{flex:1 0 100%}
+}
+/* long category labels would run into the booking CTA on narrow screens: icon-only chip (label repeats under the name) */
+@media (max-width:480px){.orive-tpl .cover .chip .chip-t{display:none}}
+/* .oc is also the app page wrapper class (navy, min-height 100vh): neutralise it for template outcome cards */
+.orive-tpl .oc.card{--bg:inherit;--fg:inherit;--card:inherit;color:inherit;background:var(--card);min-height:0;padding:20px}
+  .orive-tpl .book-cta .btn-book{width:100%}
+  .orive-tpl .book-bar{left:0;right:0;bottom:0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));justify-content:space-between}
+  .orive-tpl .book-bar .btn-book{flex:1;max-width:60%}
+  .orive-tpl:has(.book-bar){padding-bottom:84px}
+  .oc-page:has(.book-bar) .oc-theme-toggle{bottom:92px}
+}

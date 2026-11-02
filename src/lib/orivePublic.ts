@@ -56,7 +56,8 @@ export type OriveBooking = {
   currency: 'eur';
   location: string | null;
   status: 'pending' | 'reserved' | 'paid' | 'cancelled' | 'charge_failed' | 'refunded';
-  paymentStatus: 'unpaid' | 'card_saved' | 'paid' | 'failed' | 'refunded' | 'waived' | 'simulated';
+  paymentStatus: 'unpaid' | 'card_saved' | 'processing' | 'paid' | 'failed' | 'refunded' | 'waived' | 'simulated';
+  settleAttempts?: number;
   payoutStatus?: 'transferred' | 'awaiting_connect' | 'none';
   spotHeld?: boolean;
   stripeSessionId?: string;

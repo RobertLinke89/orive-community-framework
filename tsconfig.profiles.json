@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.audit.json",
+  "compilerOptions": { "jsx": "react-jsx", "paths": { "@/*": ["./src/*", "./.audit-stubs/*"] } },
+  "include": ["src/lib/**/*.ts", "src/app/api/**/*.ts", "src/app/claim/**/*.tsx", "src/app/f/**/*.ts", "src/app/[username]/layout.tsx", "src/app/[username]/[[]slug]/*.tsx", "src/app/auth/**/*.tsx", "src/components/auth/**/*", "src/views/Auth.tsx", "src/components/ChatCreditsAuthDialog.tsx", "src/components/claim/**/*", "src/components/compliance/**/*", "tests/**/*.ts", "tests/**/*.tsx", "scripts/import-facilitators.ts", ".audit-stubs/**/*.ts", ".audit-stubs/**/*.d.ts"]
+}

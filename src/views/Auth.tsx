@@ -16,6 +16,14 @@ import {
 import { useLanguage } from "@/hooks/useLanguage";
 import { Layout } from "@/components/Layout";
 import { cn } from "@/lib/utils";
+import { OAuthButtons } from "@/components/auth/OAuthButtons";
+import { AccountConsentBox, consentPayload } from "@/components/auth/AccountConsentBox";
+import { startOAuth, OAUTH_ERROR_TEXT, type OAuthProvider } from "@/lib/auth/oauth";
+import { PENDING_CONSENT_KEY } from "@/lib/account-consent-text";
+
+/** Every successful sign-in goes through /auth/callback, which enforces the account consent (terms + Art. 9). */
+const viaCallback = (next: string, intent: "facilitator-signup" | "facilitator-login") =>
+  `/auth/callback?${new URLSearchParams({ next, intent })}`;
 
 const FACILITATOR_CATEGORIES = [
   "Breathwork",
@@ -60,6 +68,23 @@ export default function Auth() {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [resetEmailSent, setResetEmailSent] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [consent, setConsent] = useState(false);
+  const [oauthBusy, setOauthBusy] = useState<OAuthProvider | null>(null);
+  const lang: "de" | "en" = isDe ? "de" : "en";
+
+  const handleOAuth = async (provider: OAuthProvider) => {
+    setErrorMessage(null);
+    if (mode === "signup" && !consent) {
+      const msg = copy("Bitte zuerst der Einwilligung zustimmen.", "Please accept the consent first.");
+      setErrorMessage(msg); toast.error(msg); return;
+    }
+    // sign-up: remember the ticked consent across the provider round trip; /auth/callback records it server-side
+    if (mode === "signup") sessionStorage.setItem(PENDING_CONSENT_KEY, JSON.stringify({ consent: consentPayload(lang) }));
+    setOauthBusy(provider);
+    const intent = mode === "signup" ? "facilitator-signup" : "facilitator-login";
+    const { error } = await startOAuth(provider, returnUrl || (mode === "signup" ? "/dezk/start" : "/chat"), intent);
+    if (error) { const msg = OAUTH_ERROR_TEXT[error][lang]; setErrorMessage(msg); toast.error(msg); setOauthBusy(null); }
+  };
 
   // Password validation criteria from Figma
   const hasCapital = /[A-Z]/.test(password);
@@ -72,14 +97,14 @@ export default function Auth() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         toast.success(copy("Bereits angemeldet", "Already signed in"));
-        router.push(returnUrl || "/chat");
+        router.push(viaCallback(returnUrl || "/chat", "facilitator-login"));
       }
     }).catch(() => {});
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session && event === "SIGNED_IN") {
         toast.success(copy("Willkommen zurück!", "Welcome back!"));
-        router.push(returnUrl || "/chat");
+        router.push(viaCallback(returnUrl || "/chat", "facilitator-login"));
       }
     });
 
@@ -110,7 +135,7 @@ export default function Auth() {
 
       if (data?.session) {
         toast.success(copy("Erfolgreich angemeldet!", "Successfully signed in!"));
-        router.push(returnUrl || "/chat");
+        router.push(viaCallback(returnUrl || "/chat", "facilitator-login"));
       }
     } catch (err: any) {
       console.error("Login error:", err);
@@ -143,6 +168,13 @@ export default function Auth() {
       return;
     }
 
+    if (!consent) {
+      const msg = copy("Bitte der Einwilligung zustimmen.", "Please accept the consent.");
+      setErrorMessage(msg);
+      toast.error(msg);
+      return;
+    }
+
     if (!isPasswordValid) {
       const msg = copy("Bitte alle 4 Passwortkriterien erfüllen (mind. 8 Zeichen, Großbuchstabe, Zahl, Sonderzeichen).", "Please fulfill all 4 password requirements.");
       setErrorMessage(msg);
@@ -167,6 +199,8 @@ export default function Auth() {
       });
 
       if (error) throw error;
+      // recorded server-side by /auth/callback (now, or after the confirmation e-mail on first sign-in in this tab)
+      sessionStorage.setItem(PENDING_CONSENT_KEY, JSON.stringify({ consent: consentPayload(lang) }));
 
       toast.success(copy("Facilitator-Konto erfolgreich angelegt!", "Facilitator account created successfully!"));
 
@@ -188,7 +222,7 @@ export default function Auth() {
       }
 
       if (data?.session) {
-        router.push(returnUrl || "/dezk/start");
+        router.push(viaCallback(returnUrl || "/dezk/start", "facilitator-signup"));
       } else {
         setMode("login");
         toast.info(copy("Bitte mit deinen Zugangsdaten anmelden.", "Please sign in with your credentials."));
@@ -409,6 +443,16 @@ export default function Auth() {
               >
                 {copy("Zurück zur Anmeldung", "Back to sign in")}
               </button>
+            </div>
+          )}
+
+          {!claimId && !showForgotPassword && (
+            <div className="mt-8 space-y-4">
+              {mode === "signup" && <AccountConsentBox lang={lang} checked={consent} onChange={setConsent} />}
+              <OAuthButtons lang={lang} theme="light" onSelect={handleOAuth} disabled={Boolean(oauthBusy) || loading || (mode === "signup" && !consent)} busy={oauthBusy} />
+              <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.14em] text-slate-400">
+                <span className="h-px flex-1 bg-slate-200 dark:bg-white/15" />{copy("oder mit E-Mail", "or with email")}<span className="h-px flex-1 bg-slate-200 dark:bg-white/15" />
+              </div>
             </div>
           )}
 

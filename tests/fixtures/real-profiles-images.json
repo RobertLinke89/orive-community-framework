@@ -1,0 +1,856 @@
+{
+ "note": "Metadata only (no photos). Image URLs are placeholders for internal draft renders; real files live outside the repo.",
+ "profiles": [
+  {
+   "slug": "iyengar-yoga-wolfgangsee",
+   "display_name": "Monika – Iyengar Yoga Wolfgangsee",
+   "category": "yoga",
+   "avatar": [
+    {
+     "url": "/__av/iyengar-yoga-wolfgangsee-1.jpg",
+     "alt": "Monika, Portrait"
+    },
+    {
+     "url": "/__av/iyengar-yoga-wolfgangsee-2.jpg",
+     "alt": "Monika in einer Yogahaltung am Steg"
+    },
+    {
+     "url": "/__av/iyengar-yoga-wolfgangsee-3.jpg",
+     "alt": "Monika in Trikonasana am Wolfgangsee"
+    }
+   ],
+   "offers": [
+    {
+     "title": "Yogakurs AigenRaum Strobl (Mo 8:00–9:15, Einzeleinheit)",
+     "price_amount": 17,
+     "currency": "EUR",
+     "duration_minutes": 75,
+     "image": {
+      "url": "/__offer/iyengar-yoga-wolfgangsee-o0.jpg",
+      "alt": "Yogaraum mit Matten",
+      "width": 750,
+      "height": 562,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Yoga für Multiple Sklerose (Das YogaHaus Salzburg, Di 16:00–17:15)",
+     "price_amount": 22,
+     "currency": "EUR",
+     "duration_minutes": 75,
+     "image": {
+      "url": "/__offer/iyengar-yoga-wolfgangsee-o1.jpg",
+      "alt": "Beispielbild: Yoga mit Stühlen und Hilfsmitteln",
+      "width": 800,
+      "height": 600,
+      "kind": "beispiel",
+      "label": "Beispielbild"
+     }
+    },
+    {
+     "title": "Einzelunterricht (1 Person)",
+     "price_amount": 70,
+     "currency": "EUR",
+     "duration_minutes": 75,
+     "image": {
+      "url": "/__offer/iyengar-yoga-wolfgangsee-o2.jpg",
+      "alt": "Monika in Trikonasana am Wolfgangsee",
+      "width": 750,
+      "height": 500,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Einzelunterricht (2 Personen)",
+     "price_amount": 100,
+     "currency": "EUR",
+     "duration_minutes": 75,
+     "image": {
+      "url": "/__offer/iyengar-yoga-wolfgangsee-o3.jpg",
+      "alt": "Yoga am Steg am Wolfgangsee",
+      "width": 750,
+      "height": 459,
+      "kind": "real"
+     }
+    }
+   ],
+   "products": []
+  },
+  {
+   "slug": "adem-studio",
+   "display_name": "Dominique – Adem Studio",
+   "category": "breath",
+   "avatar": [
+    {
+     "url": "/__av/adem-studio-1.jpg",
+     "alt": "Dominique, Portrait"
+    }
+   ],
+   "offers": [
+    {
+     "title": "Intakegesprek ademtherapie",
+     "price_amount": 50,
+     "currency": "EUR",
+     "duration_minutes": 60,
+     "image": {
+      "url": "/__offer/adem-studio-o0.jpg",
+      "alt": "Intakegesprek",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Holistische ademsessie (60–75 min)",
+     "price_amount": 85,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/adem-studio-o1.jpg",
+      "alt": "Leer goed ademen",
+      "width": 768,
+      "height": 768,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Holistische ademsessie (90–120 min)",
+     "price_amount": 115,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/adem-studio-o2.jpg",
+      "alt": "Dominique in Meditationshaltung",
+      "width": 637,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Verbonden ademen – individueel",
+     "price_amount": 99,
+     "currency": "EUR",
+     "duration_minutes": 120,
+     "image": {
+      "url": "/__offer/adem-studio-o3.jpg",
+      "alt": "Verbonden ademen, Einzelsitzung",
+      "width": 800,
+      "height": 758,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Verbonden ademen – groep",
+     "price_amount": 69,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/adem-studio-o4.jpg",
+      "alt": "Beispielbild: Atemsitzung in der Gruppe",
+      "width": 800,
+      "height": 600,
+      "kind": "beispiel",
+      "label": "Beispielbild"
+     }
+    },
+    {
+     "title": "Dimensional Breath® in groep",
+     "price_amount": 65,
+     "currency": "EUR",
+     "duration_minutes": 120,
+     "image": {
+      "url": "/__offer/adem-studio-o5.jpg",
+      "alt": "Dimensional Breath Sitzung",
+      "width": 800,
+      "height": 492,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Holistische (vuur)cupping",
+     "price_amount": 85,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/adem-studio-o6.jpg",
+      "alt": "Vuurcupping",
+      "width": 800,
+      "height": 710,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Mini-masterclass meditatie (begeleid door Patrick)",
+     "price_amount": 85,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/adem-studio-o7.jpg",
+      "alt": "Meditation mit Patrick",
+      "width": 600,
+      "height": 800,
+      "kind": "real"
+     }
+    }
+   ],
+   "products": [
+    {
+     "title": "Beyuna supplementen & vitaminen",
+     "price": null,
+     "currency": null,
+     "url": "https://ademstudio.be/",
+     "image": {
+      "url": "/__offer/adem-studio-p0.jpg",
+      "alt": "Beispielbild: Nahrungsergänzung",
+      "width": 800,
+      "height": 600,
+      "kind": "beispiel",
+      "label": "Beispielbild"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "alchemy-sound-bowls",
+   "display_name": "Rosio – Alchemy Sound Bowls",
+   "category": "sound",
+   "avatar": [
+    {
+     "url": "/__av/alchemy-sound-bowls-1.jpg",
+     "alt": "Crystal-Tones-Klangschalen (kein Personenfoto verfügbar)"
+    }
+   ],
+   "offers": [
+    {
+     "title": "Sound Bath (privat oder Gruppe)",
+     "price_amount": null,
+     "currency": null,
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/alchemy-sound-bowls-o0.jpg",
+      "alt": "Sound Bath in Amsterdam",
+      "width": 800,
+      "height": 492,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Corporate Sound Healing",
+     "price_amount": null,
+     "currency": null,
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/alchemy-sound-bowls-o1.jpg",
+      "alt": "Corporate Sound Healing",
+      "width": 800,
+      "height": 727,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Crystal Tones® Beratung",
+     "price_amount": null,
+     "currency": null,
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/alchemy-sound-bowls-o2.jpg",
+      "alt": "Crystal Tones Beratung",
+      "width": 800,
+      "height": 558,
+      "kind": "real"
+     }
+    }
+   ],
+   "products": [
+    {
+     "title": "Crystal Tones® Klangschalen (Verkauf)",
+     "price": null,
+     "currency": null,
+     "url": "https://alchemysoundbowls.com/crystal-tones-sound-bowls-for-sale/",
+     "image": {
+      "url": "/__offer/alchemy-sound-bowls-p0.jpg",
+      "alt": "Crystal Tones Kristallklangschalen",
+      "width": 800,
+      "height": 712,
+      "kind": "real"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "kambo-spirit-hannover",
+   "display_name": "Tom – Kambo Spirit Hannover",
+   "category": "kambo",
+   "avatar": [
+    {
+     "url": "/__av/kambo-spirit-hannover-1.jpg",
+     "alt": "Tom, Portrait"
+    }
+   ],
+   "offers": [
+    {
+     "title": "Kambo-Zeremonie",
+     "price_amount": 100,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/kambo-spirit-hannover-o0.jpg",
+      "alt": "Zeremonieraum in Hannover",
+      "width": 240,
+      "height": 300,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Anwendungsformen: Chakra, Meridiane, Auricular, Langzeit-/Intensiv, Layered, Initiation 3x3/2x2",
+     "price_amount": null,
+     "currency": null,
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/kambo-spirit-hannover-o1.jpg",
+      "alt": "Räuchern mit weißem Salbei",
+      "width": 800,
+      "height": 533,
+      "kind": "real"
+     }
+    }
+   ],
+   "products": []
+  },
+  {
+   "slug": "gesunder-aufguss",
+   "display_name": "Alen Pikon – Gesunder Aufguss",
+   "category": "sauna",
+   "avatar": [
+    {
+     "url": "/__av/gesunder-aufguss-1.jpg",
+     "alt": "Alen Pikon, Portrait"
+    }
+   ],
+   "offers": [
+    {
+     "title": "Saunaaufgüsse & Sauna-Rituale (Entspannungs-, Klangschalen-, Show-, Wenik-, Chakra-Aufguss, Dampfbad-Rituale)",
+     "price_amount": null,
+     "currency": null,
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/gesunder-aufguss-o0.jpg",
+      "alt": "Alen Pikon in der Sauna",
+      "width": 533,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Schulungen (Wedeltechniken u. a.)",
+     "price_amount": null,
+     "currency": null,
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/gesunder-aufguss-o1.jpg",
+      "alt": "Beispielbild: Schulung Wedeltechnik",
+      "width": 800,
+      "height": 600,
+      "kind": "beispiel",
+      "label": "Beispielbild"
+     }
+    },
+    {
+     "title": "Finnische Zeltsauna (mobil, Buchenholz)",
+     "price_amount": null,
+     "currency": null,
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/gesunder-aufguss-o2.jpg",
+      "alt": "Beispielbild: mobile Zeltsauna",
+      "width": 800,
+      "height": 600,
+      "kind": "beispiel",
+      "label": "Beispielbild"
+     }
+    },
+    {
+     "title": "Vertretungen (Krankenstand/Urlaub)",
+     "price_amount": null,
+     "currency": null,
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/gesunder-aufguss-o3.jpg",
+      "alt": "Beispielbild: Hotelsauna",
+      "width": 800,
+      "height": 600,
+      "kind": "beispiel",
+      "label": "Beispielbild"
+     }
+    },
+    {
+     "title": "Regelmäßige Aufgüsse: Hotel Karnerhof Faakersee (Di, Do, Sa), Hotel Hochschober (Mo–So), Regitnig Weissensee (Mo, Di, Do, Fr, Sa)",
+     "price_amount": null,
+     "currency": null,
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/gesunder-aufguss-o4.jpg",
+      "alt": "Beispielbild: Panoramasauna am See",
+      "width": 800,
+      "height": 600,
+      "kind": "beispiel",
+      "label": "Beispielbild"
+     }
+    }
+   ],
+   "products": [
+    {
+     "title": "Ätherisches Öl Lavendel (Lavandin)",
+     "price": 12.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p0.jpg",
+      "alt": "Ätherisches Öl Lavendel (Lavandin)",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl Mandarine",
+     "price": 14.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p1.jpg",
+      "alt": "Ätherisches Öl Mandarine",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl Bergamottminze",
+     "price": 9.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p2.jpg",
+      "alt": "Ätherisches Öl Bergamottminze",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl Zitrone",
+     "price": 9.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p3.jpg",
+      "alt": "Ätherisches Öl Zitrone",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl Krauseminze",
+     "price": 12.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p4.jpg",
+      "alt": "Ätherisches Öl Krauseminze",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl Zeder atlas",
+     "price": 9.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p5.jpg",
+      "alt": "Ätherisches Öl Zeder atlas",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl Winterzeit",
+     "price": 19.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p6.jpg",
+      "alt": "Ätherisches Öl Winterzeit",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl Litsea cubeba",
+     "price": 11.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p7.jpg",
+      "alt": "Ätherisches Öl Litsea cubeba",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl 7 Kräuter",
+     "price": 9.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p8.jpg",
+      "alt": "Ätherisches Öl 7 Kräuter",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl Zypresse",
+     "price": 9.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p9.jpg",
+      "alt": "Ätherisches Öl Zypresse",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Ätherisches Öl Zirbelkiefer",
+     "price": 12.9,
+     "currency": "EUR",
+     "url": "https://shop.gesunderaufguss.at/",
+     "image": {
+      "url": "/__offer/gesunder-aufguss-p10.jpg",
+      "alt": "Ätherisches Öl Zirbelkiefer",
+      "width": 800,
+      "height": 800,
+      "kind": "real"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lars-traxel",
+   "display_name": "Lars Traxel – Personal Training",
+   "category": "personal",
+   "avatar": [
+    {
+     "url": "/__av/lars-traxel-1.jpg",
+     "alt": "Lars Traxel, Portrait"
+    },
+    {
+     "url": "/__av/lars-traxel-2.jpg",
+     "alt": "Lars Traxel"
+    }
+   ],
+   "offers": [
+    {
+     "title": "Personal Training 1:1 bei dir zu Hause (München & Grünwald)",
+     "price_amount": 120,
+     "currency": "EUR",
+     "duration_minutes": 60,
+     "image": {
+      "url": "/__offer/lars-traxel-o0.jpg",
+      "alt": "Personal Training zu Hause",
+      "width": 500,
+      "height": 333,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Unverbindliches Kennenlernen",
+     "price_amount": null,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/lars-traxel-o1.jpg",
+      "alt": "Besprechung",
+      "width": 500,
+      "height": 333,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Outdoor-, Firmen- oder Online Personal Training",
+     "price_amount": null,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/lars-traxel-o2.jpg",
+      "alt": "Training mit Band",
+      "width": 500,
+      "height": 333,
+      "kind": "real"
+     }
+    }
+   ],
+   "products": []
+  },
+  {
+   "slug": "patrick-schwarz",
+   "display_name": "Patrick T. Schwarz – Personal Training",
+   "category": "personal",
+   "avatar": [
+    {
+     "url": "/__av/patrick-schwarz-1.jpg",
+     "alt": "Patrick T. Schwarz, Portrait"
+    },
+    {
+     "url": "/__av/patrick-schwarz-2.jpg",
+     "alt": "Patrick T. Schwarz im Studio"
+    }
+   ],
+   "offers": [
+    {
+     "title": "Probestunde inkl. Erstgespräch",
+     "price_amount": 70,
+     "currency": "EUR",
+     "duration_minutes": 60,
+     "image": {
+      "url": "/__offer/patrick-schwarz-o0.jpg",
+      "alt": "Probestunde (Grafik)",
+      "width": 500,
+      "height": 500,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Einzelstunde",
+     "price_amount": 100,
+     "currency": "EUR",
+     "duration_minutes": 60,
+     "image": {
+      "url": "/__offer/patrick-schwarz-o1.jpg",
+      "alt": "Einzelstunde (Grafik)",
+      "width": 500,
+      "height": 500,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "5er-Block",
+     "price_amount": 475,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/patrick-schwarz-o2.jpg",
+      "alt": "5er-Block (Grafik)",
+      "width": 500,
+      "height": 500,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "10er-Block",
+     "price_amount": 950,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/patrick-schwarz-o3.jpg",
+      "alt": "10er-Block (Grafik)",
+      "width": 500,
+      "height": 500,
+      "kind": "real"
+     }
+    }
+   ],
+   "products": []
+  },
+  {
+   "slug": "ana-personal-training",
+   "display_name": "Ana Steiner – Ana Personal Training",
+   "category": "personal",
+   "avatar": [
+    {
+     "url": "/__av/ana-personal-training-1.jpg",
+     "alt": "Ana Steiner, Portrait (Ausschnitt aus Website-Banner)"
+    },
+    {
+     "url": "/__av/ana-personal-training-2.jpg",
+     "alt": "Ana Steiner (Ausschnitt aus Website-Banner)"
+    }
+   ],
+   "offers": [
+    {
+     "title": "Erstgespräch per Telefon oder Online",
+     "price_amount": 0,
+     "currency": "CHF",
+     "duration_minutes": 30,
+     "image": {
+      "url": "/__offer/ana-personal-training-o0.jpg",
+      "alt": "Erstgespräch",
+      "width": 768,
+      "height": 768,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Einzel Personal Training",
+     "price_amount": 130,
+     "currency": "CHF",
+     "duration_minutes": 60,
+     "image": {
+      "url": "/__offer/ana-personal-training-o1.jpg",
+      "alt": "Einzeltraining",
+      "width": 768,
+      "height": 768,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "5er Abo",
+     "price_amount": 599,
+     "currency": "CHF",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/ana-personal-training-o2.jpg",
+      "alt": "5er Abo",
+      "width": 768,
+      "height": 768,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "10er Abo",
+     "price_amount": 1099,
+     "currency": "CHF",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/ana-personal-training-o3.jpg",
+      "alt": "10er Abo",
+      "width": 768,
+      "height": 768,
+      "kind": "real"
+     }
+    }
+   ],
+   "products": []
+  },
+  {
+   "slug": "coach-milo",
+   "display_name": "Coach Milo – Personal Training",
+   "category": "personal",
+   "avatar": [
+    {
+     "url": "/__av/coach-milo-1.jpg",
+     "alt": "Coach Milo, Portrait"
+    }
+   ],
+   "offers": [
+    {
+     "title": "Personal training 1-op-1",
+     "price_amount": 85,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/coach-milo-o0.jpg",
+      "alt": "Krachttraining",
+      "width": 500,
+      "height": 333,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Duo training",
+     "price_amount": 140,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/coach-milo-o1.jpg",
+      "alt": "Coaching",
+      "width": 500,
+      "height": 281,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Milo Mentorship (6 maanden)",
+     "price_amount": 649,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/coach-milo-o2.jpg",
+      "alt": "Milo buiten",
+      "width": 500,
+      "height": 667,
+      "kind": "real"
+     }
+    }
+   ],
+   "products": []
+  },
+  {
+   "slug": "bodycoach",
+   "display_name": "Michael Geraghty – Bodycoach",
+   "category": "personal",
+   "avatar": [
+    {
+     "url": "/__av/bodycoach-1.jpg",
+     "alt": "Michael Geraghty, portrait"
+    },
+    {
+     "url": "/__av/bodycoach-2.jpg",
+     "alt": "Michael Geraghty with barbell"
+    }
+   ],
+   "offers": [
+    {
+     "title": "1-on-1 Personal Training",
+     "price_amount": 60,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/bodycoach-o0.jpg",
+      "alt": "1-on-1 training",
+      "width": 800,
+      "height": 600,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Small Group PT – 1 session/week",
+     "price_amount": 30,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/bodycoach-o1.jpg",
+      "alt": "Bodycoach gym, Longmile Road",
+      "width": 800,
+      "height": 370,
+      "kind": "real"
+     }
+    },
+    {
+     "title": "Small Group PT – 2 sessions/week",
+     "price_amount": 50,
+     "currency": "EUR",
+     "duration_minutes": null,
+     "image": {
+      "url": "/__offer/bodycoach-o2.jpg",
+      "alt": "Kleingruppentraining (Beispielbild)",
+      "width": 800,
+      "height": 600,
+      "kind": "beispiel",
+      "label": "Beispielbild"
+     }
+    }
+   ],
+   "products": []
+  }
+ ]
+}

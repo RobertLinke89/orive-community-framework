@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useMemo } from 'react';
+import { Turnstile } from '@/components/compliance/Turnstile';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -32,6 +33,13 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 import { computeOriveMatchingFee, formatMoneyWithSymbol, parsePriceString } from '@/lib/pricing';
 import { PriceBreakdown } from '@/components/PriceBreakdown';
+import {
+  type FreeSlot,
+  formatEur,
+  groupSlotsByDate,
+  isUuid,
+  sessionPriceSummary,
+} from '@/lib/sessionBooking';
 
 interface SessionBookingModalProps {
   open: boolean;
@@ -134,6 +142,16 @@ export function SessionBookingModal({
   const [loadingAvailability, setLoadingAvailability] = useState(false);
   const [createdBookingId, setCreatedBookingId] = useState<string | null>(null);
 
+  // Slot calendar (session_availability / session_bookings via get_free_slots RPC).
+  // Only active for real Supabase facilitators + offerings that have free slots;
+  // otherwise the legacy inquiry / create-booking flow below is used unchanged.
+  const canUseSlotCalendar = !isFixedDateEvent && isUuid(facilitatorId) && isUuid(offeringId);
+  const [freeSlots, setFreeSlots] = useState<FreeSlot[]>([]);
+  const [freeSlotsLoaded, setFreeSlotsLoaded] = useState(false);
+  const slotMode = canUseSlotCalendar && freeSlotsLoaded && freeSlots.length > 0;
+  const freeSlotsByDate = useMemo(() => groupSlotsByDate(freeSlots), [freeSlots]);
+  const priceSummary = useMemo(() => sessionPriceSummary(sessionPrice), [sessionPrice]);
+
   // Sync state when modal opens with event data
   useEffect(() => {
     if (open && isFixedDateEvent && parsedEventDate) {
@@ -163,6 +181,7 @@ export function SessionBookingModal({
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [notes, setNotes] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
@@ -221,6 +240,44 @@ export function SessionBookingModal({
       fetchAvailability();
     }
   }, [open, facilitatorId]);
+
+  const fetchFreeSlots = async () => {
+    if (!canUseSlotCalendar || !offeringId) {
+      setFreeSlots([]);
+      setFreeSlotsLoaded(true);
+      return;
+    }
+    try {
+      const from = new Date();
+      const to = new Date();
+      to.setDate(from.getDate() + 60);
+      const { data, error } = await supabase.rpc('get_free_slots', {
+        p_facilitator_id: facilitatorId,
+        p_offering_id: offeringId,
+        p_from: from.toISOString(),
+        p_to: to.toISOString(),
+      });
+      if (error) {
+        console.warn('get_free_slots failed, using legacy availability:', error);
+        setFreeSlots([]);
+      } else {
+        setFreeSlots((data || []) as FreeSlot[]);
+      }
+    } catch (e) {
+      console.warn('get_free_slots failed, using legacy availability:', e);
+      setFreeSlots([]);
+    } finally {
+      setFreeSlotsLoaded(true);
+    }
+  };
+
+  useEffect(() => {
+    if (open) {
+      setFreeSlotsLoaded(false);
+      fetchFreeSlots();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, facilitatorId, offeringId]);
 
   // Fetch remaining spots for events with capacity via secure RPC
   useEffect(() => {
@@ -398,8 +455,9 @@ export function SessionBookingModal({
   };
 
   const isUnclaimedOrInquiry = useMemo(() => {
+    if (slotMode) return false;
     return !isClaimed || availabilitySlots.length === 0 || facilitatorId.startsWith('fac-') || isNaN(Number(facilitatorId));
-  }, [isClaimed, availabilitySlots, facilitatorId]);
+  }, [slotMode, isClaimed, availabilitySlots, facilitatorId]);
 
   const handleSubmitBooking = async () => {
     if (!validateForm()) return;
@@ -408,6 +466,46 @@ export function SessionBookingModal({
     setIsSubmitting(true);
     try {
       const bookingDateStr = format(selectedDate, 'yyyy-MM-dd');
+
+      // 0. Slot calendar: the server creates a 35-min hold (DB trigger derives price/fee and
+      // re-checks the slot) and a Stripe Checkout in setup mode (card saved, charged after the session).
+      if (slotMode && offeringId) {
+        const slot = (freeSlotsByDate.get(bookingDateStr) || []).find(
+          (s) => format(new Date(s.slot_start), 'HH:mm') === selectedTime,
+        );
+        if (!slot) {
+          toast.error('Dieser Termin ist nicht mehr verfügbar. Bitte einen anderen wählen.');
+          setStep('datetime');
+          return;
+        }
+        const resp = await fetch('/api/session-bookings/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            offeringId,
+            startAt: slot.slot_start,
+            customerName: name.trim(),
+            customerEmail: email.trim(),
+            customerPhone: phone.trim() || null,
+            notes: notes.trim() || null,
+            turnstileToken,
+          }),
+        });
+        const result = await resp.json().catch(() => ({}));
+        if (resp.status === 409) {
+          toast.error('Dieser Termin wurde gerade vergeben. Bitte einen anderen wählen.');
+          await fetchFreeSlots();
+          setStep('datetime');
+          return;
+        }
+        if (!resp.ok || !result.url) {
+          throw new Error(result.error || 'Buchung konnte nicht erstellt werden.');
+        }
+        setCreatedBookingId(result.bookingId);
+        // Card entry happens on Stripe's hosted page; the slot is held for 35 minutes.
+        window.location.assign(result.url);
+        return;
+      }
 
       // 1. If facilitator is unclaimed or has no rigid RPC slots, dispatch automated outreach
       if (isUnclaimedOrInquiry) {
@@ -536,9 +634,32 @@ export function SessionBookingModal({
 
   // Resolved time slots: if database availability returned slots, use them; otherwise use popular inquiry slots
   const displayedTimeSlots = useMemo(() => {
+    if (slotMode) {
+      if (!selectedDate) return [];
+      return (freeSlotsByDate.get(format(selectedDate, 'yyyy-MM-dd')) || []).map((s) =>
+        format(new Date(s.slot_start), 'HH:mm'),
+      );
+    }
     if (availableTimeSlots.length > 0) return availableTimeSlots;
     return DEFAULT_INQUIRY_SLOTS;
-  }, [availableTimeSlots]);
+  }, [slotMode, selectedDate, freeSlotsByDate, availableTimeSlots]);
+
+  const renderFeeSummary = () => (
+    <div className="space-y-1 pt-2 border-t border-slate-200 dark:border-white/10 text-xs">
+      <div className="flex items-center justify-between">
+        <span className="text-slate-500 dark:text-slate-400">Session</span>
+        <span className="font-medium text-slate-900 dark:text-white">{formatEur(priceSummary.price)}</span>
+      </div>
+      <div className="flex items-center justify-between">
+        <span className="text-slate-500 dark:text-slate-400">Orive platform fee</span>
+        <span className="font-medium text-slate-900 dark:text-white">{formatEur(priceSummary.fee)}</span>
+      </div>
+      <div className="flex items-center justify-between pt-1 border-t border-slate-200 dark:border-white/10">
+        <span className="font-bold text-slate-900 dark:text-white">Gesamt</span>
+        <span className="font-bold text-slate-900 dark:text-white">{formatEur(priceSummary.total)}</span>
+      </div>
+    </div>
+  );
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -584,6 +705,10 @@ export function SessionBookingModal({
                     today.setHours(0, 0, 0, 0);
                     // Disable past dates
                     if (date < today) return true;
+                    // Slot calendar: only days with at least one free slot
+                    if (slotMode) {
+                      return !freeSlotsByDate.has(format(date, 'yyyy-MM-dd'));
+                    }
                     // If we have live availability data from RPC, only enable days with availability
                     if (!isUnclaimedOrInquiry && availabilitySlots.length > 0) {
                       return !isDateAvailable(date);
@@ -687,6 +812,7 @@ export function SessionBookingModal({
                     {sessionDuration} min · {sessionPrice}
                   </span>
                 </div>
+                {slotMode && renderFeeSummary()}
               </div>
             )}
 
@@ -926,11 +1052,13 @@ export function SessionBookingModal({
                 </div>
                 <p className="text-base font-bold text-slate-900 dark:text-white">{sessionPrice}</p>
               </div>
+              {slotMode && renderFeeSummary()}
             </div>
 
+            {slotMode && <Turnstile action="booking" onToken={setTurnstileToken} />}
             <Button
               onClick={handleSubmitBooking}
-              disabled={isSubmitting || !name || !email || isSoldOut}
+              disabled={isSubmitting || !name || !email || isSoldOut || (slotMode && !turnstileToken)}
               className="w-full h-11 bg-[#00CDAC] hover:bg-[#02AAB0] text-white font-semibold rounded-xl shadow-md shadow-emerald-500/20 transition-all disabled:opacity-50"
             >
               {isSoldOut ? 'Ausgebucht' : isSubmitting ? 'Wird übermittelt...' : (isUnclaimedOrInquiry ? 'Buchungsanfrage jetzt senden' : 'Termin anfragen')}
@@ -957,7 +1085,9 @@ export function SessionBookingModal({
                 {isUnclaimedOrInquiry ? 'Anfrage gespeichert' : 'Buchung angefragt'}
               </h2>
               <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
-                Das ist keine verbindliche Buchung. {facilitatorName} wurde nicht automatisch benachrichtigt. Wir haben deine Anfrage unter {email} gespeichert.
+                {slotMode
+                  ? `Dein Termin ist reserviert und wartet auf die Bestätigung durch ${facilitatorName}. Wir melden uns unter ${email}.`
+                  : `Das ist keine verbindliche Buchung. ${facilitatorName} wurde nicht automatisch benachrichtigt. Wir haben deine Anfrage unter ${email} gespeichert.`}
               </p>
             </div>
 
@@ -977,7 +1107,7 @@ export function SessionBookingModal({
                 <span className="text-slate-500">Status:</span>
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-semibold border border-emerald-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Anfrage, keine Buchung
+                  {slotMode ? 'Ausstehend – wartet auf Bestätigung' : 'Anfrage, keine Buchung'}
                 </span>
               </div>
             </div>
@@ -1003,6 +1133,7 @@ export function SessionBookingModal({
             </div>
 
             <div className="space-y-2 pt-1">
+              {!slotMode && (
               <Link
                 href={`/booking/${createdBookingId || 'ORV-CONFIRM'}`}
                 onClick={() => onOpenChange(false)}
@@ -1011,6 +1142,10 @@ export function SessionBookingModal({
                 <span>Buchungsdetails & Kalendereintrag (.ics) ansehen</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
+              )}
+              {slotMode && createdBookingId && (
+                <p className="text-[11px] text-slate-500">Buchungsnummer: {createdBookingId.slice(0, 8).toUpperCase()}</p>
+              )}
               <Button
                 type="button"
                 variant="outline"
