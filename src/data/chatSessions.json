@@ -1,0 +1,210 @@
+{
+  "sessions": {
+    "067d1611-bfcb-4742-8609-4eac135dd8af": {
+      "id": "067d1611-bfcb-4742-8609-4eac135dd8af",
+      "visitorKey": "b20dc91a-2287-48bd-a725-a7cc70d96ec3",
+      "title": "Breathwork Berlin",
+      "createdAt": "2026-10-18T20:17:22.778Z",
+      "updatedAt": "2026-10-18T20:17:23.514Z",
+      "messages": [
+        {
+          "id": "e5500d6e-20e7-43fd-a340-25ef097f21a6",
+          "role": "user",
+          "text": "Breathwork Berlin",
+          "whatsapp": null,
+          "createdAt": "2026-10-18T20:17:23.514Z"
+        },
+        {
+          "id": "101337de-50e7-4f3a-bd05-41fa3dc522ef",
+          "role": "assistant",
+          "text": "Here are 3 dates around Berlin. Partner listings are booked with the host, not ORIVE.\n\n1. Deep connected Breath - eine Reise zu dir — 31 Oct · Berlin, Germany\n2. Friday Shake Off | Dance & Meditation | Breath Special w/ Jenni Turner — 13 Nov · Berlin, Germany\n3. Conscious Connected Breathwork for Women | Amsterdam — 31 Oct · Amsterdam, Netherlands",
+          "offerings": [
+            {
+              "id": "crawled-eb-1986743585546",
+              "title": "Deep connected Breath - eine Reise zu dir",
+              "location": "Berlin, Germany",
+              "when": "31 Oct",
+              "price": "€20",
+              "href": "/experience/crawled-eb-1986743585546",
+              "partner": true
+            },
+            {
+              "id": "crawled-eb-1995080880620",
+              "title": "Friday Shake Off | Dance & Meditation | Breath Special w/ Jenni Turner",
+              "location": "Berlin, Germany",
+              "when": "13 Nov",
+              "price": "€20",
+              "href": "/experience/crawled-eb-1995080880620",
+              "partner": true
+            },
+            {
+              "id": "crawled-eb-1991851180500",
+              "title": "Conscious Connected Breathwork for Women | Amsterdam",
+              "location": "Amsterdam, Netherlands",
+              "when": "31 Oct",
+              "price": "€80",
+              "href": "/experience/crawled-eb-1991851180500",
+              "partner": true
+            }
+          ],
+          "whatsapp": null,
+          "createdAt": "2026-10-18T20:17:23.514Z"
+        }
+      ]
+    },
+    "f6f0f198-7abf-4d53-90ae-179d79516240": {
+      "id": "f6f0f198-7abf-4d53-90ae-179d79516240",
+      "visitorKey": "b20dc91a-2287-48bd-a725-a7cc70d96ec3",
+      "title": "Guide my evening wind-down",
+      "createdAt": "2026-10-18T21:40:45.503Z",
+      "updatedAt": "2026-10-18T21:40:46.570Z",
+      "messages": [
+        {
+          "id": "81ebd7c8-41a8-4249-83a4-de1d3de0e369",
+          "role": "user",
+          "text": "Guide my evening wind-down",
+          "whatsapp": null,
+          "createdAt": "2026-10-18T21:40:46.570Z"
+        },
+        {
+          "id": "22aa62bd-d920-462b-812d-ad48d028f259",
+          "role": "assistant",
+          "text": "Tell me a city and a practice — breathwork, yoga or sound healing. I will look up matching dates.",
+          "offerings": [],
+          "whatsapp": null,
+          "createdAt": "2026-10-18T21:40:46.570Z"
+        }
+      ]
+    },
+    "85cd12f9-b441-4e96-85c6-98ae310b42bb": {
+      "id": "85cd12f9-b441-4e96-85c6-98ae310b42bb",
+      "visitorKey": "0ba84f38-7848-4199-a481-1a540f3a383d",
+      "title": "sleep better",
+      "createdAt": "2026-11-02T18:07:00.551Z",
+      "updatedAt": "2026-11-02T18:15:54.471Z",
+      "messages": [
+        {
+          "id": "73c713c6-3e42-4e6f-8bd6-4cdc410e14db",
+          "role": "user",
+          "text": "sleep better",
+          "whatsapp": null,
+          "createdAt": "2026-11-02T18:07:01.951Z"
+        },
+        {
+          "id": "c8e16c61-5e56-462c-81f1-a1403ee38a55",
+          "role": "assistant",
+          "text": "Tell me a city and a practice — breathwork, yoga or sound healing. I will look up matching dates.",
+          "offerings": [],
+          "whatsapp": null,
+          "createdAt": "2026-11-02T18:07:01.951Z"
+        },
+        {
+          "id": "535471af-0a03-44ef-9cdc-7e55dd17fc39",
+          "role": "user",
+          "text": "rudolstadt",
+          "whatsapp": null,
+          "createdAt": "2026-11-02T18:15:41.345Z"
+        },
+        {
+          "id": "f3dfd5fd-32bf-4d3f-ac96-b6890370cc99",
+          "role": "assistant",
+          "text": "Tell me a city and a practice — breathwork, yoga or sound healing. I will look up matching dates.",
+          "offerings": [],
+          "whatsapp": null,
+          "createdAt": "2026-11-02T18:15:41.345Z"
+        },
+        {
+          "id": "de82e830-ecd4-4773-8229-64a26c543708",
+          "role": "user",
+          "text": "rudolstadt breathwork",
+          "whatsapp": null,
+          "createdAt": "2026-11-02T18:15:54.471Z"
+        },
+        {
+          "id": "85d28ffe-c9b1-422c-a68a-28df02be84d3",
+          "role": "assistant",
+          "text": "Here are 5 dates. Partner listings are booked with the host, not ORIVE.\n\n1. Friday Shake Off | Dance & Meditation | Breath Special w/ Jenni Turner — 13 Nov · Berlin, Germany\n2. Atem- und Mentaltraining Erlebnisseminar — 12 Nov · 14 Kurbadstraße, 1100 Wien, Wien\n3. atemreise・breathwork by liane adam — 5 Dec · Scharnhorststraße 43, 04275 Leipzig, Leipzig\n4. femBREATH - Somatic Breathwork & Energetics für Frauen — 22 Nov · Bürgerstraße 21, 40219 Düsseldorf, Düsseldorf\n5. ROOTS · Herbst-Retreat für Frauen | Yoga, Breathwork & Körperwahrnehmung — 13 Nov · Heumarktstraße 7, 42489 Wülfrath, Wülfrath",
+          "offerings": [
+            {
+              "id": "crawled-eb-1995080880620",
+              "title": "Friday Shake Off | Dance & Meditation | Breath Special w/ Jenni Turner",
+              "location": "Berlin, Germany",
+              "when": "13 Nov",
+              "price": "€20",
+              "href": "/experience/crawled-eb-1995080880620",
+              "partner": true,
+              "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1189545274%2F786851965023%2F1%2Foriginal.20260724-131239?auto=format%2Ccompress&q=75&sharp=10&s=e0b177e304a343e374d378f6877d27c6",
+              "facilitatorName": "b23 Space",
+              "facilitatorAvatar": null,
+              "facilitatorHref": "/facilitator/fac-eb-b23-space",
+              "blurb": null,
+              "video": null
+            },
+            {
+              "id": "crawled-eb-1978629619455",
+              "title": "Atem- und Mentaltraining Erlebnisseminar",
+              "location": "14 Kurbadstraße, 1100 Wien, Wien",
+              "when": "12 Nov",
+              "price": "€300",
+              "href": "/experience/crawled-eb-1978629619455",
+              "partner": true,
+              "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1094692883%2F239296085599%2F1%2Foriginal.20250813-130217?auto=format%2Ccompress&q=75&sharp=10&s=71cc6300cb88d827b39da67a6d826749",
+              "facilitatorName": "Christian Redl",
+              "facilitatorAvatar": null,
+              "facilitatorHref": "/facilitator/fac-eb-christian-redl",
+              "blurb": null,
+              "video": null
+            },
+            {
+              "id": "crawled-eb-2000817409733",
+              "title": "atemreise・breathwork by liane adam",
+              "location": "Scharnhorststraße 43, 04275 Leipzig, Leipzig",
+              "when": "5 Dec",
+              "price": "€125",
+              "href": "/experience/crawled-eb-2000817409733",
+              "partner": true,
+              "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1193369084%2F1257292124813%2F1%2Foriginal.20260913-101045?auto=format%2Ccompress&q=75&sharp=10&s=1cba861687951c1fa82aeafc656c60db",
+              "facilitatorName": "atemreise breathwork by liane adam",
+              "facilitatorAvatar": null,
+              "facilitatorHref": "/facilitator/fac-eb-atemreise-breathwork-by-liane-adam",
+              "blurb": null,
+              "video": null
+            },
+            {
+              "id": "crawled-eb-1999261609292",
+              "title": "femBREATH - Somatic Breathwork & Energetics für Frauen",
+              "location": "Bürgerstraße 21, 40219 Düsseldorf, Düsseldorf",
+              "when": "22 Nov",
+              "price": "€65",
+              "href": "/experience/crawled-eb-1999261609292",
+              "partner": true,
+              "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1192025791%2F2181667996353%2F1%2Foriginal.20260827-113154?auto=format%2Ccompress&q=75&sharp=10&s=c192e13f8fbbc18a090f6d1f4d221906",
+              "facilitatorName": "Home in your Body",
+              "facilitatorAvatar": null,
+              "facilitatorHref": "/facilitator/fac-eb-home-in-your-body",
+              "blurb": null,
+              "video": null
+            },
+            {
+              "id": "crawled-eb-1999852566862",
+              "title": "ROOTS · Herbst-Retreat für Frauen | Yoga, Breathwork & Körperwahrnehmung",
+              "location": "Heumarktstraße 7, 42489 Wülfrath, Wülfrath",
+              "when": "13 Nov",
+              "price": "€320",
+              "href": "/experience/crawled-eb-1999852566862",
+              "partner": true,
+              "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1192768542%2F1439068091473%2F1%2Foriginal.20260905-131816?auto=format%2Ccompress&q=75&sharp=10&s=cc037e7eeadc04651e2e8ca46eef972c",
+              "facilitatorName": "Constance G. | MEDITATION. BREATHWORK. MOVEMENT.",
+              "facilitatorAvatar": null,
+              "facilitatorHref": "/facilitator/fac-eb-constance-g-meditation-breathwork-movement",
+              "blurb": null,
+              "video": null
+            }
+          ],
+          "whatsapp": null,
+          "createdAt": "2026-11-02T18:15:54.471Z"
+        }
+      ]
+    }
+  }
+}

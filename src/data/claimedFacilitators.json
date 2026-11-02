@@ -1,0 +1,56 @@
+{
+  "fac-crawled": {
+    "facilitatorId": "fac-crawled",
+    "name": "Verified Facilitator",
+    "email": "facilitator@orive.co",
+    "status": "active",
+    "defaultSlots": [
+      {
+        "day_of_week": 1,
+        "start_time": "09:00",
+        "end_time": "18:00"
+      },
+      {
+        "day_of_week": 2,
+        "start_time": "09:00",
+        "end_time": "18:00"
+      },
+      {
+        "day_of_week": 3,
+        "start_time": "09:00",
+        "end_time": "18:00"
+      },
+      {
+        "day_of_week": 4,
+        "start_time": "09:00",
+        "end_time": "18:00"
+      },
+      {
+        "day_of_week": 5,
+        "start_time": "09:00",
+        "end_time": "18:00"
+      }
+    ],
+    "claimedAt": "2026-09-23T10:34:04.838Z",
+    "calendarActive": true
+  },
+  "fac-user-elena-rostova-test": {
+    "facilitatorId": "fac-user-elena-rostova-test",
+    "name": "Elena Rostova Test",
+    "email": "elena-rostova-test@facilitator.orive.co",
+    "claimedAt": "2026-09-23T10:34:05.286Z",
+    "calendarActive": true,
+    "calendarUnlocked": true,
+    "sourceUrl": "https://example.com/studio",
+    "city": "Berlin",
+    "category": "Breathwork"
+  },
+  "fac-robert-orive-co": {
+    "facilitatorId": "fac-robert-orive-co",
+    "name": "Robert Linke",
+    "email": "robert@orive.co",
+    "status": "claimed",
+    "claimedAt": "2026-09-24T12:52:29.520Z",
+    "calendarActive": true
+  }
+}

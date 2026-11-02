@@ -1,0 +1,78 @@
+{
+  "offerings": [
+    {
+      "id": "orive-1790254350010-j81m0",
+      "title": "ORIVE host session",
+      "description": null,
+      "type": "event",
+      "location": "Berlin",
+      "is_online": false,
+      "image_url": "/experiences/orive-host-session.jpg",
+      "tags": [
+        "Breathwork"
+      ],
+      "facilitator_id": "fac-robert-orive-co",
+      "facilitator_name": "Robert Linke",
+      "facilitator_email": "robert@orive.co",
+      "duration": 60,
+      "createdAt": "2026-09-24T12:52:30.010Z"
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot-1790254350010-urvq3",
+      "offeringId": "orive-1790254350010-j81m0",
+      "startAt": "2026-10-10T18:00:00.000Z",
+      "spots": 2,
+      "priceCents": 4500,
+      "currency": "eur"
+    }
+  ],
+  "bookings": [
+    {
+      "offeringId": "orive-1790254350010-j81m0",
+      "slotId": "slot-1790254350010-urvq3",
+      "sessionTitle": "ORIVE host session",
+      "facilitatorName": "Robert Linke",
+      "facilitatorEmail": "robert@orive.co",
+      "customerName": "Ada",
+      "customerEmail": "guest@example.com",
+      "startAt": "2026-10-10T18:00:00.000Z",
+      "priceCents": 4500,
+      "currency": "eur",
+      "location": "Berlin",
+      "id": "book-1790254355869-ijtun",
+      "status": "pending",
+      "paymentStatus": "unpaid",
+      "createdAt": "2026-09-24T12:52:35.869Z"
+    }
+  ],
+  "intakeForms": [
+    {
+      "id": "form-studio-atem",
+      "name": "Studio Atem",
+      "questions": [
+        {
+          "id": "health",
+          "prompt": "How is your health at the moment?",
+          "required": true
+        },
+        {
+          "id": "medicines",
+          "prompt": "Which medicines or supplements do you take?",
+          "required": true
+        },
+        {
+          "id": "conditions",
+          "prompt": "Any injury, pregnancy, or condition the facilitator should know?",
+          "required": true
+        },
+        {
+          "id": "emergency",
+          "prompt": "Emergency contact: name and phone",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+name: 24h Automated European Offerings Crawler
+
+on:
+  schedule:
+    # Runs every 24 hours at 03:00 UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  crawl-and-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ORIVE Crawler
+        run: npm run crawl
+
+      - name: Commit and push if new offerings found
+        run: |
+          git config --global user.name "ORIVE Crawler Bot"
+          git config --global user.email "bot@orive.co"
+          git add src/data/crawledOfferings.json
+          if git diff --staged --quiet; then
+            echo "No new or updated offerings found. Everything is up to date."
+          else
+            git commit -m "chore(crawler): 24h sync - update European wellbeing offerings [skip ci]"
+            git push origin main
+          fi

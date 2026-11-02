@@ -1,0 +1,74 @@
+{
+  "wallets": {
+    "b20dc91a-2287-48bd-a725-a7cc70d96ec3": {
+      "visitorKey": "b20dc91a-2287-48bd-a725-a7cc70d96ec3",
+      "freeRemaining": 3,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-10",
+      "graceUsed": false,
+      "updatedAt": "2026-10-18T21:40:46.198Z",
+      "purchases": []
+    },
+    "test-visitor-key-1234567890": {
+      "visitorKey": "test-visitor-key-1234567890",
+      "freeRemaining": 4,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-10",
+      "graceUsed": false,
+      "updatedAt": "2026-10-18T17:41:49.903Z",
+      "purchases": []
+    },
+    "test-visitor-debug-1": {
+      "visitorKey": "test-visitor-debug-1",
+      "freeRemaining": 4,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-10",
+      "graceUsed": false,
+      "updatedAt": "2026-10-18T20:15:41.104Z",
+      "purchases": []
+    },
+    "39257584-e0c1-422c-aed5-ac9b0778edda": {
+      "visitorKey": "39257584-e0c1-422c-aed5-ac9b0778edda",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T14:25:24.220Z",
+      "purchases": []
+    },
+    "0ba84f38-7848-4199-a481-1a540f3a383d": {
+      "visitorKey": "0ba84f38-7848-4199-a481-1a540f3a383d",
+      "freeRemaining": 10,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T18:15:54.372Z",
+      "purchases": []
+    },
+    "d1106690-6d82-4aa2-8052-9d1f2a3e3595": {
+      "visitorKey": "d1106690-6d82-4aa2-8052-9d1f2a3e3595",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T16:55:15.335Z",
+      "purchases": []
+    },
+    "cc1a3637-3052-4712-b528-aec8331fe56d": {
+      "visitorKey": "cc1a3637-3052-4712-b528-aec8331fe56d",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T20:04:25.469Z",
+      "purchases": []
+    }
+  }
+}
