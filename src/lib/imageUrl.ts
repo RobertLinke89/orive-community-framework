@@ -5,6 +5,8 @@
  * that may contain old Supabase project URLs.
  */
 
+import { topicImageFor, isTopicImageSrc } from "@/lib/topicImages";
+
 // Known old Supabase project URLs that should be handled
 const OLD_SUPABASE_HOSTS = [
   'ibplqqfnpouwpvhsrbio.supabase.co',
@@ -165,20 +167,9 @@ export function getTopicImageUrl(
 ): string {
   const keywordStr = keywordText(tags, title, type);
   const seed = `${title || ''}|${keywordStr}`;
-
-  for (const pool of TOPIC_POOLS) {
-    if (pool.test.test(keywordStr)) {
-      return pickFrom(pool.images, seed);
-    }
-  }
-
-  if (type && TYPE_POOLS[type]) return pickFrom(TYPE_POOLS[type], seed);
-  return pickFrom([
-    '/experiences/holistic-retreat.jpg',
-    '/experiences/forest-bathing.jpg',
-    '/experiences/wellness-weekend.jpg',
-    DEFAULT_IMAGES.offering,
-  ], seed);
+  const curated = topicImageFor(seed, `${title || ''} ${keywordStr} ${type || ''}`);
+  if (curated?.src) return curated.src;
+  return '/topic-images/wellness/wellness-01-960.webp';
 }
 
 const REJECTED_STOCK = [
@@ -213,7 +204,7 @@ function isPartnerOfferingImage(url: string): boolean {
 export function isRealOfferingImage(url: string | null | undefined): boolean {
   const lower = String(url || '').toLowerCase();
   if (!lower) return false;
-  if (lower.startsWith('/experiences/') || lower.startsWith('/sessions/') || lower.startsWith('/facilitators/')) return false;
+  if (isTopicImageSrc(lower) || lower.startsWith('/experiences/') || lower.startsWith('/sessions/') || lower.startsWith('/facilitators/')) return false;
   if (lower.includes('unsplash.com') || lower.includes('placeholder')) return false;
   return lower.includes('evbuc.com') || lower.includes('eventbrite') || lower.includes('wimhofmethod.com');
 }
@@ -273,18 +264,25 @@ export function getOfferingExtraImages(
 }
 
 export function offeringGalleryOf(item: {
+  id?: string | null;
   image_url?: string | null;
   image?: string | null;
   tags?: string[] | string | null;
   title?: string | null;
   type?: string | null;
+  category?: string | null;
 }): string[] {
   const original = item.image_url || item.image || '';
+  if (isTopicImageSrc(original)) return [original];
   const hero = isListableOfferingImage(original)
     ? optimizeOfferingImage(original, 1600)
     : '';
-  const extras = getOfferingExtraImages(item.tags, item.title, item.type, original);
-  return [hero, extras[0], extras[1]].filter((url, index, list) => url && list.indexOf(url) === index);
+  if (hero) return [hero];
+  const topic = topicImageFor(
+    String(item.id || item.title || 'offer'),
+    `${item.title || ''} ${keywordText(item.tags, item.title, item.type)} ${item.category || ''}`
+  );
+  return topic ? [topic.src] : [];
 }
 
 function isUntrustedOfferingImage(url: string): boolean {

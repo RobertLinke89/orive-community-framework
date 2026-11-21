@@ -1,30 +1,17 @@
 import { NextResponse } from 'next/server';
+import Stripe from 'stripe';
 import { createPendingBooking, deleteBooking, getInventoryItem, getStoredSlot, isStoredOriveOffering, questionsForOffering } from '@/lib/oriveStore';
 import { renderReservationEmail, sendEmail } from '@/lib/email';
 import { collectIntake } from '@/lib/intake';
 import { notifyFacilitatorOfIntake } from '@/lib/intakeMail';
 import { markIntakeSent, reserveBooking } from '@/lib/oriveStore';
-import { CONCIERGE_FEE_CENTS, allowStripeSimulation } from '@/lib/payments';
-import { appOrigin, isSameOrigin } from '@/lib/appOrigin';
-import { bookingPassUrl } from '@/lib/legacyBookingLinks';
-import { clientKey } from '@/lib/rateLimit';
-import { rateLimitShared } from '@/lib/rateLimitShared';
-import { verifyTurnstile, clientIp, turnstileTokenFrom } from '@/lib/turnstile';
-import { parseHealthConsent, buildConsentRecord, consentStore } from '@/lib/consent';
-import { GENERIC_ERROR, logError } from '@/lib/safeLog';
-import { getStripe } from '@/lib/stripeClient';
+import { CONCIERGE_FEE_CENTS, allowStripeSimulation, isStripeKeyUsable } from '@/lib/payments';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
-  if (!isSameOrigin(req)) return NextResponse.json({ error: 'Forbidden.' }, { status: 403 });
-  if (!(await rateLimitShared(`legacy-checkout:${clientKey(req)}`, 5, 60_000))) {
-    return NextResponse.json({ error: 'Too many requests.' }, { status: 429 });
-  }
   try {
     const body = await req.json();
-    const captcha = await verifyTurnstile(turnstileTokenFrom(req, body), { ip: clientIp(req), action: 'booking' });
-    if (!captcha.ok) return NextResponse.json({ error: 'Captcha check failed.' }, { status: 403 });
     const {
       offeringId,
       slotId,
@@ -56,11 +43,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "error" in collected ? collected.error : "Intake incomplete." }, { status: 400 });
     }
 
-    const consent = parseHealthConsent(body.healthConsent);
-    if (collected.intake.length > 0 && !consent) {
-      return NextResponse.json({ error: 'Explicit consent for health-related intake answers is required.' }, { status: 400 });
-    }
-
     const booking = await createPendingBooking({
       offeringId: targetOfferingId,
       slotId: slot.id,
@@ -79,20 +61,19 @@ export async function POST(req: Request) {
       intake: collected.intake,
     });
 
-    if (consent && collected.intake.length > 0) {
-      try { await consentStore()?.insert(buildConsentRecord(String(booking.id), consent, req, 'legacy')); }
-      catch (e) { logError('consent.record', e); }
-    }
+    const origin = req.headers.get('origin') || 'https://orive.co';
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
-    const origin = appOrigin();
-    const stripe = getStripe();
+    if (isStripeKeyUsable(stripeSecretKey)) {
+      const stripe = new Stripe(stripeSecretKey as string, {
+        apiVersion: '2024-06-20' as any,
+      });
 
-    if (stripe) {
       const customer = await stripe.customers.create({
         email: customerEmail || undefined,
         name: customerName || undefined,
         metadata: { bookingId: booking.id },
-      }, { idempotencyKey: `customer-${booking.id}` });
+      });
 
       const session = await stripe.checkout.sessions.create({
         mode: 'setup',
@@ -105,13 +86,14 @@ export async function POST(req: Request) {
           },
         },
         metadata: {
+          offeringId: targetOfferingId,
+          slotId: slot.id,
           bookingId: booking.id,
           type: 'orive_booking_setup',
         },
-        expires_at: Math.floor(Date.now() / 1000) + 30 * 60,
-        success_url: bookingPassUrl(booking.id, '&reserved=1&session_id={CHECKOUT_SESSION_ID}'),
+        success_url: `${origin}/booking/${encodeURIComponent(booking.id)}?reserved=1&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/checkout/${encodeURIComponent(targetOfferingId)}?payment=cancelled`,
-      }, { idempotencyKey: `setup-${booking.id}` });
+      });
 
       return NextResponse.json({
         success: true,
@@ -143,7 +125,7 @@ export async function POST(req: Request) {
         clientName: reserved.customerName || 'Gast',
         whenLabel: Number.isNaN(when.getTime()) ? reserved.startAt : when.toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' }),
         sessionAmount: `${Math.round(reserved.priceCents / 100)} €`,
-        bookingPassUrl: bookingPassUrl(reserved.id),
+        bookingPassUrl: `${origin}/booking/${encodeURIComponent(reserved.id)}`,
       });
       if (reserved.customerEmail) {
         await sendEmail({ to: reserved.customerEmail, subject: letter.subject, html: letter.html });
@@ -153,10 +135,13 @@ export async function POST(req: Request) {
       success: true,
       mode: 'simulation',
       bookingId: booking.id,
-      url: bookingPassUrl(booking.id, '&reserved=1'),
+      url: `${origin}/booking/${encodeURIComponent(booking.id)}?reserved=1`,
     });
   } catch (error: any) {
-    logError('checkout.stripe', error);
-    return NextResponse.json({ error: GENERIC_ERROR }, { status: 500 });
+    console.error('[Stripe Checkout Error]:', error);
+    return NextResponse.json(
+      { error: error?.message || 'Failed to create Stripe checkout session' },
+      { status: 500 }
+    );
   }
 }

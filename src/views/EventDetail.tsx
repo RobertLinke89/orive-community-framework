@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { SafeImage } from "@/components/SafeImage";
+import { isSafeAvatarUrl } from "@/lib/safeImage";
 import { 
   MapPin, 
   Calendar, 
@@ -22,7 +24,6 @@ import { Layout } from "@/components/Layout";
 import { SessionBookingModal } from "@/components/SessionBookingModal";
 import { DetailBreadcrumb } from "@/components/DetailBreadcrumb";
 import { toast } from "sonner";
-import { getAvatarUrl } from "@/lib/imageUrl";
 import { format } from "date-fns";
 import { ensureOfferingDescription } from "@/lib/offeringDescription";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -141,9 +142,10 @@ export default function EventDetail() {
         {/* Header Image */}
         <div className="relative h-64 bg-gradient-to-br from-highlight/20 to-highlight/5">
           {event.image_url && (
-            <img 
+            <SafeImage 
               src={event.image_url} 
-              alt={event.title} 
+              alt={event.title}
+              kind="cover"
               className="w-full h-full object-cover"
             />
           )}
@@ -265,7 +267,9 @@ export default function EventDetail() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-4">
                   <Avatar className="w-14 h-14">
-                    <AvatarImage src={getAvatarUrl(facilitator.avatar_url)} />
+                    {isSafeAvatarUrl(facilitator.avatar_url) ? (
+                      <AvatarImage src={facilitator.avatar_url || undefined} />
+                    ) : null}
                     <AvatarFallback>{facilitator.full_name?.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1">

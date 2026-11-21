@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect, memo, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { optimizeImage, generateSrcSet, isCloudinaryConfigured, type CloudinaryOptions } from '@/lib/cloudinary';
+import { CoverPlaceholder } from '@/components/SafeImage';
+import { isPlausibleImageUrl } from '@/lib/safeImage';
 
 interface LQIPImageProps {
   src: string;
@@ -43,6 +45,7 @@ export const LQIPImage = memo(function LQIPImage({
 }: LQIPImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority);
+  const [failed, setFailed] = useState(!isPlausibleImageUrl(src));
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Memoize optimized image URLs
@@ -68,6 +71,11 @@ export const LQIPImage = memo(function LQIPImage({
       usesCDN: true,
     };
   }, [src, width, height, optimize]);
+
+  useEffect(() => {
+    setFailed(!isPlausibleImageUrl(src));
+    setIsLoaded(false);
+  }, [src]);
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -141,8 +149,10 @@ export const LQIPImage = memo(function LQIPImage({
         />
       </div>
 
-      {/* Actual image - only render when in view */}
-      {isInView && (
+      {/* Actual image - only render when in view; failed loads show a branded placeholder, never a broken icon. */}
+      {failed ? (
+        <CoverPlaceholder className="absolute inset-0" />
+      ) : isInView && (
         <picture>
           {/* WebP source for browsers that support it (handled by Cloudinary's f_auto) */}
           <img
@@ -155,6 +165,10 @@ export const LQIPImage = memo(function LQIPImage({
             loading={priority ? 'eager' : 'lazy'}
             decoding={priority ? 'sync' : 'async'}
             onLoad={handleLoad}
+            onError={() => setFailed(true)}
+            ref={(img) => {
+              if (img && img.complete && img.naturalWidth === 0 && img.getAttribute('src')) setFailed(true);
+            }}
             className={cn(
               'w-full h-full object-cover transition-all duration-700',
               isLoaded 

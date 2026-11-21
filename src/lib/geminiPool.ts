@@ -50,7 +50,7 @@ export async function fetchGeminiWithFailover(
     return { ok: false, status: 500, errorText: 'No Gemini API keys configured' };
   }
 
-  const model = options.model || process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+  const model = options.model || process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
   const apiVersion = options.apiVersion || 'v1beta';
   const action = options.action || 'generateContent';
 
@@ -63,7 +63,8 @@ export async function fetchGeminiWithFailover(
   for (let attempt = 0; attempt < keys.length; attempt++) {
     const keyIndex = (startIndex + attempt) % keys.length;
     const currentKey = keys[keyIndex];
-    const maskedKey = `${currentKey.slice(0, 6)}...${currentKey.slice(-4)}`;
+    // Never log key material: identify keys by slot only.
+    const keyLabel = `key#${keyIndex + 1}/${keys.length}`;
 
     try {
       const url = `https://generativelanguage.googleapis.com/${apiVersion}/models/${model}:${action}?key=${currentKey}`;
@@ -83,17 +84,15 @@ export async function fetchGeminiWithFailover(
       lastErrorText = await res.text();
 
       if (res.status === 429 || res.status === 403 || res.status === 503) {
-        console.warn(
-          `[GEMINI POOL] Key ${maskedKey} (${keyIndex + 1}/${keys.length}) status ${res.status} — failover`,
-        );
+        console.warn(`[GEMINI POOL] ${keyLabel} status ${res.status} — failover`);
         continue;
       }
 
-      console.error(`[GEMINI POOL] Failed on ${maskedKey}: ${res.status}`, lastErrorText);
+      console.error(`[GEMINI POOL] ${keyLabel} failed: status ${res.status}`);
       return { ok: false, status: res.status, errorText: lastErrorText };
     } catch (err) {
       lastErrorText = err instanceof Error ? err.message : 'Network error';
-      console.error(`[GEMINI POOL] Network on ${maskedKey}:`, lastErrorText);
+      console.error(`[GEMINI POOL] ${keyLabel} network error`);
     }
   }
 

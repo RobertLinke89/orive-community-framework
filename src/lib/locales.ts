@@ -66,8 +66,9 @@ export const EUROPEAN_LANGUAGES: EuropeanLanguage[] = [
   { code: "uk", native: "Українська", english: "Ukrainian" },
 ];
 
-export const DEFAULT_LOCALE: LocaleCode = "en";
-export const LOCALE_STORAGE_KEY = "orive-locale";
+export const DEFAULT_LOCALE: LocaleCode = "de";
+// v2: older keys were auto-filled from the browser language; reset so German is the default again.
+export const LOCALE_STORAGE_KEY = "orive-locale-v2";
 
 export function isLocaleCode(value: string): value is LocaleCode {
   return EUROPEAN_LANGUAGES.some((lang) => lang.code === value);

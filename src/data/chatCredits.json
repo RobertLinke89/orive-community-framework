@@ -42,12 +42,12 @@
     },
     "0ba84f38-7848-4199-a481-1a540f3a383d": {
       "visitorKey": "0ba84f38-7848-4199-a481-1a540f3a383d",
-      "freeRemaining": 10,
+      "freeRemaining": 9,
       "prepaid": 0,
       "lifetime": false,
       "freeMonth": "2026-11",
       "graceUsed": false,
-      "updatedAt": "2026-11-02T18:15:54.372Z",
+      "updatedAt": "2026-11-09T18:02:45.475Z",
       "purchases": []
     },
     "d1106690-6d82-4aa2-8052-9d1f2a3e3595": {
@@ -68,6 +68,1176 @@
       "freeMonth": "2026-11",
       "graceUsed": false,
       "updatedAt": "2026-11-02T20:04:25.469Z",
+      "purchases": []
+    },
+    "d0e17c3d-4c88-43c0-834c-368243026da1": {
+      "visitorKey": "d0e17c3d-4c88-43c0-834c-368243026da1",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T20:57:45.665Z",
+      "purchases": []
+    },
+    "19d026fa-a98a-402b-8aaa-be00fbddd8c3": {
+      "visitorKey": "19d026fa-a98a-402b-8aaa-be00fbddd8c3",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T20:58:28.769Z",
+      "purchases": []
+    },
+    "1543fdf0-f41e-40bb-a533-18e12d781e02": {
+      "visitorKey": "1543fdf0-f41e-40bb-a533-18e12d781e02",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T20:58:35.701Z",
+      "purchases": []
+    },
+    "d54d3de0-703b-4cb1-90da-c37946224062": {
+      "visitorKey": "d54d3de0-703b-4cb1-90da-c37946224062",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:00:03.629Z",
+      "purchases": []
+    },
+    "645a0985-0d9c-417e-9b8a-b40aa98bb9b1": {
+      "visitorKey": "645a0985-0d9c-417e-9b8a-b40aa98bb9b1",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:00:11.255Z",
+      "purchases": []
+    },
+    "8fc5e50a-82e6-4dce-8f73-c625ca29c769": {
+      "visitorKey": "8fc5e50a-82e6-4dce-8f73-c625ca29c769",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:04:49.786Z",
+      "purchases": []
+    },
+    "d9a25be1-43e9-4420-ad00-f2717e47f6ce": {
+      "visitorKey": "d9a25be1-43e9-4420-ad00-f2717e47f6ce",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:04:58.740Z",
+      "purchases": []
+    },
+    "7f5e8ee6-907b-4acc-9fb6-50b60d8c1c44": {
+      "visitorKey": "7f5e8ee6-907b-4acc-9fb6-50b60d8c1c44",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:05:08.264Z",
+      "purchases": []
+    },
+    "a99c2e7d-c3e8-40cd-9b77-7cf759b6f240": {
+      "visitorKey": "a99c2e7d-c3e8-40cd-9b77-7cf759b6f240",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:05:39.849Z",
+      "purchases": []
+    },
+    "0bff6ac6-ca53-4d7e-b13d-5f2bd908beea": {
+      "visitorKey": "0bff6ac6-ca53-4d7e-b13d-5f2bd908beea",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:05:46.724Z",
+      "purchases": []
+    },
+    "adc282a0-67fa-4b7f-be61-a114a373ba7c": {
+      "visitorKey": "adc282a0-67fa-4b7f-be61-a114a373ba7c",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:05:55.289Z",
+      "purchases": []
+    },
+    "203cb231-8f7c-4acd-adaf-f1b858a520ef": {
+      "visitorKey": "203cb231-8f7c-4acd-adaf-f1b858a520ef",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:06:02.579Z",
+      "purchases": []
+    },
+    "0f2ba187-efd2-4b51-b115-fab973948061": {
+      "visitorKey": "0f2ba187-efd2-4b51-b115-fab973948061",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:06:19.073Z",
+      "purchases": []
+    },
+    "4725bdbf-87a0-4e55-b7f8-9a3d9ad4d5d9": {
+      "visitorKey": "4725bdbf-87a0-4e55-b7f8-9a3d9ad4d5d9",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:06:41.747Z",
+      "purchases": []
+    },
+    "cd601b84-6e0f-4f0b-970a-838ba1b29de8": {
+      "visitorKey": "cd601b84-6e0f-4f0b-970a-838ba1b29de8",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:07:05.346Z",
+      "purchases": []
+    },
+    "b0473e7b-ae1d-4270-97b0-a3cc33682e0b": {
+      "visitorKey": "b0473e7b-ae1d-4270-97b0-a3cc33682e0b",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:07:13.100Z",
+      "purchases": []
+    },
+    "395c14d1-32cb-42de-a24b-292e6a271e71": {
+      "visitorKey": "395c14d1-32cb-42de-a24b-292e6a271e71",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:07:29.336Z",
+      "purchases": []
+    },
+    "5bf923dc-87e7-4c4f-8582-2cfa78c9fb1c": {
+      "visitorKey": "5bf923dc-87e7-4c4f-8582-2cfa78c9fb1c",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:07:51.925Z",
+      "purchases": []
+    },
+    "8122a308-36e0-44e4-b726-a3e7b750c412": {
+      "visitorKey": "8122a308-36e0-44e4-b726-a3e7b750c412",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:08:18.558Z",
+      "purchases": []
+    },
+    "3283495b-6021-4502-b72b-4c04c7bc1f2d": {
+      "visitorKey": "3283495b-6021-4502-b72b-4c04c7bc1f2d",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:08:25.720Z",
+      "purchases": []
+    },
+    "0ae55ecc-7ae8-4e20-86fe-2a1b333a6c35": {
+      "visitorKey": "0ae55ecc-7ae8-4e20-86fe-2a1b333a6c35",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:10:17.581Z",
+      "purchases": []
+    },
+    "439cedd8-813e-450a-adba-e343a14ba6c8": {
+      "visitorKey": "439cedd8-813e-450a-adba-e343a14ba6c8",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:10:25.736Z",
+      "purchases": []
+    },
+    "9a26cb25-2ad2-4ce1-95ba-2d341c517b16": {
+      "visitorKey": "9a26cb25-2ad2-4ce1-95ba-2d341c517b16",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:16:48.899Z",
+      "purchases": []
+    },
+    "1aa95f3d-87d4-4857-8b89-904fbde15920": {
+      "visitorKey": "1aa95f3d-87d4-4857-8b89-904fbde15920",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:16:55.895Z",
+      "purchases": []
+    },
+    "36ae6c48-f4da-4afb-b839-cb44856fb5f1": {
+      "visitorKey": "36ae6c48-f4da-4afb-b839-cb44856fb5f1",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:17:01.528Z",
+      "purchases": []
+    },
+    "bc35bab8-1459-448c-8695-1065e7a30df8": {
+      "visitorKey": "bc35bab8-1459-448c-8695-1065e7a30df8",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:17:08.287Z",
+      "purchases": []
+    },
+    "0bde0c67-4acc-4f3d-90c4-42c99f9b36a4": {
+      "visitorKey": "0bde0c67-4acc-4f3d-90c4-42c99f9b36a4",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:17:27.293Z",
+      "purchases": []
+    },
+    "468b41d1-be4d-4460-9aea-3f928ed7ea46": {
+      "visitorKey": "468b41d1-be4d-4460-9aea-3f928ed7ea46",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:17:33.107Z",
+      "purchases": []
+    },
+    "94fdc7bf-33a8-47bf-93d5-6f69eb9732dd": {
+      "visitorKey": "94fdc7bf-33a8-47bf-93d5-6f69eb9732dd",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:17:39.035Z",
+      "purchases": []
+    },
+    "3bd65a57-a5f4-4844-b504-e54e0a2cc5ea": {
+      "visitorKey": "3bd65a57-a5f4-4844-b504-e54e0a2cc5ea",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:17:45.670Z",
+      "purchases": []
+    },
+    "b0c054ad-8188-47ab-82d5-be4a3f726f7c": {
+      "visitorKey": "b0c054ad-8188-47ab-82d5-be4a3f726f7c",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:18:48.948Z",
+      "purchases": []
+    },
+    "077fb2d4-0631-482b-9b82-f303b5474c4b": {
+      "visitorKey": "077fb2d4-0631-482b-9b82-f303b5474c4b",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:18:54.666Z",
+      "purchases": []
+    },
+    "cd3c28e3-ce69-462a-922b-569430217cf2": {
+      "visitorKey": "cd3c28e3-ce69-462a-922b-569430217cf2",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:19:00.337Z",
+      "purchases": []
+    },
+    "bdba382d-df56-4223-b833-1f61dd9b8182": {
+      "visitorKey": "bdba382d-df56-4223-b833-1f61dd9b8182",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:19:20.810Z",
+      "purchases": []
+    },
+    "85a33701-5851-4b7f-90e8-be9f00cda0ad": {
+      "visitorKey": "85a33701-5851-4b7f-90e8-be9f00cda0ad",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:19:26.267Z",
+      "purchases": []
+    },
+    "c83d360d-7576-4ac0-b2bf-0cf614ae8ddc": {
+      "visitorKey": "c83d360d-7576-4ac0-b2bf-0cf614ae8ddc",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:19:34.365Z",
+      "purchases": []
+    },
+    "edff3dc3-5ce1-4b24-a0fe-812553fd719a": {
+      "visitorKey": "edff3dc3-5ce1-4b24-a0fe-812553fd719a",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:19:39.993Z",
+      "purchases": []
+    },
+    "39945ad4-49a7-45e7-a3f5-8e35dc0304c7": {
+      "visitorKey": "39945ad4-49a7-45e7-a3f5-8e35dc0304c7",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:20:31.940Z",
+      "purchases": []
+    },
+    "42eea5f8-f5b7-403a-ab13-54859aca8b63": {
+      "visitorKey": "42eea5f8-f5b7-403a-ab13-54859aca8b63",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:20:38.673Z",
+      "purchases": []
+    },
+    "14a8ddbc-9e17-4750-a353-9d81178c836b": {
+      "visitorKey": "14a8ddbc-9e17-4750-a353-9d81178c836b",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:20:44.312Z",
+      "purchases": []
+    },
+    "83e8d7a1-944d-4e2d-9c9e-ea520c27a367": {
+      "visitorKey": "83e8d7a1-944d-4e2d-9c9e-ea520c27a367",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:20:52.362Z",
+      "purchases": []
+    },
+    "c2184927-774e-4b10-8042-6aba1dc920d7": {
+      "visitorKey": "c2184927-774e-4b10-8042-6aba1dc920d7",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:32:40.377Z",
+      "purchases": []
+    },
+    "62c1b491-f8fb-4d70-9bc2-530f3e2cd304": {
+      "visitorKey": "62c1b491-f8fb-4d70-9bc2-530f3e2cd304",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:37:55.675Z",
+      "purchases": []
+    },
+    "738cd64b-231b-4c47-a729-01ee8a55ec68": {
+      "visitorKey": "738cd64b-231b-4c47-a729-01ee8a55ec68",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T21:42:19.841Z",
+      "purchases": []
+    },
+    "grokbot-test-1793657854abcd": {
+      "visitorKey": "grokbot-test-1793657854abcd",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-02T22:17:35.540Z",
+      "purchases": []
+    },
+    "abef8943-a89c-4f8b-9733-c732356be6f4": {
+      "visitorKey": "abef8943-a89c-4f8b-9733-c732356be6f4",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-03T07:36:48.754Z",
+      "purchases": []
+    },
+    "f984a3db-f8e1-4601-a6e6-0360d610ea4a": {
+      "visitorKey": "f984a3db-f8e1-4601-a6e6-0360d610ea4a",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-03T19:08:23.058Z",
+      "purchases": []
+    },
+    "prodcheck-0001-abcdef0123456789": {
+      "visitorKey": "prodcheck-0001-abcdef0123456789",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-03T20:54:54.935Z",
+      "purchases": []
+    },
+    "a5b17130-5243-4488-b0c8-58c3fa1e4310": {
+      "visitorKey": "a5b17130-5243-4488-b0c8-58c3fa1e4310",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-03T21:09:14.100Z",
+      "purchases": []
+    },
+    "bdb97c82-9a2d-480a-ad89-e608604a6157": {
+      "visitorKey": "bdb97c82-9a2d-480a-ad89-e608604a6157",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-03T21:11:21.426Z",
+      "purchases": []
+    },
+    "c78a7f68-3dad-4039-87d8-59d110a51af3": {
+      "visitorKey": "c78a7f68-3dad-4039-87d8-59d110a51af3",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-03T21:23:40.760Z",
+      "purchases": []
+    },
+    "dba4e1f3-8de7-4121-b132-75bd7d97871d": {
+      "visitorKey": "dba4e1f3-8de7-4121-b132-75bd7d97871d",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-03T21:27:20.781Z",
+      "purchases": []
+    },
+    "2f03c53f-a66e-4a4c-8619-3e69d8dc4c70": {
+      "visitorKey": "2f03c53f-a66e-4a4c-8619-3e69d8dc4c70",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-03T21:37:20.388Z",
+      "purchases": []
+    },
+    "4364bc2c-f9b0-4da9-92ca-c49517471d31": {
+      "visitorKey": "4364bc2c-f9b0-4da9-92ca-c49517471d31",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-03T21:43:55.130Z",
+      "purchases": []
+    },
+    "27fd22b4-7bdb-4145-9d2d-718ff04df65b": {
+      "visitorKey": "27fd22b4-7bdb-4145-9d2d-718ff04df65b",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-13T18:54:59.445Z",
+      "purchases": []
+    },
+    "175e6082-394b-4aef-9a6b-74987a3ebc90": {
+      "visitorKey": "175e6082-394b-4aef-9a6b-74987a3ebc90",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-04T03:25:04.913Z",
+      "purchases": []
+    },
+    "d1af6b78-12e9-4d73-ba13-049fa4abe54d": {
+      "visitorKey": "d1af6b78-12e9-4d73-ba13-049fa4abe54d",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-04T15:08:23.918Z",
+      "purchases": []
+    },
+    "7733e9d6-1dbb-4c80-a095-7fc8154a1008": {
+      "visitorKey": "7733e9d6-1dbb-4c80-a095-7fc8154a1008",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-04T19:49:26.764Z",
+      "purchases": []
+    },
+    "24c8cc6e-9ea4-4207-a1ee-fdd4293081b5": {
+      "visitorKey": "24c8cc6e-9ea4-4207-a1ee-fdd4293081b5",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-04T19:54:40.813Z",
+      "purchases": []
+    },
+    "19920e39-12d3-471c-9335-61f9a2b6b3b7": {
+      "visitorKey": "19920e39-12d3-471c-9335-61f9a2b6b3b7",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-04T20:14:24.077Z",
+      "purchases": []
+    },
+    "02287b7e-74f1-4fcb-ae65-28e20053d386": {
+      "visitorKey": "02287b7e-74f1-4fcb-ae65-28e20053d386",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-04T22:17:34.011Z",
+      "purchases": []
+    },
+    "a33d3f52-91fe-4786-86d4-9afcfc747da7": {
+      "visitorKey": "a33d3f52-91fe-4786-86d4-9afcfc747da7",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-05T14:11:24.894Z",
+      "purchases": []
+    },
+    "070f197d-26c0-4af8-912f-fc6411141aee": {
+      "visitorKey": "070f197d-26c0-4af8-912f-fc6411141aee",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-05T21:45:19.016Z",
+      "purchases": []
+    },
+    "3c90c2b6-c866-4459-a6c6-f90e3a07d572": {
+      "visitorKey": "3c90c2b6-c866-4459-a6c6-f90e3a07d572",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-06T01:06:43.141Z",
+      "purchases": []
+    },
+    "1d107e39-60a0-490a-8085-85c0461a20d7": {
+      "visitorKey": "1d107e39-60a0-490a-8085-85c0461a20d7",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-06T03:48:06.646Z",
+      "purchases": []
+    },
+    "2f70317f-0069-4cf2-a790-c9b58dcac296": {
+      "visitorKey": "2f70317f-0069-4cf2-a790-c9b58dcac296",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-06T17:08:55.005Z",
+      "purchases": []
+    },
+    "2589df54-e9d2-4366-b6d8-875ae6f78a0c": {
+      "visitorKey": "2589df54-e9d2-4366-b6d8-875ae6f78a0c",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-06T17:08:58.953Z",
+      "purchases": []
+    },
+    "3c8873e5-ed08-4a06-9c0c-1181f6288bef": {
+      "visitorKey": "3c8873e5-ed08-4a06-9c0c-1181f6288bef",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-07T14:17:49.005Z",
+      "purchases": []
+    },
+    "96de5efd-fd6e-4203-95b3-3a55d393f454": {
+      "visitorKey": "96de5efd-fd6e-4203-95b3-3a55d393f454",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-07T23:28:46.815Z",
+      "purchases": []
+    },
+    "audit-readonly-20261109-186033991": {
+      "visitorKey": "audit-readonly-20261109-186033991",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:06:26.904Z",
+      "purchases": []
+    },
+    "audit-readonly-20261109-1710823441": {
+      "visitorKey": "audit-readonly-20261109-1710823441",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:06:27.159Z",
+      "purchases": []
+    },
+    "audit-readonly-20261109-93306189": {
+      "visitorKey": "audit-readonly-20261109-93306189",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:06:27.332Z",
+      "purchases": []
+    },
+    "826bda4f-4397-4c63-a8b3-b976863fd935": {
+      "visitorKey": "826bda4f-4397-4c63-a8b3-b976863fd935",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:08:50.919Z",
+      "purchases": []
+    },
+    "audit-ux-20261109-536310945": {
+      "visitorKey": "audit-ux-20261109-536310945",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:40:51.180Z",
+      "purchases": []
+    },
+    "audit-ux-20261109-1261716523": {
+      "visitorKey": "audit-ux-20261109-1261716523",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:40:51.450Z",
+      "purchases": []
+    },
+    "audit-ux-20261109-739927032": {
+      "visitorKey": "audit-ux-20261109-739927032",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:40:51.749Z",
+      "purchases": []
+    },
+    "86f3e416-029d-4135-81a5-f73f6a0a4b91": {
+      "visitorKey": "86f3e416-029d-4135-81a5-f73f6a0a4b91",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:41:31.642Z",
+      "purchases": []
+    },
+    "d8e33d6c-68c1-402c-9d0f-3ebf4476d27c": {
+      "visitorKey": "d8e33d6c-68c1-402c-9d0f-3ebf4476d27c",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:42:30.434Z",
+      "purchases": []
+    },
+    "4bec0d36-adef-4f6a-98b3-d276a8108744": {
+      "visitorKey": "4bec0d36-adef-4f6a-98b3-d276a8108744",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:48:57.360Z",
+      "purchases": []
+    },
+    "caccefdb-5181-4afc-8b86-71f0eaa9ef05": {
+      "visitorKey": "caccefdb-5181-4afc-8b86-71f0eaa9ef05",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T14:49:06.898Z",
+      "purchases": []
+    },
+    "b2c9f06b-1b4a-4a39-80c0-858fa58cd78d": {
+      "visitorKey": "b2c9f06b-1b4a-4a39-80c0-858fa58cd78d",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T15:35:53.812Z",
+      "purchases": []
+    },
+    "266baec1-052e-4aee-aefb-b0087bc35431": {
+      "visitorKey": "266baec1-052e-4aee-aefb-b0087bc35431",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T15:35:58.559Z",
+      "purchases": []
+    },
+    "292fbecc-773b-4443-8c38-370e913d670c": {
+      "visitorKey": "292fbecc-773b-4443-8c38-370e913d670c",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T15:36:59.169Z",
+      "purchases": []
+    },
+    "e8c4b140-852d-4a4f-b84b-f10586fdd1ee": {
+      "visitorKey": "e8c4b140-852d-4a4f-b84b-f10586fdd1ee",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T15:38:00.346Z",
+      "purchases": []
+    },
+    "1aaa71eb-10b6-47f0-8fbd-ca93d84c5f3a": {
+      "visitorKey": "1aaa71eb-10b6-47f0-8fbd-ca93d84c5f3a",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:23:00.341Z",
+      "purchases": []
+    },
+    "dd3c994c-6c9e-42e2-89c8-448eeb0e6eb8": {
+      "visitorKey": "dd3c994c-6c9e-42e2-89c8-448eeb0e6eb8",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:23:14.139Z",
+      "purchases": []
+    },
+    "b1c94f33-4af6-4229-8fe4-9f4eefb93649": {
+      "visitorKey": "b1c94f33-4af6-4229-8fe4-9f4eefb93649",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:23:20.568Z",
+      "purchases": []
+    },
+    "50dabf0c-8cbc-4398-9075-8c23c745cfeb": {
+      "visitorKey": "50dabf0c-8cbc-4398-9075-8c23c745cfeb",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:23:26.090Z",
+      "purchases": []
+    },
+    "adf3460b-c155-4898-8b83-8664fa86667c": {
+      "visitorKey": "adf3460b-c155-4898-8b83-8664fa86667c",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:26:16.505Z",
+      "purchases": []
+    },
+    "10a3b68a-fcf1-42e7-aa38-8a03d441ec91": {
+      "visitorKey": "10a3b68a-fcf1-42e7-aa38-8a03d441ec91",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:26:22.092Z",
+      "purchases": []
+    },
+    "8b0c4eb4-3dda-4418-82a9-a1ad4c68cd86": {
+      "visitorKey": "8b0c4eb4-3dda-4418-82a9-a1ad4c68cd86",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:26:46.907Z",
+      "purchases": []
+    },
+    "e4b72787-5c9e-4e5d-95a8-137f3fb3d792": {
+      "visitorKey": "e4b72787-5c9e-4e5d-95a8-137f3fb3d792",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:26:51.919Z",
+      "purchases": []
+    },
+    "b0e7b545-5cd4-4965-a386-87f4013b2ab7": {
+      "visitorKey": "b0e7b545-5cd4-4965-a386-87f4013b2ab7",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:38:53.029Z",
+      "purchases": []
+    },
+    "b3094b70-1915-4586-af66-d5f731fd6eb7": {
+      "visitorKey": "b3094b70-1915-4586-af66-d5f731fd6eb7",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:39:09.055Z",
+      "purchases": []
+    },
+    "ac9bc074-20a0-4f9f-a71c-e19da19caf8a": {
+      "visitorKey": "ac9bc074-20a0-4f9f-a71c-e19da19caf8a",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:41:01.355Z",
+      "purchases": []
+    },
+    "88b4968f-ea3c-45d4-bdfd-e121308c1b02": {
+      "visitorKey": "88b4968f-ea3c-45d4-bdfd-e121308c1b02",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:41:08.079Z",
+      "purchases": []
+    },
+    "b2ecd5a6-c613-44c5-b600-314aa9a90b26": {
+      "visitorKey": "b2ecd5a6-c613-44c5-b600-314aa9a90b26",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:44:00.359Z",
+      "purchases": []
+    },
+    "6e4d25b7-00c7-421c-9f3b-c0cd07d50a81": {
+      "visitorKey": "6e4d25b7-00c7-421c-9f3b-c0cd07d50a81",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:44:58.124Z",
+      "purchases": []
+    },
+    "4a12b421-f8ea-4816-82de-200385c8a191": {
+      "visitorKey": "4a12b421-f8ea-4816-82de-200385c8a191",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:45:05.101Z",
+      "purchases": []
+    },
+    "ca557981-1b4e-478d-ae5e-a70d7b51312a": {
+      "visitorKey": "ca557981-1b4e-478d-ae5e-a70d7b51312a",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:47:02.596Z",
+      "purchases": []
+    },
+    "f83cf205-1b7e-4910-9bfc-1f50e71e08ec": {
+      "visitorKey": "f83cf205-1b7e-4910-9bfc-1f50e71e08ec",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:47:51.872Z",
+      "purchases": []
+    },
+    "e5ff8036-67b8-485f-b80b-14c2902f6a3b": {
+      "visitorKey": "e5ff8036-67b8-485f-b80b-14c2902f6a3b",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:48:36.044Z",
+      "purchases": []
+    },
+    "ee7cac0a-a89f-4858-8e8f-856b9a7c20e8": {
+      "visitorKey": "ee7cac0a-a89f-4858-8e8f-856b9a7c20e8",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:49:26.967Z",
+      "purchases": []
+    },
+    "9d09c514-c3b8-4be2-83b7-067392758e2f": {
+      "visitorKey": "9d09c514-c3b8-4be2-83b7-067392758e2f",
+      "freeRemaining": 11,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:51:13.413Z",
+      "purchases": []
+    },
+    "604daec6-8395-4c63-9c21-931a8f888349": {
+      "visitorKey": "604daec6-8395-4c63-9c21-931a8f888349",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:52:05.151Z",
+      "purchases": []
+    },
+    "5c0546a0-6e8f-4acb-939f-620a8a20db14": {
+      "visitorKey": "5c0546a0-6e8f-4acb-939f-620a8a20db14",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T16:53:00.768Z",
+      "purchases": []
+    },
+    "f19cb1ce-ed23-4195-9bfb-138da8296ae4": {
+      "visitorKey": "f19cb1ce-ed23-4195-9bfb-138da8296ae4",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T17:24:20.642Z",
+      "purchases": []
+    },
+    "20379b09-8a4c-4b9e-bad5-532b8dc0f53d": {
+      "visitorKey": "20379b09-8a4c-4b9e-bad5-532b8dc0f53d",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T17:24:37.988Z",
+      "purchases": []
+    },
+    "7d9ee558-96d6-45fc-b9b1-4688cafdf278": {
+      "visitorKey": "7d9ee558-96d6-45fc-b9b1-4688cafdf278",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T17:24:54.761Z",
+      "purchases": []
+    },
+    "39058db8-a6a9-468f-9aed-df5facab86fe": {
+      "visitorKey": "39058db8-a6a9-468f-9aed-df5facab86fe",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T17:25:11.338Z",
+      "purchases": []
+    },
+    "33e25fce-7fbb-48b7-92ca-e6dbfb8fd57b": {
+      "visitorKey": "33e25fce-7fbb-48b7-92ca-e6dbfb8fd57b",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T18:10:06.528Z",
+      "purchases": []
+    },
+    "55b51305-5de5-41d7-9c8c-7b2165a28026": {
+      "visitorKey": "55b51305-5de5-41d7-9c8c-7b2165a28026",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T18:10:28.837Z",
+      "purchases": []
+    },
+    "af7153ef-47bd-4eee-b4e5-2730b66ee063": {
+      "visitorKey": "af7153ef-47bd-4eee-b4e5-2730b66ee063",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T18:10:45.537Z",
+      "purchases": []
+    },
+    "69998dd9-f0b1-4798-9570-cea355f35af7": {
+      "visitorKey": "69998dd9-f0b1-4798-9570-cea355f35af7",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-09T18:10:54.704Z",
+      "purchases": []
+    },
+    "a6fc7405-f2fb-426a-8402-d5f156cd0ff6": {
+      "visitorKey": "a6fc7405-f2fb-426a-8402-d5f156cd0ff6",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-12T09:34:29.764Z",
+      "purchases": []
+    },
+    "9ef3071a-d199-4ef6-b6a1-c7c281f0e8aa": {
+      "visitorKey": "9ef3071a-d199-4ef6-b6a1-c7c281f0e8aa",
+      "freeRemaining": 13,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-12T23:58:51.733Z",
+      "purchases": []
+    },
+    "9bba17af-6bc3-4e1d-9a4f-80dcf39c562f": {
+      "visitorKey": "9bba17af-6bc3-4e1d-9a4f-80dcf39c562f",
+      "freeRemaining": 12,
+      "prepaid": 0,
+      "lifetime": false,
+      "freeMonth": "2026-11",
+      "graceUsed": false,
+      "updatedAt": "2026-11-13T12:54:46.264Z",
       "purchases": []
     }
   }

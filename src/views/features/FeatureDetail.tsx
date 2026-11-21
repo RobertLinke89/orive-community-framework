@@ -197,7 +197,7 @@ const featuresData = {
   "workspace": {
     icon: Columns3,
     title: "Workspace",
-    subtitle: "Kanban, boards, and focus from ORYVE Desktop — inside dezk",
+    subtitle: "Kanban, boards, and focus from ORIVE Desktop — inside dezk",
     gradient: "from-[hsl(180,60%,32%)] to-[hsl(174,72%,45%)]",
     heroImage: "/orive-navigation.png",
     description: "The desktop workspace returns as a first-class dezk tab: plan prep and follow-ups on a Kanban board, open whiteboard boards for room and offering sketches, and track focus time. Jump straight into calendar, offerings, or seekers without leaving your flow.",
@@ -210,7 +210,7 @@ const featuresData = {
     ],
     capabilities: [
       { title: "Kanban Flow", desc: "Move tasks across Ideas → Ready → Live → Done as the session day unfolds" },
-      { title: "Boards", desc: "Open business maps and value-stream boards inspired by the original ORYVE Desktop" },
+      { title: "Boards", desc: "Open business maps and value-stream boards inspired by the original ORIVE Desktop" },
       { title: "Time Tracking", desc: "Start a timer on any task to capture prep and admin minutes" },
       { title: "Connected dezk", desc: "One click into Dates, Offerings, or Seekers from any linked task" }
     ],

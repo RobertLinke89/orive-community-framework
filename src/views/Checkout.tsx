@@ -70,7 +70,7 @@ export default function Checkout() {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-3xl font-bold mb-4">Experience Not Found</h1>
+          <h1 className="text-3xl font-bold mb-4">Angebot nicht gefunden</h1>
           <Link href="/marketplace">
             <Button>Browse Experiences</Button>
           </Link>

@@ -1,157 +1,73 @@
+"use client";
+
 import Link from 'next/link';
 import { Layout } from "@/components/Layout";
 import { EuropeFacilitatorMap } from "@/components/EuropeFacilitatorMap";
-import { Shield, ArrowRight, Users, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Search, MapPin, Sparkles, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/hooks/useLanguage";
 
+// Honest About page: no unverifiable market numbers, no "verified"/"guarantee" claims.
 const About = () => {
+  const { copy } = useLanguage();
+  const points = [
+    { icon: Search, t: copy("Ein Verzeichnis für ganz Europa", "One directory for all of Europe"), d: copy("Breathwork, Yoga, Eisbaden, Sound Healing, Coaching, Körperarbeit und mehr – Facilitators und ihre Angebote an einem Ort.", "Breathwork, yoga, ice bathing, sound healing, coaching, bodywork and more – facilitators and their offers in one place.") },
+    { icon: Sparkles, t: copy("KI-Suche in deinen Worten", "AI search in your own words"), d: copy("Beschreib, was du suchst – etwa „Eisbaden in Hamburg am Wochenende“ – und die Suche findet passende Profile und Termine.", "Describe what you are looking for – e.g. “ice bathing in Hamburg this weekend” – and the search finds matching profiles and dates.") },
+    { icon: MapPin, t: copy("Echte Angebote mit Ort und Preis", "Real offers with place and price"), d: copy("Wir zeigen die Angaben der Anbieter und verlinken auf das Original. Gebucht wird beim Anbieter oder – wo angegeben – direkt über ORIVE.", "We show the providers' own details and link to the original. You book with the provider or – where stated – directly via ORIVE.") },
+    { icon: ShieldCheck, t: copy("Transparent für Facilitators", "Transparent for facilitators"), d: copy("Facilitators können ihr Profil übernehmen, korrigieren oder jederzeit entfernen lassen.", "Facilitators can claim, correct or remove their profile at any time.") },
+  ];
   return <Layout>
-      {/* Hero Section */}
-      <div className="relative min-h-[40vh] w-full flex flex-col bg-gradient-to-br from-primary via-primary/95 to-primary/80 dark:from-[#0a1628] dark:via-[#0a1628] dark:to-[#0f2137] overflow-hidden -mt-16 pt-16">
-        {/* Decorative Elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,205,172,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(22,177,195,0.1),transparent_50%)]" />
-        
-        {/* Content */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-12">
-          <div className="w-full max-w-3xl text-center flex flex-col items-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
-              About <span className="bg-gradient-to-r from-[#00CDAC] to-[#16B1C3] bg-clip-text text-transparent">ORIVE</span>
-            </h1>
-            <p className="text-lg text-white/80 mb-2">
-              Home of Freedom Lovers
-            </p>
-            <p className="text-xl text-[#00CDAC] font-medium">
-              Join a growing worldwide movement into a new world of health
-            </p>
-          </div>
+      <div className="relative w-full overflow-hidden border-b border-slate-200/90 bg-gradient-to-b from-[#EBF7F5] via-[#F3FAF8] to-[#F8FAFC] dark:border-white/10 dark:from-[#02182E] dark:via-[#01223F] dark:to-[#011B33] -mt-16 pt-16">
+        <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center sm:px-6 sm:py-20">
+          <h1 className="mb-4 text-4xl font-bold leading-tight tracking-tight text-[#01223F] dark:text-white sm:text-5xl">
+            {copy("Über ", "About ")}<span className="bg-gradient-to-r from-[#00CDAC] to-[#02AAB0] bg-clip-text text-transparent">ORIVE</span>
+          </h1>
+          <p className="max-w-xl text-lg text-slate-600 dark:text-white/70">
+            {copy("Wir machen es einfach, die passende Begleitung für Körper, Atem und Geist zu finden – in deiner Stadt oder auf Reisen.", "We make it easy to find the right guidance for body, breath and mind – in your city or while travelling.")}
+          </p>
         </div>
       </div>
-      
-      <div className="py-20 bg-background dark:bg-[#0a1628]">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
 
-          {/* Main Content */}
-          <div className="space-y-8 text-base leading-relaxed">
-            {/* Transformation Section */}
-            <div className="border-l-2 border-highlight/30 pl-6 py-4">
-              <h2 className="text-xl font-semibold text-foreground mb-3">A New Understanding of Health</h2>
-              <p className="text-foreground/70 mb-3">
-                We are witnessing a profound transformation in how humanity understands wellbeing. What was once seen as the absence of disease is now recognized as a vibrant state of physical, mental, emotional, and spiritual harmony. This shift represents more than a trend—it's an awakening to the interconnected nature of our existence.
-              </p>
-              <p className="text-foreground/70">
-                Across Europe and beyond, a conscious society is emerging. People are moving beyond symptom management toward root-cause healing. They're discovering that true health flows from holistic connection—to ourselves, to each other, to nature, and to something greater than ourselves.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <p className="text-foreground/70">
-                This is the boom of holistic connection—a renaissance of practices once dismissed as alternative, now embraced as essential. Breathwork, meditation, plant medicine integration, somatic healing, and energy work are no longer fringe; they're becoming foundational to how conscious individuals approach life.
-              </p>
-              
-              <p className="text-foreground/70">
-                The wellness economy is projected to reach €1.2 trillion across European markets by 2027, but this number tells only part of the story. Behind these figures lies a deeper truth: millions of people are choosing to invest in their inner transformation, recognizing that outer success means little without inner peace.
-              </p>
-
-              <p className="text-foreground/70">
-                ORIVE exists at the heart of this movement. We're not just building a platform—we're nurturing an ecosystem where those who facilitate healing can connect with those seeking transformation. Where conscious entrepreneurs can build businesses that serve both personal fulfillment and collective evolution.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <p className="text-foreground/70">
-                The old paradigm taught separation—mind from body, work from spirit, success from fulfillment. The new paradigm recognizes unity. Our physical health reflects our emotional state. Our business success mirrors our internal alignment. Our outer world manifests our inner landscape.
-              </p>
-
-              <p className="text-foreground/70">
-                This transformation isn't about rejecting conventional medicine or traditional business—it's about expanding beyond their limitations. It's about integrating ancient wisdom with modern innovation. It's about building lives and businesses that honor the full spectrum of human experience.
-              </p>
-
-              <p className="text-foreground/70">
-                At ORIVE, we believe that when individuals heal and align with their truth, they naturally create value for others. When entrepreneurs build from authenticity rather than formula, they create businesses that resonate and endure. This is the foundation of a conscious economy—one where prosperity and purpose dance together.
-              </p>
-            </div>
-
-            {/* Center Quote */}
-            <div className="py-8 my-8 border-y border-border/20">
-              <p className="text-foreground text-center leading-relaxed">
-                <span className="block text-sm font-normal mb-3 text-foreground/50 uppercase tracking-widest">always remember</span>
-                <span className="block text-4xl md:text-5xl lg:text-6xl font-bold text-highlight tracking-tight">Your Journey Matters.</span>
-              </p>
-            </div>
-          </div>
+      <div className="bg-[#F8FAFC] py-16 dark:bg-[#011B33] sm:py-20">
+        <div className="mx-auto max-w-3xl space-y-5 px-6 text-base leading-relaxed text-slate-600 dark:text-white/70 lg:px-8">
+          <h2 className="text-xl font-semibold text-[#01223F] dark:text-white">{copy("Warum es ORIVE gibt", "Why ORIVE exists")}</h2>
+          <p>{copy(
+            "Immer mehr Menschen suchen Wege, mit Stress, Schlaf und Gesundheit bewusster umzugehen: Atemarbeit, Meditation, Kälte, Klang, Bewegung. Die Angebote dafür sind verstreut – auf unzähligen Websites, Instagram-Profilen und Ticketportalen.",
+            "More and more people look for conscious ways to deal with stress, sleep and health: breathwork, meditation, cold, sound, movement. The offers are scattered across countless websites, Instagram profiles and ticket platforms."
+          )}</p>
+          <p>{copy(
+            "ORIVE bündelt sie: ein europäisches Verzeichnis von Facilitators und ihren Sessions, Workshops und Retreats – durchsuchbar nach Ort, Praxis und Termin.",
+            "ORIVE brings them together: a European directory of facilitators and their sessions, workshops and retreats – searchable by place, practice and date."
+          )}</p>
         </div>
 
-        {/* Find Your Facilitator Section */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-16 pt-12 border-t border-border/20">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        <div className="mx-auto mt-14 max-w-7xl border-t border-slate-200/80 px-6 pt-12 dark:border-white/10 lg:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#017F80] dark:text-[#00CDAC] mb-4">
-                For Seekers
-              </p>
-              
-              <h2 className="text-3xl lg:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#01223F] dark:text-white mb-8">
-                Find the perfect facilitator for your transformation
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#017F80] dark:text-[#00CDAC]">{copy("Für Suchende", "For seekers")}</p>
+              <h2 className="mb-8 text-3xl font-semibold leading-[1.08] tracking-[-0.03em] text-[#01223F] dark:text-white lg:text-4xl">
+                {copy("So findest du die passende Begleitung", "How to find the right guidance")}
               </h2>
-              
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-highlight/10 border border-highlight/20 flex items-center justify-center flex-shrink-0">
-                    <Users className="w-4 h-4 text-highlight" />
+                {points.map(({ icon: Icon, t, d }) => (
+                  <div key={t} className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border border-[#00CDAC]/25 bg-[#00CDAC]/10">
+                      <Icon className="h-4 w-4 text-[#00A88E]" />
+                    </div>
+                    <div>
+                      <h3 className="mb-1 font-semibold text-[#01223F] dark:text-white">{t}</h3>
+                      <p className="text-sm leading-relaxed text-slate-500 dark:text-white/60">{d}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Verified Professionals</h3>
-                    <p className="text-foreground/60 text-sm leading-relaxed">
-                      All facilitators are verified through our rigorous screening process with credential checks and reviews.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-highlight/10 border border-highlight/20 flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-4 h-4 text-highlight" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Secure Booking</h3>
-                    <p className="text-foreground/60 text-sm leading-relaxed">
-                      Book sessions with confidence. Secure payments and transparent pricing with no hidden fees.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-highlight/10 border border-highlight/20 flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="w-4 h-4 text-highlight" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Smart Matching</h3>
-                    <p className="text-foreground/60 text-sm leading-relaxed">
-                      Our AI-powered matching connects you with facilitators aligned to your specific goals and preferences.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-highlight/10 border border-highlight/20 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="w-4 h-4 text-highlight" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Satisfaction Guaranteed</h3>
-                    <p className="text-foreground/60 text-sm leading-relaxed">
-                      If your first session doesn't meet expectations, we'll help you find a better match at no extra cost.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
-              
-              <Button size="lg" className="mt-8" asChild>
-                <Link href="/marketplace">
-                  Find Facilitators <ArrowRight className="w-4 h-4 ml-2" />
+              <Button size="lg" className="mt-8 rounded-full bg-[#00CDAC] text-white hover:bg-[#02AAB0]" asChild>
+                <Link href="/facilitators">
+                  {copy("Facilitators entdecken", "Discover facilitators")} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
-            
-            <div className="lg:col-span-8 -mx-2 sm:mx-0">
+            <div className="-mx-2 sm:mx-0 lg:col-span-8">
               <EuropeFacilitatorMap />
             </div>
           </div>

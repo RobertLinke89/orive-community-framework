@@ -28,6 +28,8 @@ export type ChatSessionMessage = {
   role: 'user' | 'assistant';
   text: string;
   offerings?: ChatSessionOffering[];
+  /** Directory search result cards shown under the answer (sanitized, size-capped). */
+  directory?: unknown;
   whatsapp?: string | null;
   createdAt: string;
 };
@@ -158,6 +160,16 @@ export function listChatSessions(visitorKey: string): ChatSessionSummary[] {
     });
 }
 
+function sanitizeDirectory(value: unknown): unknown {
+  if (!value || typeof value !== 'object') return undefined;
+  try {
+    const raw = JSON.stringify(value);
+    return raw.length <= 60_000 ? JSON.parse(raw) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export function appendChatMessages(
   id: string,
   visitorKey: string,
@@ -172,6 +184,7 @@ export function appendChatMessages(
       role: message.role,
       text: String(message.text || '').slice(0, 4000),
       offerings: Array.isArray(message.offerings) ? message.offerings.slice(0, 8) : undefined,
+      directory: sanitizeDirectory(message.directory),
       whatsapp: message.whatsapp || null,
       createdAt: now,
     });

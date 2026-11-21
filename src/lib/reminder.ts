@@ -1,6 +1,5 @@
 import { renderReminderEmail, sendEmail } from "@/lib/email";
 import { listReminderBookings, markReminderSent } from "@/lib/oriveStore";
-import { bookingPassUrl } from "@/lib/legacyBookingLinks";
 
 function canMail(email?: string | null) {
   const value = String(email || "").trim();
@@ -11,6 +10,7 @@ function canMail(email?: string | null) {
 
 export async function sendDueReminders() {
   const due = await listReminderBookings();
+  const origin = process.env.NEXT_PUBLIC_APP_URL || "https://orive.co";
   const results: { id: string; sent: boolean }[] = [];
   for (const booking of due) {
     if (!canMail(booking.customerEmail)) {
@@ -26,7 +26,7 @@ export async function sendDueReminders() {
         ? booking.startAt
         : when.toLocaleString("de-DE", { dateStyle: "medium", timeStyle: "short" }),
       location: booking.location,
-      bookingPassUrl: bookingPassUrl(booking.id),
+      bookingPassUrl: `${origin}/booking/${encodeURIComponent(booking.id)}`,
     });
     const sent = await sendEmail({
       to: booking.customerEmail,

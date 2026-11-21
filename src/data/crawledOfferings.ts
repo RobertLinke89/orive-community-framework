@@ -1,6 +1,7 @@
 import type { PublicOffering } from '@/hooks/usePublicOfferings';
 import type { Facilitator } from '@/data/facilitatorsData';
 import rawData from './crawledOfferings.json';
+import { cleanOfferTitle, dedupeLocation, isJunkOfferTitle, isSafeAvatarUrl } from '@/lib/offerQuality';
 
 const AUTHENTIC_PLATFORMS = new Set([
   'Eventbrite',
@@ -51,15 +52,15 @@ function isUpcoming(startAt: string | null | undefined): boolean {
 
 // Partner listings as published. Dates are not rolled forward. Past starts are dropped.
 export const crawledOfferings: PublicOffering[] = (rawData as any[])
-  .filter((item) => isUpcoming(item?.start_at))
+  .filter((item) => isUpcoming(item?.start_at) && !isJunkOfferTitle(item?.title))
   .map((item) => ({
     id: String(item.id),
-    title: String(item.title),
+    title: cleanOfferTitle(String(item.title)),
     description: item.description ? String(item.description) : null,
     type: (item.type === 'individual' ? 'individual' : item.type === 'group' ? 'group' : 'event') as 'individual' | 'group' | 'event',
     price: item.price ? String(item.price) : null,
     duration: typeof item.duration === 'number' ? item.duration : null,
-    location: item.location ? String(item.location) : null,
+    location: item.location ? dedupeLocation(String(item.location)) : null,
     is_online: Boolean(item.is_online),
     image_url: item.image_url ? String(item.image_url) : null,
     capacity: typeof item.capacity === 'number' ? item.capacity : null,
@@ -68,7 +69,7 @@ export const crawledOfferings: PublicOffering[] = (rawData as any[])
     tags: Array.isArray(item.tags) ? item.tags : [],
     facilitator_id: String(item.facilitator_id || 'fac-crawled'),
     facilitator_name: item.facilitator_name ? String(item.facilitator_name) : undefined,
-    facilitator_avatar: item.facilitator_avatar ? String(item.facilitator_avatar) : undefined,
+    facilitator_avatar: isSafeAvatarUrl(item.facilitator_avatar) ? String(item.facilitator_avatar) : undefined,
     source_platform: item.source_platform ? String(item.source_platform) : undefined,
     source_url: item.source_url ? String(item.source_url) : undefined,
     crawled_at: item.crawled_at ? String(item.crawled_at) : undefined,
@@ -91,7 +92,16 @@ export const getCrawledOfferingById = (id: string): PublicOffering | undefined =
 // Extract unique facilitators from crawled offerings
 const facMap = new Map<string, Facilitator>();
 
+// Only organisers with a verifiable public source (Eventbrite / wimhofmethod.com). The synthetic seed entries
+// ("European Retreat Sanctuaries", "European Community Network", "… Mentors", orive.co/experience/… links) are demo data
+// and are no longer turned into facilitator profiles (removed 2026-11-09).
+export function isRealCrawledSource(item: { source_url?: string | null }): boolean {
+  const u = String(item?.source_url || '').toLowerCase();
+  return /^https?:\/\/([a-z0-9-]+\.)*(eventbrite\.[a-z.]+|wimhofmethod\.com)\//.test(u);
+}
+
 (rawData as any[]).forEach(item => {
+  if (!isRealCrawledSource(item)) return;
   const facId = String(item.facilitator_id || 'fac-crawled');
   if (!facMap.has(facId)) {
     const name = item.facilitator_name ? String(item.facilitator_name) : 'Facilitator';
@@ -113,7 +123,7 @@ const facMap = new Map<string, Facilitator>();
       id: facId,
       username,
       name,
-      avatar: item.facilitator_avatar || '',
+      avatar: isSafeAvatarUrl(item.facilitator_avatar) ? String(item.facilitator_avatar) : '',
       isVerified: false,
       rating: 0,
       reviewCount: 0,

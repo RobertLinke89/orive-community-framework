@@ -7,13 +7,10 @@ const __dirname = path.dirname(__filename);
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // STAGING ONLY: prod tsconfig has strict:false, branch code is written for strictNullChecks (checked in repo via tsconfig.profiles.json)
-  typescript: { ignoreBuildErrors: true },
-  eslint: { ignoreDuringBuilds: true },
   compress: true,
   poweredByHeader: false,
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/webp'], // webp only: no slow AVIF encoding of hotlinked originals
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 480],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     minimumCacheTTL: 31536000,
@@ -68,6 +65,10 @@ const nextConfig = {
         destination: '/impressum',
         permanent: true,
       },
+      // old Lovable-era account URLs -> the Supabase login at /auth
+      { source: '/login', destination: '/auth', permanent: false },
+      { source: '/signup', destination: '/auth?mode=signup', permanent: false },
+      { source: '/register', destination: '/auth?mode=signup', permanent: false },
     ];
   },
   webpack: (config) => {

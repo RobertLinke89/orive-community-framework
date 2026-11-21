@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { facilitatorFromRequest } from "@/lib/facilitatorAuth";
-import { payoutAccountFor, profileByEmail, upsertProfile } from "@/lib/facilitatorPayout";
+import { profileByEmail, upsertProfile } from "@/lib/facilitatorPayout";
 
 export const dynamic = "force-dynamic";
 
@@ -8,7 +8,6 @@ export async function GET(req: Request) {
   const actor = await facilitatorFromRequest(req);
   if (!actor) return NextResponse.json({ error: "Sign in required." }, { status: 401 });
   const profile = profileByEmail(actor.email);
-  const payout = await payoutAccountFor({ userId: actor.userId, facilitatorId: actor.id }).catch(() => null);
   return NextResponse.json({
     id: actor.id,
     email: actor.email,
@@ -16,7 +15,7 @@ export async function GET(req: Request) {
     city: profile?.city || "",
     practice: profile?.practice || "",
     onboardingComplete: Boolean(profile?.onboardingComplete),
-    stripeConnected: Boolean(payout?.stripe_account_id),
+    stripeConnected: Boolean(profile?.stripeAccountId),
   });
 }
 

@@ -1,4 +1,5 @@
 "use client";
+import { SafeImage } from "@/components/SafeImage";
 
 import { useLanguage } from "@/hooks/useLanguage";
 
@@ -149,7 +150,7 @@ export default function GuestIntake({
                   >
                     <span className="flex items-center gap-3">
                       {booking.avatar ? (
-                        <img src={booking.avatar} alt="" className="h-9 w-9 rounded-full object-cover" />
+                        <SafeImage src={booking.avatar} alt="" kind="avatar" avatarSize={36} className="h-9 w-9 rounded-full object-cover" />
                       ) : null}
                       <span className="font-medium">{booking.customerName || booking.customerEmail || (copy("Suchende", "Seeker"))}</span>
                     </span>

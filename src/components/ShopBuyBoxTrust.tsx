@@ -28,8 +28,8 @@ export function ShopBuyBoxTrust({ isDe, methods, external = false }: ShopBuyBoxT
             </li>
             <li>
               {isDe ? "Fragen zu ORIVE: " : "Questions about ORIVE: "}
-              <a href="mailto:contact@orive.app" className="underline underline-offset-2">
-                contact@orive.app
+              <a href="mailto:robert.linke@me.com" className="underline underline-offset-2">
+                robert.linke@me.com
               </a>
             </li>
           </ul>
@@ -73,8 +73,8 @@ export function ShopBuyBoxTrust({ isDe, methods, external = false }: ShopBuyBoxT
           </li>
           <li>
             {isDe ? "Kein pauschaler Sofort-Ersatz. Streitfall: " : "No one-click instant replacement. Disputes: "}
-            <a href="mailto:contact@orive.app" className="underline underline-offset-2">
-              contact@orive.app
+            <a href="mailto:robert.linke@me.com" className="underline underline-offset-2">
+              robert.linke@me.com
             </a>
           </li>
         </ul>

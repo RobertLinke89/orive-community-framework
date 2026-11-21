@@ -3,10 +3,20 @@
 import Link from "next/link";
 import { FactPage, FactSection } from "@/components/FactPage";
 import { useLanguage } from "@/hooks/useLanguage";
+import { IMPRESSUM as D, IMPRESSUM_MISSING, IMPRESSUM_READY } from "@/lib/impressumData";
 
-const CONTACT = "robert.linke@me.com";
-const UPDATED_DE = "Stand: 28. September 2026";
-const UPDATED_EN = "Updated: 28 September 2026";
+const UPDATED_DE = "Stand: 10. November 2026";
+const UPDATED_EN = "Updated: 10 November 2026";
+
+/** Renders a value, or a clearly marked gap (draft preview only – the page is not public until all required data exists). */
+function V({ v, label }: { v: string | null; label: string }) {
+  if (v) return <>{v}</>;
+  return (
+    <span className="rounded bg-amber-100 px-1.5 py-0.5 text-xs font-semibold text-amber-900 dark:bg-amber-400/15 dark:text-amber-200">
+      [fehlt: {label}]
+    </span>
+  );
+}
 
 export default function Impressum() {
   const { language, copy } = useLanguage();
@@ -18,74 +28,68 @@ export default function Impressum() {
       title="Impressum"
       updated={de ? UPDATED_DE : UPDATED_EN}
     >
+      {!IMPRESSUM_READY ? (
+        <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 dark:border-amber-400/20 dark:bg-amber-400/10 dark:text-amber-200">
+          Entwurf (nur Staging) – fehlende Pflichtangaben: {IMPRESSUM_MISSING.join(", ")}
+        </p>
+      ) : null}
+
       <FactSection title={copy("Angaben gemäß § 5 DDG", "Information pursuant to § 5 DDG")}>
         <p>
-          {copy("ORIVE ist eine Marke und ein digitales Angebot von:", "ORIVE is a brand and digital service operated by:")}
-        </p>
-        <p>
-          <strong>heybotti</strong>
+          {copy("ORIVE (orive.co) ist ein Angebot von:", "ORIVE (orive.co) is operated by:")}
           <br />
-          {copy("Inhaber: Robert Linke", "Proprietor: Robert Linke")}
+          <strong><V v={D.anbieterName} label="Name / Firma" /></strong>
           <br />
-          Stiftsgasse 17
+          {copy("Inhaber: ", "Owner: ")}<V v={D.inhaber} label="Inhaber" />
+          {D.rechtsform ? (<><br />{D.rechtsform}</>) : null}
+          {D.vertretenDurch ? (<><br />{copy("Vertreten durch: ", "Represented by: ")}{D.vertretenDurch}</>) : null}
           <br />
-          07407 Rudolstadt
+          <V v={D.strasse} label="Straße und Hausnummer" />
           <br />
-          {copy("Deutschland", "Germany")}
+          <V v={D.plzOrt} label="PLZ und Ort" />
+          <br />
+          <V v={D.land} label="Land" />
         </p>
       </FactSection>
 
       <FactSection title={copy("Kontakt", "Contact")}>
         <p>
           {copy("E-Mail: ", "Email: ")}
-          <a href={`mailto:${CONTACT}`} className="text-slate-900 dark:text-white underline underline-offset-4">
-            {CONTACT}
-          </a>
-        </p>
-        <p>
-          {copy("Internet: ", "Website: ")}
-          <a
-            href="https://www.orive.co"
-            className="text-slate-900 dark:text-white underline underline-offset-4"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            www.orive.co
-          </a>
+          {D.email ? (
+            <a href={`mailto:${D.email}`} className="text-slate-900 dark:text-white underline underline-offset-4">{D.email}</a>
+          ) : <V v={null} label="E-Mail" />}
+          {D.telefon || !IMPRESSUM_READY ? (
+            <>
+              <br />
+              {copy("Telefon: ", "Phone: ")}<V v={D.telefon} label="Telefon oder zweiter schneller Kontaktweg" />
+            </>
+          ) : null}
         </p>
       </FactSection>
 
-      <FactSection
-        title={
-          copy("Verantwortlich für redaktionelle Inhalte (§ 18 Abs. 2 MStV)", "Responsible for editorial content (§ 18(2) MStV)")
-        }
-      >
-        <p>
-          Robert Linke
-          <br />
-          Stiftsgasse 17
-          <br />
-          07407 Rudolstadt
-          <br />
-          {copy("Deutschland", "Germany")}
-        </p>
-      </FactSection>
+      {D.register || !IMPRESSUM_READY ? (
+        <FactSection title={copy("Registereintrag", "Register entry")}>
+          <p><V v={D.register} label="Registergericht + Registernummer (nur falls eingetragen)" /></p>
+        </FactSection>
+      ) : null}
+
+      {D.ustId || !IMPRESSUM_READY ? (
+        <FactSection title={copy("Umsatzsteuer-ID", "VAT ID")}>
+          <p>{copy("Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: ", "VAT identification number (§ 27a UStG): ")}<V v={D.ustId} label="USt-IdNr. (nur falls vorhanden)" /></p>
+        </FactSection>
+      ) : null}
+
+      {D.verantwortlichMStV || !IMPRESSUM_READY ? (
+        <FactSection
+          title={copy("Verantwortlich für redaktionelle Inhalte (§ 18 Abs. 2 MStV)", "Responsible for editorial content (§ 18(2) MStV)")}
+        >
+          <p><V v={D.verantwortlichMStV} label="Name + Anschrift der verantwortlichen Person" /></p>
+        </FactSection>
+      ) : null}
 
       <FactSection
-        title={copy("Verbraucherstreitbeilegung", "Consumer dispute resolution")}
+        title={copy("Verbraucherstreitbeilegung (§ 36 VSBG)", "Consumer dispute resolution (§ 36 VSBG)")}
       >
-        <p>
-          {copy("Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:", "The European Commission provides a platform for online dispute resolution (ODR):")}{" "}
-          <a
-            href="https://ec.europa.eu/consumers/odr/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-900 dark:text-white underline underline-offset-4"
-          >
-            https://ec.europa.eu/consumers/odr/
-          </a>
-          .
-        </p>
         <p>
           {copy("Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.", "We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.")}
         </p>

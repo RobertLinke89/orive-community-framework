@@ -25,3 +25,12 @@ dist-ssr
 *.sw?
 .vercel
 .env*
+
+# directory profiles runtime data (removals, views)
+/.directory-data/
+/.directory-views.json
+
+*.bak*
+*.tsbuildinfo
+ROLLBACK-*
+

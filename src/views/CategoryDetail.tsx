@@ -25,6 +25,7 @@ import {
 import { useLanguage } from '@/hooks/useLanguage';
 import { matchesMarketplaceTab } from '@/lib/catalogLayout';
 import { cn } from '@/lib/utils';
+import { CategoryFacilitators } from '@/components/directory/CategoryFacilitators';
 
 export const ALL_CATEGORIES = [
   { id: 'all', labelDe: 'Alle', labelEn: 'All', descDe: 'Sessions, Events und Retreats.', descEn: 'Sessions, events and retreats.', icon: Sparkles },
@@ -313,6 +314,14 @@ export default function CategoryDetailView() {
               </button>
             </div>
           )}
+
+          <CategoryFacilitators
+            categoryId={selectedCat}
+            label={selectedCat === 'all' ? undefined : categoryLabel}
+            de={isDe}
+            city={discovery.location || undefined}
+            className="mt-14"
+          />
         </div>
       </div>
     </Layout>

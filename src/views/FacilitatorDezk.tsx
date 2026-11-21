@@ -1,4 +1,5 @@
 "use client";
+import { SafeImage } from "@/components/SafeImage";
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -905,7 +906,7 @@ export default function FacilitatorDezk() {
                       <li key={offering.id} className="py-4">
                         <button type="button" onClick={() => openOffering(offering)} className="flex w-full items-start gap-3 text-left">
                           {offering.image_url ? (
-                            <img src={offering.image_url} alt="" className="h-14 w-14 shrink-0 object-cover" />
+                            <SafeImage src={offering.image_url} alt="" kind="cover" className="h-14 w-14 shrink-0 object-cover" />
                           ) : null}
                           <div className="min-w-0">
                         <p className="font-medium">{offering.title}</p>
@@ -960,7 +961,7 @@ export default function FacilitatorDezk() {
                             <td className="px-3 py-3">
                               <div className="flex items-start gap-3">
                                 {offering.image_url ? (
-                                  <img src={offering.image_url} alt="" className="h-12 w-16 shrink-0 object-cover" />
+                                  <SafeImage src={offering.image_url} alt="" kind="cover" className="h-12 w-16 shrink-0 object-cover" />
                                 ) : null}
                                 <div className="min-w-0">
                                   <p className="font-medium">{offering.title}</p>
@@ -1163,7 +1164,7 @@ export default function FacilitatorDezk() {
               </button>
             </div>
             {detail.offering.image_url ? (
-              <img src={detail.offering.image_url} alt="" className="mx-5 h-36 w-[calc(100%-2.5rem)] object-cover" />
+              <SafeImage src={detail.offering.image_url} alt="" kind="cover" className="mx-5 h-36 w-[calc(100%-2.5rem)] object-cover" />
             ) : null}
             <div className="px-5 pt-4">
               <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500">{detail.offering.tags?.[0] || detail.offering.type}</p>
@@ -1231,7 +1232,7 @@ export default function FacilitatorDezk() {
                         {copy("Alle Suchenden", "All seekers")}
                       </button>
                       <div className="mt-4 flex items-center gap-4">
-                        <img src={sheetGuest?.avatar || sheetSeeker.avatar} alt="" className="h-16 w-16 rounded-full object-cover" />
+                        <SafeImage src={sheetGuest?.avatar || sheetSeeker.avatar} alt="" kind="avatar" avatarSize={64} className="h-16 w-16 rounded-full object-cover" />
                         <div>
                           <p className="text-xl font-semibold">{sheetSeeker.name}</p>
                           {sheetGuest?.customerEmail ? <p className="mt-1 text-sm text-slate-500">{sheetGuest.customerEmail}</p> : null}
@@ -1283,7 +1284,7 @@ export default function FacilitatorDezk() {
                       {sheetPeople.map((person) => (
                         <li key={person.name}>
                           <button type="button" onClick={() => setDetail({ ...detail, seekerName: person.name })} className="flex w-full items-center gap-3 py-3 text-left">
-                            <img src={person.avatar} alt="" className="h-9 w-9 rounded-full object-cover" />
+                            <SafeImage src={person.avatar} alt="" kind="avatar" avatarSize={36} className="h-9 w-9 rounded-full object-cover" />
                             <span className="text-sm font-medium">{person.name}</span>
                           </button>
                         </li>
@@ -1332,7 +1333,7 @@ export default function FacilitatorDezk() {
                       <ul className="mt-6 border-t border-slate-200 dark:border-white/10">
                         {sheetPayers.map((person) => (
                           <li key={person.name} className="flex items-center gap-3 border-b border-slate-200 py-3 dark:border-white/10">
-                            <img src={person.avatar} alt="" className="h-9 w-9 rounded-full object-cover" />
+                            <SafeImage src={person.avatar} alt="" kind="avatar" avatarSize={36} className="h-9 w-9 rounded-full object-cover" />
                             <span className="min-w-0 flex-1">
                               <span className="block truncate text-sm font-medium">{person.name}</span>
                               {person.euros > 0 ? <span className="mt-0.5 block text-sm tabular-nums text-slate-500">{money(person.euros)}</span> : null}

@@ -17,10 +17,7 @@ export async function notifyFacilitatorOfIntake(booking: OriveBooking) {
     startAt: booking.startAt,
     location: booking.location,
     reference: booking.id,
-    // D1: health-related answers stay in the dashboard; the e-mail only says they exist.
-    intake: process.env.INTAKE_MAIL_INCLUDE_ANSWERS === "true"
-      ? booking.intake
-      : [{ questionId: "notice", prompt: "Intake", answer: "Antworten liegen vor – bitte im ORIVE-Dashboard ansehen." }],
+    intake: booking.intake,
   });
   const result = await sendEmail({
     to: booking.facilitatorEmail,

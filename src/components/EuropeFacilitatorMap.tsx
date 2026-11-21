@@ -9,6 +9,8 @@ import { ArrowRight, CheckCircle2, X } from "lucide-react";
 import { facilitators, type Facilitator } from "@/data/facilitatorsData";
 import { buildPublicProfilePath } from "@/lib/publicProfilePath";
 import { useLanguage } from "@/hooks/useLanguage";
+import { ElementAvatar } from "@/components/directory/ElementAvatar";
+import { ELEMENT_OF, type ElementKey } from "@/components/directory/elements";
 
 type Topology = {
   type: "Topology";
@@ -319,8 +321,12 @@ export function EuropeFacilitatorMap() {
                     href={buildPublicProfilePath({ id: f.id, username: f.username })}
                     className="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors outline-none focus:outline-none"
                   >
-                    <div className="w-9 h-9 rounded-full overflow-hidden bg-slate-200 flex-shrink-0">
-                      <img src={f.avatar} alt="" className="w-full h-full object-cover" />
+                    <div className="w-9 h-9 rounded-full overflow-hidden bg-slate-200 flex-shrink-0 flex items-center justify-center">
+                      <ElementAvatar
+                        element={(f.tags || []).map((x) => ELEMENT_OF[x === "Bodywork" ? "BodyWork" : x] as ElementKey | undefined).find(Boolean) || "aether"}
+                        avatar={f.avatar}
+                        size={36}
+                      />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-semibold text-[#01223F] dark:text-white truncate">

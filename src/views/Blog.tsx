@@ -74,13 +74,13 @@ const Blog = () => {
   }, []);
 
   const categories = [
-    { value: "all", label: "All Articles" },
+    { value: "all", label: "Alle Artikel" },
     { value: "breathwork", label: "Breathwork" },
-    { value: "icebath", label: "Cold Exposure" },
-    { value: "movement", label: "Movement & Yoga" },
-    { value: "meditation", label: "Meditation & Sound" },
-    { value: "holistic", label: "Holistic Health" },
-    { value: "coaching", label: "Coaching & Purpose" },
+    { value: "icebath", label: "Kälte & Eisbaden" },
+    { value: "movement", label: "Bewegung & Yoga" },
+    { value: "meditation", label: "Meditation & Klang" },
+    { value: "holistic", label: "Ganzheitliche Gesundheit" },
+    { value: "coaching", label: "Coaching & Sinn" },
   ];
 
   const filteredArticles = useMemo(() => {
@@ -103,11 +103,11 @@ const Blog = () => {
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-12">
           <div className="w-full max-w-3xl text-center flex flex-col items-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-              The World of <span className="bg-gradient-to-r from-[#00CDAC] to-[#16B1C3] bg-clip-text text-transparent">Wellbeing</span>
+              Wissen für dein <span className="bg-gradient-to-r from-[#00CDAC] to-[#16B1C3] bg-clip-text text-transparent">Wohlbefinden</span>
             </h1>
             
             <p className="text-sm sm:text-base lg:text-lg text-white/80 mb-10 leading-relaxed font-light max-w-xl mx-auto">
-              Expert insights on breathwork, ice bath therapy, and holistic movement practices for complete wellbeing.
+              Artikel über Breathwork, Eisbaden, Bewegung und ganzheitliche Praktiken.
             </p>
 
             {isOpsDebugEnabled() &&
@@ -167,7 +167,7 @@ const Blog = () => {
                 </div>
                 <div className="p-6 sm:p-8 flex flex-col justify-center">
                   <Badge className="w-fit mb-4 bg-gradient-to-r from-[#00CDAC] to-[#16B1C3] text-white font-bold border-0">
-                    Featured
+                    Empfohlen
                   </Badge>
                   <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 group-hover:text-[#00CDAC] transition-colors">
                     {featuredArticle.title}
@@ -202,10 +202,10 @@ const Blog = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-              Latest <span className="bg-gradient-to-r from-[#00CDAC] to-[#16B1C3] bg-clip-text text-transparent">Articles</span>
+              Neueste <span className="bg-gradient-to-r from-[#00CDAC] to-[#16B1C3] bg-clip-text text-transparent">Artikel</span>
             </h2>
             <p className="text-muted-foreground">
-              Explore our collection of expert insights and practical guides
+              Praktische Einblicke und Anleitungen
             </p>
           </div>
 

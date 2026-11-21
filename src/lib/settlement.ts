@@ -1,9 +1,8 @@
-
+import Stripe from "stripe";
 import { renderPaymentReceiptEmail, renderReservationEmail, sendEmail } from "@/lib/email";
 import { notifyFacilitatorOfIntake } from "@/lib/intakeMail";
 import { findStripeAccount } from "@/lib/facilitatorPayout";
 import {
-  claimBookingForSettlement,
   getBooking,
   listDueBookings,
   markBookingCharged,
@@ -13,19 +12,19 @@ import {
   reserveBooking,
 } from "@/lib/oriveStore";
 import type { OriveBooking } from "@/lib/orivePublic";
-import { CONCIERGE_FEE_CENTS, allowStripeSimulation } from "@/lib/payments";
-import { bookingPassUrl } from "@/lib/legacyBookingLinks";
-import { logError } from "@/lib/safeLog";
-import { getStripe } from "@/lib/stripeClient";
+import { CONCIERGE_FEE_CENTS, allowStripeSimulation, isStripeKeyUsable } from "@/lib/payments";
 
 function stripeClient() {
-  return getStripe();
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!isStripeKeyUsable(key)) return null;
+  return new Stripe(key as string, { apiVersion: "2024-06-20" as Stripe.StripeConfig["apiVersion"] });
 }
 
 async function sendReceipt(booking: OriveBooking) {
   if (booking.receiptSent || !booking.customerEmail) return;
   const sessionAmount = booking.priceCents / 100;
   const feeAmount = (booking.feeCents ?? CONCIERGE_FEE_CENTS) / 100;
+  const origin = process.env.NEXT_PUBLIC_APP_URL || "https://orive.co";
   const receipt = renderPaymentReceiptEmail({
     receiptNumber: `REC-${new Date().getFullYear()}-${booking.id.slice(-6).toUpperCase()}`,
     bookingReference: booking.id,
@@ -37,7 +36,7 @@ async function sendReceipt(booking: OriveBooking) {
     feeAmount,
     currency: "EUR",
     date: new Date().toLocaleDateString("de-DE"),
-    bookingPassUrl: bookingPassUrl(booking.id),
+    bookingPassUrl: `${origin}/booking/${booking.id}`,
   });
   await sendEmail({
     to: booking.customerEmail,
@@ -70,13 +69,14 @@ export async function confirmSetupSession(sessionId: string) {
 
   await notifyFacilitatorOfIntake(reserved);
   await markIntakeSent(reserved.id);
+  const origin = process.env.NEXT_PUBLIC_APP_URL || "https://orive.co";
   const when = new Date(reserved.startAt);
   const letter = renderReservationEmail({
     sessionTitle: reserved.sessionTitle,
     clientName: reserved.customerName || "Gast",
     whenLabel: Number.isNaN(when.getTime()) ? reserved.startAt : when.toLocaleString("de-DE", { dateStyle: "medium", timeStyle: "short" }),
     sessionAmount: `${Math.round(reserved.priceCents / 100)} €`,
-    bookingPassUrl: bookingPassUrl(reserved.id),
+    bookingPassUrl: `${origin}/booking/${encodeURIComponent(reserved.id)}`,
   });
   if (reserved.customerEmail) {
     await sendEmail({ to: reserved.customerEmail, subject: letter.subject, html: letter.html });
@@ -85,22 +85,18 @@ export async function confirmSetupSession(sessionId: string) {
 }
 
 export async function settleBooking(bookingId: string) {
-  const current = await getBooking(bookingId);
-  if (!current) return { ok: false, error: "not_found" };
-  if (current.paymentStatus === "paid" || current.paymentStatus === "waived" || current.status === "cancelled") {
+  const booking = await getBooking(bookingId);
+  if (!booking) return { ok: false, error: "not_found" };
+  if (booking.paymentStatus === "paid" || booking.paymentStatus === "waived" || booking.status === "cancelled") {
     return { ok: true, skipped: true };
   }
-  // S4: atomic claim -> only one concurrent caller (cron / late cancel) proceeds to Stripe.
-  const booking = await claimBookingForSettlement(bookingId);
-  if (!booking) return { ok: true, skipped: true };
 
   const stripe = stripeClient();
-  // Only accounts with charges_enabled are used as destination (Connect check).
-  const account = await findStripeAccount(booking.facilitatorId, booking.facilitatorEmail);
+  const account = findStripeAccount(booking.facilitatorId, booking.facilitatorEmail);
   const canCharge = Boolean(stripe && booking.stripeCustomerId && booking.stripePaymentMethodId);
 
   if (!canCharge) {
-    if (allowStripeSimulation()) {
+    if (booking.paymentStatus === "simulated" || allowStripeSimulation()) {
       const charged = await markBookingCharged(booking.id, { payoutStatus: account ? "transferred" : "awaiting_connect" });
       if (charged) await sendReceipt(charged);
       return { ok: true, mode: "simulation" };
@@ -118,10 +114,11 @@ export async function settleBooking(bookingId: string) {
       payment_method: booking.stripePaymentMethodId,
       off_session: true,
       confirm: true,
-      description: `ORIVE Session ${booking.id.slice(-8)}`,
+      description: `${booking.sessionTitle} · ${booking.id}`,
       metadata: {
         bookingId: booking.id,
         type: "orive_settlement",
+        facilitatorId: booking.facilitatorId || "",
       },
       ...(account
         ? {
@@ -129,7 +126,7 @@ export async function settleBooking(bookingId: string) {
             transfer_data: { destination: account },
           }
         : {}),
-    }, { idempotencyKey: `settle-${booking.id}-a${booking.settleAttempts || 1}` });
+    });
 
     if (intent.status === "succeeded") {
       const charged = await markBookingCharged(booking.id, {
@@ -143,42 +140,17 @@ export async function settleBooking(bookingId: string) {
     await markBookingChargeFailed(booking.id);
     return { ok: false, error: intent.status };
   } catch (error) {
-    logError("settle", error, { bookingId: booking.id });
+    console.error("[settle]", booking.id, error);
     await markBookingChargeFailed(booking.id);
     return { ok: false, error: "charge_failed" };
   }
 }
 
-/** Refund a legacy booking: destination charge -> pull back transfer and platform fee. */
-export async function refundBooking(bookingId: string) {
-  const booking = await getBooking(bookingId);
-  const stripe = stripeClient();
-  if (!booking?.stripePaymentIntentId || booking.paymentStatus !== "paid") return { ok: false, error: "nothing_to_refund" };
-  if (!stripe) return { ok: false, error: "not_configured" };
-  try {
-    const refund = await stripe.refunds.create(
-      {
-        payment_intent: booking.stripePaymentIntentId,
-        reverse_transfer: booking.payoutStatus === "transferred",
-        refund_application_fee: booking.payoutStatus === "transferred",
-        metadata: { bookingId: booking.id },
-      },
-      { idempotencyKey: `refund-${booking.id}` },
-    );
-    return { ok: true, refundId: refund.id };
-  } catch (error) {
-    logError("refund", error, { bookingId });
-    return { ok: false, error: "refund_failed" };
-  }
-}
-
 export async function settleDueBookings() {
   const due = await listDueBookings();
-  const results: Array<{ id: string } & Record<string, unknown>> = [];
+  const results = [];
   for (const booking of due) {
     results.push({ id: booking.id, ...(await settleBooking(booking.id)) });
   }
   return results;
 }
-
-

@@ -85,10 +85,12 @@ async function loadCatalog(code: LocaleCode): Promise<Catalog> {
 function readStoredLocale(): LocaleCode {
   if (typeof window === "undefined") return DEFAULT_LOCALE;
   try {
+    // Explicit ?lang=de|en in the URL wins (same rule as the server-rendered directory pages).
+    const q = new URLSearchParams(window.location.search).get("lang");
+    if (q && isLocaleCode(q)) return q;
     const stored = window.localStorage.getItem(LOCALE_STORAGE_KEY);
     if (stored && isLocaleCode(stored)) return stored;
-    const nav = (window.navigator.language || "en").slice(0, 2).toLowerCase();
-    if (isLocaleCode(nav)) return nav;
+    // No browser-language auto-detection: German is the default unless the visitor picks another language.
   } catch {
     /* ignore */
   }

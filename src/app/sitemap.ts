@@ -8,7 +8,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://orive.co';
   const now = new Date();
 
-  // Static core routes
+  // Static core routes: only live, indexable pages. Not listed on purpose (noindex or not active yet):
+  // /facilitators + directory profiles, /shop, /blog, /formation, /auth, /protection (ORIVE booking/payment not active).
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
@@ -23,30 +24,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/formation`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/invest`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/whatsapp-assistant`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/auth`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/datenschutz`,
       lastModified: now,
       changeFrequency: 'monthly',
@@ -59,10 +36,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/protection`,
+      url: `${baseUrl}/impressum`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.4,
+      priority: 0.3,
     },
     {
       url: `${baseUrl}/partner-terms`,
@@ -98,11 +75,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     if (fs.existsSync(offeringsPath)) {
       const data = JSON.parse(fs.readFileSync(offeringsPath, 'utf-8'));
       if (Array.isArray(data)) {
-        offeringRoutes = data.map((item: any) => {
+        // Only offers with a verifiable public source (Eventbrite / wimhofmethod.com); synthetic demo seeds are skipped.
+        const real = (item: any) => /^https?:\/\/([a-z0-9-]+\.)*(eventbrite\.[a-z.]+|wimhofmethod\.com)\//i.test(String(item?.source_url || ''));
+        // Past events are dropped: only events whose start date is today or later.
+        const today = now.toISOString().slice(0, 10);
+        const upcoming = (item: any) => typeof item?.start_at === 'string' && item.start_at.slice(0, 10) >= today;
+        offeringRoutes = data.filter((item: any) => real(item) && upcoming(item)).map((item: any) => {
           const type = item.type === 'event' ? 'event' : item.type === 'experience' ? 'experience' : 'session';
           return {
             url: `${baseUrl}/${type}/${encodeURIComponent(item.id)}`,
-            lastModified: item.updated_at ? new Date(item.updated_at) : now,
+            lastModified: item.crawled_at ? new Date(item.crawled_at) : now,
             changeFrequency: 'daily',
             priority: 0.8,
           };

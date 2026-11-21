@@ -59,7 +59,7 @@ export function AirbnbCarouselRow({
                 href={href}
                 className="text-xs sm:text-sm font-medium text-slate-400 hover:text-white shrink-0 transition-colors"
               >
-                See all
+                Alle ansehen
               </Link>
             ) : onTitleClick ? (
               <button
@@ -67,7 +67,7 @@ export function AirbnbCarouselRow({
                 onClick={onTitleClick}
                 className="text-xs sm:text-sm font-medium text-slate-400 hover:text-white shrink-0 transition-colors"
               >
-                See all
+                Alle ansehen
               </button>
             ) : null}
           </div>

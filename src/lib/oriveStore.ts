@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import type { IntakeQuestion, OriveBooking, OriveOffering, OriveSlot } from '@/lib/orivePublic';
 import { defaultIntakeQuestions, sanitizeQuestions, templateById } from '@/lib/intake';
-import { CONCIERGE_FEE_CENTS, cancelDeadline, isProductionRuntime, isValidDate, sessionEndsAt } from '@/lib/payments';
+import { CONCIERGE_FEE_CENTS, cancelDeadline, sessionEndsAt } from '@/lib/payments';
 import { pullStore, pushStore, remoteStoreConfigured } from '@/lib/oriveRemote';
 
 export type IntakeFormRecord = {
@@ -58,15 +58,7 @@ function applyBody(raw: unknown): OriveStoreData {
   return data;
 }
 
-function assertPersistentStore() {
-  // S10: the JSON file is not persistent on Vercel. Production must use the Supabase document (orive_store).
-  if (isProductionRuntime() && !remoteStoreConfigured()) {
-    throw new Error('Booking store not configured (SUPABASE_SERVICE_ROLE_KEY missing).');
-  }
-}
-
 function load(): OriveStoreData {
-  assertPersistentStore();
   if (memory) return memory;
   try {
     if (fs.existsSync(STORE_FILE)) {
@@ -81,7 +73,6 @@ function load(): OriveStoreData {
 }
 
 function save(store: OriveStoreData) {
-  assertPersistentStore();
   memory = store;
   if (remoteStoreConfigured()) return;
   try {
@@ -479,7 +470,6 @@ export function cancelBooking(bookingId: string, by: 'guest' | 'facilitator') {
     if (!booking) return { error: 'not_found' as const };
     if (booking.status === 'paid' || booking.paymentStatus === 'paid') return { error: 'already_charged' as const, booking };
     if (booking.status === 'cancelled' || booking.paymentStatus === 'waived') return { error: 'already_cancelled' as const, booking };
-    if (!isValidDate(booking.startAt)) return { error: 'invalid_date' as const, booking };
     const late = by === 'guest' && Date.now() > cancelDeadline(booking.startAt);
     if (late) return { error: 'late' as const, booking };
     booking.status = 'cancelled';
@@ -492,49 +482,11 @@ export function cancelBooking(bookingId: string, by: 'guest' | 'facilitator') {
   });
 }
 
-const MAX_SETTLE_ATTEMPTS = 3;
-
-/**
- * Atomic settlement claim (S4): only one caller moves a booking to 'processing'. With the
- * Supabase document store this runs under the version check in withStore().
- */
-export function claimBookingForSettlement(bookingId: string) {
-  return withStore(() => {
-    const store = load();
-    const booking = store.bookings.find((item) => item.id === bookingId);
-    if (!booking) return null;
-    if (booking.status !== 'reserved' && booking.status !== 'charge_failed') return null;
-    if (!['card_saved', 'failed', 'simulated'].includes(booking.paymentStatus)) return null;
-    if ((booking.settleAttempts || 0) >= MAX_SETTLE_ATTEMPTS) return null;
-    booking.settleAttempts = (booking.settleAttempts || 0) + 1;
-    booking.paymentStatus = 'processing';
-    save(store);
-    return { ...booking };
-  });
-}
-
-/** Unpaid 'pending' bookings never reached Stripe: drop them after 1h (hold expiry + data minimisation, D2). */
-export function purgeStalePendingBookings(now = Date.now(), maxAgeMs = 60 * 60 * 1000) {
-  return withStore(() => {
-    const store = load();
-    const before = store.bookings.length;
-    store.bookings = store.bookings.filter((booking) => {
-      if (booking.status !== 'pending' || booking.paymentStatus !== 'unpaid') return true;
-      return now - new Date(booking.createdAt).getTime() < maxAgeMs;
-    });
-    const removed = before - store.bookings.length;
-    if (removed) save(store);
-    return removed;
-  });
-}
-
 export function listDueBookings(now = Date.now()) {
   return withStore(() => load().bookings.filter((booking) => {
     if (booking.paymentStatus === 'paid' || booking.paymentStatus === 'waived' || booking.paymentStatus === 'refunded') return false;
     if (booking.status === 'cancelled' || booking.status === 'pending') return false;
     if (booking.status !== 'reserved' && booking.status !== 'charge_failed') return false;
-    if (!isValidDate(booking.startAt)) return false; // never charge on an unparseable date
-    if ((booking.settleAttempts || 0) >= MAX_SETTLE_ATTEMPTS) return false;
     return sessionEndsAt(booking.startAt, booking.durationMin) <= now;
   }));
 }

@@ -34,6 +34,7 @@ import {
   Rocket,
   Percent,
   CircleDollarSign,
+  Heart,
   type LucideIcon
 } from "lucide-react";
 import { Layout } from "@/components/Layout";
@@ -391,90 +392,153 @@ const countries: CountryItem[] = [
 
 type LifecycleTab = "start" | "comply" | "grow";
 
-/** 5 women + 4 men — facilitator formation testimonials for hero marquee */
-const formationHeroReviews = [
+type HappyCustomer = {
+  name: string;
+  company: string;
+  avatar: string;
+  quoteDe: string;
+  quoteEn: string;
+};
+
+const heroWalletCustomers: HappyCustomer[] = [
   {
-    name: "Elena V.",
-    company: "Mindful Leadership EU Inc.",
+    name: "Elena Vasquez",
+    company: "Mindful Leadership EU Inc. · Wien",
     avatar: "/avatars/seeker-01.jpg",
     quoteDe:
-      "Als Facilitatorin mit Klienten in ganz Europa war die Gründung über ORIVE unkompliziert und sofort steuerlich einsatzbereit.",
+      "„Als Online-Facilitatorin mit Klienten in ganz Europa war die Gründung über ORIVE unkompliziert, transparent und sofort steuerlich einsatzbereit.“",
     quoteEn:
-      "As a facilitator with clients across Europe, incorporating via ORIVE was smooth and ready to bill from day one.",
+      "“As an online facilitator with clients across Europe, incorporating via ORIVE was smooth, transparent, and ready to bill from day one.”",
   },
   {
-    name: "Marcus H.",
-    company: "Nordlicht Coaching GmbH",
+    name: "Dr. Julian Bergmann",
+    company: "BioMed Systems GmbH · Berlin",
     avatar: "/avatars/seeker-05.jpg",
     quoteDe:
-      "Namensprüfung, Notar und Register — alles digital. Meine GmbH war in unter einer Woche einsatzbereit.",
+      "„In 48 Stunden von der Satzung zur eingetragenen GmbH – ohne jemals ein Notariat betreten zu haben. Die Vorab-Freigabe des Geschäftskontos war ein Gamechanger.“",
     quoteEn:
-      "Name check, notary and register — all digital. My company was ready in under a week.",
+      "“From articles to a registered GmbH in 48 hours without visiting a notary. Instant business-account setup was a gamechanger.”",
   },
   {
-    name: "Mei C.",
-    company: "Stillpoint Sessions B.V.",
-    avatar: "/avatars/seeker-08.jpg",
-    quoteDe:
-      "ORIVE hat mir die Gründung abgenommen, damit ich mich auf Sessions konzentrieren kann — transparent und schlüsselfertig.",
-    quoteEn:
-      "ORIVE handled incorporation so I could stay focused on sessions — transparent and turnkey.",
-  },
-  {
-    name: "David M.",
-    company: "Pathfinder Retreats Ltd.",
+    name: "Janis Lindner",
+    company: "Nordic Commerce Ltd. · Hamburg",
     avatar: "/avatars/seeker-07.jpg",
     quoteDe:
-      "Klare Festpreise, eIDAS-Notar und fertige Zertifikate im Safe. Genau so muss digitale Gründung aussehen.",
+      "„Die Worry-Free Compliance ist unbezahlbar. Transparenzregister und jährliche Pflichten laufen im Hintergrund auf Autopilot.“",
     quoteEn:
-      "Clear fixed pricing, eIDAS notary and certificates in the vault. This is how digital formation should work.",
+      "“Worry-Free Compliance is priceless. Transparency register and annual filings run on autopilot in the background.”",
   },
-  {
-    name: "Victoria C.",
-    company: "Leadership Circle UG",
-    avatar: "/avatars/seeker-06.jpg",
-    quoteDe:
-      "Von der ersten Satzung bis zur USt-IdNr. begleitet — ich konnte direkt mit Klienten abrechnen.",
-    quoteEn:
-      "Guided from first articles to VAT ID — I could invoice clients immediately.",
-  },
-  {
-    name: "Thomas S.",
-    company: "Atemraum Studio GmbH",
-    avatar: "/avatars/seeker-02.jpg",
-    quoteDe:
-      "Von der Namensprüfung bis zum Registereintrag alles digital. In wenigen Tagen war meine Praxis rechtssicher gegründet.",
-    quoteEn:
-      "From name check to register filing — all digital. My practice was legally set up within days.",
-  },
-  {
-    name: "Sofia R.",
-    company: "Casa Soma S.L.",
-    avatar: "/avatars/seeker-04.jpg",
-    quoteDe:
-      "Als Praxis in Spanien brauchte ich eine schlanke S.L. ORIVE hat Kosten und Dauer klar gemacht — ohne Kanzlei-Chaos.",
-    quoteEn:
-      "As a practice in Spain I needed a lean S.L. ORIVE made cost and timeline clear — without law-firm chaos.",
-  },
-  {
-    name: "Jan L.",
-    company: "Baltic Breath Ltd.",
-    avatar: "/facilitators/facilitator-2.jpg",
-    quoteDe:
-      "Dokumentensafe mit Registerauszug und UBO-Zertifikat — Banken und Partner akzeptieren alles ohne Nachfragen.",
-    quoteEn:
-      "Document vault with register extract and UBO certificate — banks and partners accept everything without follow-ups.",
-  },
-  {
-    name: "Amara K.",
-    company: "Open Circle EU Inc.",
-    avatar: "/avatars/seeker-03.jpg",
-    quoteDe:
-      "EU-weite Facilitator-Arbeit, eine Rechtsform. Die Gründung fühlte sich an wie ein Registeramt — nur digital und menschlich.",
-    quoteEn:
-      "EU-wide facilitator work, one legal entity. Formation felt like a registry — only digital and human.",
-  },
-] as const;
+];
+
+function HappyCustomerCard({
+  customer,
+  copy,
+  className = "",
+}: {
+  customer: HappyCustomer;
+  copy: (de: string, en: string) => string;
+  className?: string;
+}) {
+  return (
+    <article
+      className={`relative flex flex-col sm:flex-row items-stretch overflow-hidden rounded-[1.75rem] bg-white shadow-[0_22px_60px_-30px_rgba(1,34,63,0.45)] ${className}`}
+    >
+      <div className="relative sm:w-[46%] min-h-[210px] sm:min-h-[250px] shrink-0 bg-white">
+        <div
+          aria-hidden
+          className="absolute inset-y-0 left-0 w-[82%] bg-[#4EB8C2]"
+          style={{ borderRadius: "0 999px 999px 0" }}
+        />
+        <div
+          aria-hidden
+          className="absolute left-0 top-0 h-10 w-[70%] bg-gradient-to-r from-white/35 to-transparent"
+        />
+        <Heart
+          aria-hidden
+          className="absolute left-4 bottom-20 z-20 h-[18px] w-[18px] text-white/90"
+          strokeWidth={1.5}
+        />
+        <Heart
+          aria-hidden
+          className="absolute right-[10%] top-3 z-20 h-8 w-8 text-[#4A3AFF]"
+          strokeWidth={1.55}
+        />
+        <img
+          src={customer.avatar}
+          alt=""
+          width={300}
+          height={300}
+          className="absolute left-[6%] bottom-0 z-10 h-[94%] w-auto max-w-[90%] object-cover object-top"
+          loading="eager"
+          decoding="async"
+        />
+        <div className="absolute left-[22%] bottom-4 z-20">
+          <div className="inline-flex items-center gap-1 rounded-full border border-white/60 bg-white/55 px-3 py-1.5 shadow-[0_10px_30px_-14px_rgba(1,34,63,0.4)] backdrop-blur-md">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="h-3.5 w-3.5 fill-[#00CDAC] text-[#00CDAC]" />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-1 flex-col justify-center px-6 py-6 sm:px-7 sm:py-7 lg:px-8">
+        <h3 className="text-[1.35rem] sm:text-[1.6rem] font-semibold tracking-[-0.03em] leading-tight text-black">
+          {copy("Unsere zufriedenen Gründer", "Our happy customer")}
+        </h3>
+        <p className="mt-3 text-[13px] sm:text-[14px] leading-[1.65] text-[#717171] line-clamp-4">
+          {copy(customer.quoteDe, customer.quoteEn)}
+        </p>
+        <div className="mt-5">
+          <p className="text-[15px] font-semibold text-black">{customer.name}</p>
+          <p className="mt-0.5 text-[12px] text-[#9CA3AF]">{customer.company}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function HappyCustomerWallet({
+  customers,
+  copy,
+}: {
+  customers: HappyCustomer[];
+  copy: (de: string, en: string) => string;
+}) {
+  const [active, setActive] = useState<number | null>(null);
+
+  return (
+    <div
+      className="formation-wallet-stack relative w-full"
+      style={{ ["--wallet-count" as string]: customers.length }}
+      onMouseLeave={() => setActive(null)}
+    >
+      {customers.map((customer, index) => {
+        const isActive = active === index;
+        return (
+          <button
+            key={customer.name}
+            type="button"
+            className={`formation-wallet-card group absolute inset-x-0 top-0 w-full text-left ${
+              isActive ? "is-active" : ""
+            }`}
+            style={{
+              ["--i" as string]: index,
+              zIndex: isActive ? 40 : customers.length - index,
+            }}
+            onMouseEnter={() => setActive(index)}
+            onFocus={() => setActive(index)}
+            onBlur={() => setActive((current) => (current === index ? null : current))}
+            onClick={() => setActive(index)}
+            aria-pressed={isActive}
+            aria-label={`${customer.name} — ${customer.company}`}
+          >
+            <HappyCustomerCard customer={customer} copy={copy} />
+          </button>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function CompanyFormationLanding() {
   const router = useRouter();
@@ -582,7 +646,7 @@ export default function CompanyFormationLanding() {
         {/* =========================================================================
             1. HERO — institutional company formation
         ========================================================================= */}
-        <section className="relative border-b border-slate-200/80 dark:border-white/10 bg-white dark:bg-transparent overflow-hidden">
+        <section className="relative border-b border-slate-200/80 dark:border-white/10 bg-white dark:bg-transparent overflow-x-clip overflow-y-visible">
           {/* Soft studio atmosphere — peeks through the dark wash */}
           <div
             aria-hidden
@@ -599,7 +663,7 @@ export default function CompanyFormationLanding() {
             className="pointer-events-none absolute inset-0 hidden dark:block"
             style={{ backgroundColor: "rgba(1, 34, 63, 0.88)" }}
           />
-          <div className="relative z-10 max-w-[1180px] mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-14 sm:pb-20">
+          <div className="relative z-10 max-w-[1180px] mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-20 sm:pb-28 lg:pb-32">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#017F80] dark:text-[#00CDAC]">
               {copy("Digitale Gesellschaftsgründung · EU", "Digital company formation · EU")}
             </p>
@@ -631,8 +695,8 @@ export default function CompanyFormationLanding() {
               })}
             </div>
 
-            <div className="mt-14 sm:mt-16 grid lg:grid-cols-[minmax(0,1fr)_minmax(280px,380px)] gap-10 lg:gap-12 items-start">
-              <div className="min-w-0">
+            <div className="mt-14 sm:mt-16 relative lg:min-h-[34rem]">
+              <div className="min-w-0 max-w-xl lg:max-w-[34rem]">
                 <h1 className="max-w-[18ch] text-[2.35rem] sm:text-5xl lg:text-[3.25rem] font-semibold tracking-[-0.035em] leading-[1.08] text-[#01223F] dark:text-white">
                   {copy(
                     "Digitale Firmengründung in Europa.",
@@ -653,7 +717,7 @@ export default function CompanyFormationLanding() {
                   )}
                 </p>
 
-                <div className="mt-20 w-full max-w-xl border border-slate-200 dark:border-white/15 bg-[#F7F7F7] dark:bg-[#02182B] p-3 sm:p-4">
+                <div className="mt-14 sm:mt-16 w-full max-w-xl border border-slate-200 dark:border-white/15 bg-[#F7F7F7] dark:bg-[#02182B] p-3 sm:p-4">
                   <div className="flex flex-col sm:flex-row gap-2.5 items-stretch">
                     <div className="relative flex-1 min-w-0">
                       <Input
@@ -687,7 +751,6 @@ export default function CompanyFormationLanding() {
                   {copy("100 % Genehmigungsgarantie", "100% approval guarantee")}
                 </p>
 
-                {/* Partner trust logos */}
                 <div className="mt-8 pt-6 border-t border-slate-200/80 dark:border-white/10">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 mb-3">
                     {copy("Banking & Payments Partner", "Banking & payments partners")}
@@ -711,79 +774,40 @@ export default function CompanyFormationLanding() {
               </div>
 
               <aside
-                className="relative pt-2 h-[28rem] sm:h-[32rem] lg:h-[36rem] overflow-hidden"
-                aria-label={copy("Facilitator-Stimmen", "Facilitator reviews")}
+                className="relative mt-12 w-full sm:max-w-xl sm:ml-auto lg:mt-0 lg:absolute lg:right-[-1.25rem] xl:right-[-3.5rem] 2xl:right-[-5.5rem] lg:top-0 lg:w-[min(540px,48vw)]"
+                aria-label={copy("Zufriedene Gründer", "Happy customers")}
               >
-                <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-12 z-20 bg-gradient-to-b from-white dark:from-[#011424] to-transparent"
-                  aria-hidden
-                />
-                <div
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-12 z-20 bg-gradient-to-t from-white dark:from-[#011424] to-transparent"
-                  aria-hidden
-                />
-                <div className="formation-review-marquee">
-                  {[0, 1].map((dup) => (
-                    <ul
-                      key={dup}
-                      className="flex flex-col gap-7 sm:gap-8 pb-7 sm:pb-8"
-                      aria-hidden={dup === 1 || undefined}
-                    >
-                      {formationHeroReviews.map((review) => (
-                        <li key={`${dup}-${review.name}`}>
-                          <article className="rounded-2xl bg-white dark:bg-[#02182B] border border-slate-200/90 dark:border-white/10 shadow-[0_8px_24px_-12px_rgba(1,34,63,0.18)] px-4 sm:px-5 py-4 flex flex-col justify-center">
-                            <div className="flex items-center gap-1.5">
-                              <div className="flex items-center gap-0.5" aria-hidden>
-                                {[...Array(5)].map((_, i) => (
-                                  <Star
-                                    key={i}
-                                    className="w-3 h-3 fill-[#00CDAC] text-[#00CDAC]"
-                                  />
-                                ))}
-                              </div>
-                              <span className="text-[11px] text-slate-400 dark:text-slate-500">
-                                5.0 {copy("Bewertung", "rating")}
-                              </span>
-                            </div>
-                            <p className="mt-2 text-[13px] leading-snug text-[#01223F] dark:text-slate-200">
-                              {copy(review.quoteDe, review.quoteEn)}
-                            </p>
-                            <div className="mt-2.5 flex items-center gap-2.5">
-                              <img
-                                src={review.avatar}
-                                alt=""
-                                width={32}
-                                height={32}
-                                className="h-8 w-8 rounded-full object-cover ring-1 ring-slate-200/80 dark:ring-white/10 shrink-0"
-                                loading="lazy"
-                                decoding="async"
-                              />
-                              <div className="min-w-0">
-                                <p className="text-[13px] font-semibold text-[#017F80] dark:text-[#00CDAC]">
-                                  {review.name}
-                                </p>
-                                <p className="text-[11px] text-[#017F80]/80 dark:text-[#00CDAC]/80 truncate">
-                                  {review.company}
-                                </p>
-                              </div>
-                            </div>
-                          </article>
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-                </div>
+                <HappyCustomerWallet customers={heroWalletCustomers} copy={copy} />
               </aside>
             </div>
           </div>
         </section>
 
         {/* =========================================================================
-            2. TRUST METRICS
+            2. SOCIAL PROOF BRIDGE — trust metrics
         ========================================================================= */}
-        <section className="relative py-10 sm:py-12 bg-[#F7F7F7] dark:bg-[#02182B] border-b border-slate-200/80 dark:border-white/10">
+        <section
+          className="relative py-16 sm:py-24 bg-[#F7F7F7] dark:bg-[#02182B] border-b border-slate-200/80 dark:border-white/10"
+          aria-label={copy("Vertrauen & Stimmen", "Trust & testimonials")}
+        >
           <div className="max-w-[1120px] mx-auto px-5 sm:px-8">
-            <dl className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#017F80] dark:text-[#00CDAC]">
+              {copy("Vertrauen von Gründern", "Trusted by founders")}
+            </p>
+            <h2 className="mt-4 max-w-[22ch] text-3xl sm:text-[2.5rem] font-semibold tracking-[-0.03em] leading-[1.08] text-[#01223F] dark:text-white">
+              {copy(
+                "Rechtssicher gegründet. Von Facilitators empfohlen.",
+                "Incorporated with confidence. Recommended by facilitators."
+              )}
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm sm:text-base text-slate-600 dark:text-slate-400">
+              {copy(
+                "Messbare Ergebnisse und echte Stimmen aus der Praxis — der Brückenschlag vor der ganzheitlichen Begleitung.",
+                "Measurable outcomes and real practitioner voices — the bridge before end-to-end support."
+              )}
+            </p>
+
+            <dl className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
               <div className="border-l border-[#017F80]/40 dark:border-[#00CDAC]/40 pl-4">
                 <dt className="text-[1.65rem] sm:text-[1.85rem] font-semibold tracking-tight text-[#01223F] dark:text-white leading-none">
                   99,6%
@@ -833,6 +857,7 @@ export default function CompanyFormationLanding() {
               </div>
             </dl>
           </div>
+
         </section>
 
         {/* =========================================================================
@@ -1359,7 +1384,6 @@ export default function CompanyFormationLanding() {
             </p>
 
             <div className="mt-12 grid md:grid-cols-3 gap-4 sm:gap-5">
-              {/* Review 1 */}
               <div className="p-5 sm:p-6 rounded-md bg-[#F7F7F7] dark:bg-[#02182B] border border-slate-200/80 dark:border-white/10 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-1 mb-4" aria-hidden>
@@ -1382,7 +1406,6 @@ export default function CompanyFormationLanding() {
                 </div>
               </div>
 
-              {/* Review 2 */}
               <div className="p-5 sm:p-6 rounded-md bg-[#F7F7F7] dark:bg-[#02182B] border border-slate-200/80 dark:border-white/10 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-1 mb-4" aria-hidden>
@@ -1405,7 +1428,6 @@ export default function CompanyFormationLanding() {
                 </div>
               </div>
 
-              {/* Review 3 */}
               <div className="p-5 sm:p-6 rounded-md bg-[#F7F7F7] dark:bg-[#02182B] border border-slate-200/80 dark:border-white/10 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-1 mb-4" aria-hidden>

@@ -47,8 +47,8 @@ const OriveLanding = () => {
     icon: Columns3,
     title: copy("Workspace", "Workspace"),
     description: copy(
-      "Kanban, Boards und Fokus aus dem ORYVE Desktop — direkt im dezk, verknüpft mit Terminen, Angeboten und Suchenden.",
-      "Kanban, boards, and focus from ORYVE Desktop — inside dezk, linked to dates, offerings, and seekers."
+      "Kanban, Boards und Fokus aus dem ORIVE Desktop — direkt im dezk, verknüpft mit Terminen, Angeboten und Suchenden.",
+      "Kanban, boards, and focus from ORIVE Desktop — inside dezk, linked to dates, offerings, and seekers."
     ),
     gradient: "from-menu-gradient-start to-accent-glow",
     slug: "workspace"

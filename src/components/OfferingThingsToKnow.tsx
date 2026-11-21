@@ -41,8 +41,8 @@ export function OfferingThingsToKnow({
     ? stated
     : fulfillment === "orive"
       ? copy(
-          "Kein pauschales Sofort-Storno. Änderungen und Rückzahlungen prüft ORIVE einzeln über contact@orive.app. Termingebundene Angebote können vom Widerruf ausgenommen sein.",
-          "No one-click refund. Changes and repayments are reviewed case by case via contact@orive.app. Time-specific services may be excluded from withdrawal rights."
+          "Kein pauschales Sofort-Storno. Änderungen und Rückzahlungen prüft ORIVE einzeln über robert.linke@me.com. Termingebundene Angebote können vom Widerruf ausgenommen sein.",
+          "No one-click refund. Changes and repayments are reviewed case by case via robert.linke@me.com. Time-specific services may be excluded from withdrawal rights."
         )
       : fulfillment === "external"
         ? copy(

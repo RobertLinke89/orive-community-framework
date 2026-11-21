@@ -6,6 +6,9 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { ElementAvatar } from '@/components/directory/ElementAvatar';
+import { isSafeAvatarUrl } from '@/lib/safeImage';
+import { ELEMENT_OF, type ElementKey } from '@/components/directory/elements';
 import { Star, Eye, ShoppingCart } from 'lucide-react';
 import { LQIPImage } from '@/components/LQIPImage';
 import { getFacilitatorById } from '@/data/facilitatorsData';
@@ -98,6 +101,7 @@ export const SessionCard = memo(function SessionCard({
               onClick={scrollToTop}
               className="flex items-center gap-2.5 group/facilitator hover:opacity-80 transition-opacity"
             >
+              {isSafeAvatarUrl(facilitator?.avatar) ? (
               <Avatar className="h-8 w-8 border-2 border-highlight/20">
                 <AvatarImage
                   src={facilitator?.avatar}
@@ -108,6 +112,12 @@ export const SessionCard = memo(function SessionCard({
                   {initials}
                 </AvatarFallback>
               </Avatar>
+              ) : (
+                <ElementAvatar
+                  element={(facilitator?.tags || []).map((x) => ELEMENT_OF[x === 'Bodywork' ? 'BodyWork' : x] as ElementKey | undefined).find(Boolean) || 'aether'}
+                  size={32}
+                />
+              )}
               <div className="flex flex-col">
                 <span className="text-sm font-medium text-gray-900 dark:text-white group-hover/facilitator:text-highlight transition-colors">
                   {facilitatorName}

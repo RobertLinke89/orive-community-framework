@@ -12,8 +12,14 @@ export function BuyerProtection() {
     <FactPage
       kicker={copy("Zahlung & Vermittlung", "Payment & intermediation")}
       title={copy("Buchung & Zahlung", "Booking & payment")}
-      updated={copy("Stand: 24. September 2026", "Updated: 24 September 2026")}
+      updated={copy("Stand: 10. November 2026", "Updated: 10 November 2026")}
     >
+      <FactSection title={copy("Derzeit nicht aktiv", "Not active at the moment")}>
+        <p>
+          {copy("Buchung und Zahlung über ORIVE sind derzeit nicht freigeschaltet: Es gibt keine Angebote mit „Auf ORIVE buchen“, ORIVE nimmt kein Geld ein, und der unten beschriebene ORIVE-Käuferschutz gilt noch für keine Buchung. Diese Seite beschreibt, wie es funktionieren soll, sobald die Funktion aktiv ist. Anfragen über das Verzeichnis sind kostenlos und unverbindlich.", "Booking and payment via ORIVE are not switched on at the moment: there are no “Book on ORIVE” listings, ORIVE takes no money, and the ORIVE buyer protection described below does not yet apply to any booking. This page describes how it is meant to work once the feature is active. Enquiries through the directory are free and non-binding.")}
+        </p>
+      </FactSection>
+
       <FactSection title={copy("Was ORIVE ist", "What ORIVE is")}>
         <p>
           {copy("ORIVE ist ein Verzeichnis und ein im Aufbau befindlicher Marktplatz von heybotti (Inhaber: Robert Linke, Stiftsgasse 17, 07407 Rudolstadt). Eventbrite- und andere Partnerangebote im Katalog sind nicht über ORIVE verkauft. Zahlung und Platzvergabe liegen beim Partner.", "ORIVE is a directory and a marketplace in progress, operated by heybotti (proprietor: Robert Linke, Stiftsgasse 17, 07407 Rudolstadt, Germany). Eventbrite and other partner listings in the catalog are not sold by ORIVE. Payment and seats stay with the partner.")}
@@ -51,11 +57,11 @@ export function BuyerProtection() {
           items={
             de
               ? [
-                  "Nur ORIVE-verkaufte Termine: Zahlung an ORIVE, Beleg, Storno- und Streitfall über contact@orive.app.",
+                  "Nur ORIVE-verkaufte Termine: Zahlung an ORIVE, Beleg, Storno- und Streitfall über robert.linke@me.com.",
                   "Partnerlistings: Schutz und Rückerstattung liegen beim Partner, nicht bei ORIVE.",
                 ]
               : [
-                  "ORIVE-sold slots only: payment to ORIVE, a receipt, and disputes via contact@orive.app.",
+                  "ORIVE-sold slots only: payment to ORIVE, a receipt, and disputes via robert.linke@me.com.",
                   "Partner listings: protection and refunds stay with the partner, not ORIVE.",
                 ]
           }

@@ -1,7 +1,5 @@
-
 import fs from "fs";
 import path from "path";
-import { getRepos, type PayoutAccount } from "@/lib/paymentRepo";
 
 const CLAIMED_FILE = path.resolve(process.cwd(), "src/data/claimedFacilitators.json");
 
@@ -12,6 +10,7 @@ type ClaimedRecord = {
   city?: string;
   practice?: string;
   onboardingComplete?: boolean;
+  stripeAccountId?: string;
   [key: string]: unknown;
 };
 
@@ -67,41 +66,24 @@ export function claimedFacilitator(facilitatorId: string) {
   return readClaimed()[facilitatorId] || null;
 }
 
-/**
- * Stripe Connect accounts live in Supabase (public.facilitator_payout_accounts), not in the
- * JSON file (read-only/ephemeral on Vercel). Profile claims above remain file-based (legacy, see README).
- */
-export async function payoutAccountFor(input: { facilitatorId?: string; email?: string; userId?: string }): Promise<PayoutAccount | null> {
-  const { payouts } = getRepos();
-  if (input.userId) {
-    const byUser = await payouts.getByUserId(input.userId);
-    if (byUser) return byUser;
-  }
-  if (input.facilitatorId) {
-    const byKey = await payouts.getByKey(input.facilitatorId);
-    if (byKey) return byKey;
-  }
-  const email = String(input.email || "").trim().toLowerCase();
-  return email ? payouts.getByEmail(email) : null;
+export function findStripeAccount(facilitatorId?: string, email?: string) {
+  const list = readClaimed();
+  if (facilitatorId && list[facilitatorId]?.stripeAccountId) return list[facilitatorId].stripeAccountId || null;
+  const needle = String(email || "").trim().toLowerCase();
+  if (!needle) return null;
+  const match = Object.values(list).find((record) => String(record.email || "").toLowerCase() === needle);
+  return match?.stripeAccountId || null;
 }
 
-/** Destination for a charge: only accounts that can actually accept charges. */
-export async function findStripeAccount(facilitatorId?: string, email?: string): Promise<string | null> {
-  const account = await payoutAccountFor({ facilitatorId, email });
-  return account?.stripe_account_id && account.charges_enabled ? account.stripe_account_id : null;
-}
-
-export async function saveStripeAccount(input: { facilitatorId: string; userId?: string; stripeAccountId: string; email: string; name?: string }) {
-  const { payouts } = getRepos();
-  const existing = await payouts.getByKey(input.facilitatorId);
-  return payouts.upsert({
-    facilitator_key: input.facilitatorId,
-    user_id: input.userId || existing?.user_id || null,
-    email: input.email,
-    name: input.name || existing?.name || null,
-    stripe_account_id: input.stripeAccountId,
-    charges_enabled: existing?.charges_enabled ?? false,
-    payouts_enabled: existing?.payouts_enabled ?? false,
-    details_submitted: existing?.details_submitted ?? false,
-  });
+export function saveStripeAccount(facilitatorId: string, stripeAccountId: string, email?: string, name?: string) {
+  const list = readClaimed();
+  const current = list[facilitatorId] || { facilitatorId };
+  list[facilitatorId] = {
+    ...current,
+    facilitatorId,
+    stripeAccountId,
+    email: email || current.email,
+    name: name || current.name,
+  };
+  writeClaimed(list);
 }

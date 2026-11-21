@@ -1,0 +1,1955 @@
+{
+ "generatedAt": "2026-11-03",
+ "note": "Static sample export from facilitators (tier A), read-only. No email/phone.",
+ "profiles": [
+  {
+   "primary": "Breathwork",
+   "slug": "souluna",
+   "id": "09811e9d-4188-4843-866f-ab1c3f509b0b",
+   "name": "Souluna",
+   "categories": [
+    "Breathwork"
+   ],
+   "kambo": false,
+   "city": "Montreux",
+   "country": "Switzerland",
+   "countryCode": "CH",
+   "lang": "fr",
+   "website": "https://soulunawellbeing.com",
+   "instagram": "https://instagram.com/souluna.88",
+   "source": "web search (bing/yandex) / practitioner site",
+   "sourceUrl": "https://soulunawellbeing.com/",
+   "sourceDate": "2026-10-30",
+   "offers": [
+    {
+     "title": "Alchemy Sound Bath (monthly)",
+     "type": "event",
+     "price": 50,
+     "currency": "CHF",
+     "duration": null,
+     "url": "https://soulunawellbeing.com/"
+    },
+    {
+     "title": "Breathwork",
+     "type": "freebie",
+     "price": null,
+     "currency": null,
+     "duration": null,
+     "url": "https://soulunawellbeing.com/"
+    },
+    {
+     "title": "Personal Yoga Journey",
+     "type": "service",
+     "price": 120,
+     "currency": "CHF",
+     "duration": "75 min",
+     "url": "https://soulunawellbeing.com/"
+    },
+    {
+     "title": "Alchemy Sound Healing",
+     "type": "service",
+     "price": 188,
+     "currency": "CHF",
+     "duration": "60 MIN",
+     "url": "https://soulunawellbeing.com/"
+    },
+    {
+     "title": "Breathwork Session",
+     "type": "service",
+     "price": 165,
+     "currency": "CHF",
+     "duration": "75 MIN",
+     "url": "https://soulunawellbeing.com/"
+    }
+   ],
+   "description": "Souluna propose une pratique de breathwork à Montreux (Suisse). Son site web présente des offres, dont « Alchemy Sound Bath (monthly) ». Ces informations proviennent de sources publiques ; merci de vérifier les détails, prix et dates directement auprès du praticien."
+  },
+  {
+   "primary": "Breathwork",
+   "slug": "alexandrine-belien",
+   "id": "0adf8ce0-f37e-40f2-8166-a664189a9c95",
+   "name": "Alexandrine belien",
+   "categories": [
+    "Breathwork"
+   ],
+   "kambo": false,
+   "city": "Toulouse",
+   "country": "France",
+   "countryCode": "FR",
+   "lang": "fr",
+   "website": "https://www.alexandrinebelien.com",
+   "instagram": "https://instagram.com/alexandrinebelien",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.alexandrinebelien.com/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Soin énergétique - Consultation",
+     "type": "service",
+     "price": 70,
+     "currency": "EUR",
+     "duration": "1 h",
+     "url": "https://www.alexandrinebelien.com/booking-calendar/soin-énergétique-consultation"
+    },
+    {
+     "title": "Kundalini Activation - Séance privée",
+     "type": "service",
+     "price": 160,
+     "currency": "EUR",
+     "duration": "2 h",
+     "url": "https://www.alexandrinebelien.com/booking-calendar/kundalini-activation-séance-privée"
+    },
+    {
+     "title": "BREATHWORK - Séance privée",
+     "type": "service",
+     "price": 120,
+     "currency": "EUR",
+     "duration": "2 h",
+     "url": "https://www.alexandrinebelien.com/booking-calendar/breathwork-séance-privée"
+    },
+    {
+     "title": "Éclosion : 1 Mois = 1 Soin",
+     "type": "service",
+     "price": 321,
+     "currency": "EUR",
+     "duration": "2 h",
+     "url": "https://www.alexandrinebelien.com/booking-calendar/éclosion-1-mois-1-soin"
+    },
+    {
+     "title": "En ligne PRIVÉE - Activation Kundalini",
+     "type": "service",
+     "price": 100,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.alexandrinebelien.com/booking-calendar/en-ligne-privée-activation-kundalini"
+    },
+    {
+     "title": "Kundalini Activation - MONTRABÉ (Toulouse)",
+     "type": "service",
+     "price": 50,
+     "currency": "EUR",
+     "duration": "2 h",
+     "url": "https://www.alexandrinebelien.com/booking-calendar/kundalini-activation-montrabé-toulouse"
+    }
+   ],
+   "description": "Alexandrine belien propose une pratique de breathwork à Toulouse (France). Son site web présente des offres, dont « Soin énergétique - Consultation ». Ces informations proviennent de sources publiques ; merci de vérifier les détails, prix et dates directement auprès du praticien."
+  },
+  {
+   "primary": "Breathwork",
+   "slug": "the-breathing-room",
+   "id": "081c8af2-695b-4578-9ad9-e7acddfc796e",
+   "name": "The Breathing Room",
+   "categories": [
+    "Breathwork"
+   ],
+   "kambo": false,
+   "city": "Monmouth",
+   "country": "United Kingdom",
+   "countryCode": "UK",
+   "lang": "en",
+   "website": "https://thebreathingroom.co.uk",
+   "instagram": "https://instagram.com/breathe.well",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://thebreathingroom.co.uk/workshop/",
+   "sourceDate": "2026-10-28",
+   "offers": [
+    {
+     "title": "Breathe Well Bundle",
+     "type": "event",
+     "price": 25,
+     "currency": "GBP",
+     "duration": null,
+     "url": "https://thebreathingroom.co.uk/product/breathe-well-bundle/"
+    },
+    {
+     "title": "Breathe Well Book",
+     "type": "product",
+     "price": 12.99,
+     "currency": "GBP",
+     "duration": null,
+     "url": "https://thebreathingroom.co.uk/product/https-www-amazon-co-uk-breathe-well-aimee-hartley-dp-0857838024/"
+    },
+    {
+     "title": "Personal Development Package",
+     "type": "service",
+     "price": 240,
+     "currency": "GBP",
+     "duration": null,
+     "url": "https://thebreathingroom.co.uk/product/personal-development-package-3-x-60-minute-sessions-and-more/"
+    }
+   ],
+   "description": "The Breathing Room offers breathwork in Monmouth, the United Kingdom. Their website lists offers including “Breathe Well Bundle”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Sound Healing",
+   "slug": "einklang",
+   "id": "00ba7e85-f2ce-40b9-bd64-d52c9e5eb759",
+   "name": "Einklang",
+   "categories": [
+    "Sound Healing"
+   ],
+   "kambo": false,
+   "city": "Kiel",
+   "country": "Germany",
+   "countryCode": "DE",
+   "lang": "de",
+   "website": "https://www.einklang-kiel.de",
+   "instagram": "https://instagram.com/einklang_kiel",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.einklang-kiel.de/klangschalen",
+   "sourceDate": "2026-10-28",
+   "offers": [
+    {
+     "title": "Ausbildungsmodul zum Feel-Coach",
+     "type": "course",
+     "price": 100,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.einklang-kiel.de/service-page/ausbildungsmodul-zum-feel-coach"
+    },
+    {
+     "title": "Ohrkerzen-Behandlung",
+     "type": "product",
+     "price": 40,
+     "currency": "EUR",
+     "duration": "45 Min",
+     "url": "https://www.einklang-kiel.de/service-page/ohrkerzen-behandlung"
+    },
+    {
+     "title": "KiTE-Sitzung",
+     "type": "product",
+     "price": 90,
+     "currency": "EUR",
+     "duration": "1 Std",
+     "url": "https://www.einklang-kiel.de/service-page/kite-sitzung"
+    },
+    {
+     "title": "Walk-Abend",
+     "type": "product",
+     "price": 35,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.einklang-kiel.de/service-page/walk-abend"
+    },
+    {
+     "title": "Aufbruch: Mit Trauma leben lernen",
+     "type": "product",
+     "price": 40,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.einklang-kiel.de/service-page/aufbruch-mit-trauma-leben-lernen"
+    },
+    {
+     "title": "Entspannende Heilenergien",
+     "type": "product",
+     "price": 55,
+     "currency": "EUR",
+     "duration": "90 Minuten",
+     "url": "https://www.einklang-kiel.de/service-page/entspannende-heilenergien-1"
+    }
+   ],
+   "description": "Einklang ist im Bereich Sound Healing tätig, mit Sitz in Kiel (Deutschland). Auf der eigenen Website werden Angebote genannt, darunter „Ausbildungsmodul zum Feel-Coach“. Alle Angaben stammen aus öffentlichen Quellen – Details, Preise und Termine bitte direkt beim Anbieter prüfen."
+  },
+  {
+   "primary": "Sound Healing",
+   "slug": "colorsound-unity",
+   "id": "0338289c-cedd-4625-8ebf-397d9e653661",
+   "name": "Colorsound Unity",
+   "categories": [
+    "Sound Healing"
+   ],
+   "kambo": false,
+   "city": "Wien",
+   "country": "Austria",
+   "countryCode": "AT",
+   "lang": "de",
+   "website": "https://www.colorsound-unity.com",
+   "instagram": "https://instagram.com/colorsound_unity",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.colorsound-unity.com/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Beitrag",
+     "type": "service",
+     "price": 30,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.colorsound-unity.com/"
+    },
+    {
+     "title": "bis zu 4 Personen",
+     "type": "service",
+     "price": 150,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.colorsound-unity.com/"
+    },
+    {
+     "title": "bis zu 8 Personen",
+     "type": "service",
+     "price": 250,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.colorsound-unity.com/"
+    },
+    {
+     "title": "bis zu 10 Personen",
+     "type": "service",
+     "price": 300,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.colorsound-unity.com/"
+    },
+    {
+     "title": "Paar-Session (60 Minuten)",
+     "type": "service",
+     "price": 160,
+     "currency": "EUR",
+     "duration": "60 Minuten",
+     "url": "https://www.colorsound-unity.com/"
+    },
+    {
+     "title": "Einzel-Session (60 Minuten)",
+     "type": "service",
+     "price": 80,
+     "currency": "EUR",
+     "duration": "60 Minuten",
+     "url": "https://www.colorsound-unity.com/"
+    }
+   ],
+   "description": "Colorsound Unity ist im Bereich Sound Healing tätig, mit Sitz in Wien (Österreich). Auf der eigenen Website werden Angebote genannt, darunter „Beitrag“. Alle Angaben stammen aus öffentlichen Quellen – Details, Preise und Termine bitte direkt beim Anbieter prüfen."
+  },
+  {
+   "primary": "Kambo",
+   "slug": "kambo-journeys",
+   "id": "ce689bd7-9f78-4d01-8b2f-10220fabda46",
+   "name": "Kambo Journeys",
+   "categories": [
+    "Kambo"
+   ],
+   "kambo": true,
+   "city": "Deventer",
+   "country": "Netherlands",
+   "countryCode": "NL",
+   "lang": "nl",
+   "website": "https://kambojourneys.nl",
+   "instagram": "https://instagram.com/kambo_journeys",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://kambojourneys.nl/kambo-ceremonie/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Kambocirkels 2026",
+     "type": "event",
+     "price": 150,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://kambojourneys.nl/agenda/"
+    },
+    {
+     "title": "Investering",
+     "type": "service",
+     "price": 777,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://kambojourneys.nl/agenda/"
+    },
+    {
+     "title": "Investering in jezelf",
+     "type": "service",
+     "price": 150,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://kambojourneys.nl/agenda/"
+    },
+    {
+     "title": "Kambocirkel",
+     "type": "service",
+     "price": 150,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://kambojourneys.nl/agenda/"
+    }
+   ],
+   "description": "Kambo Journeys is actief in kambo in Deventer (Nederland). Op de eigen website staat aanbod vermeld, waaronder ‘Kambocirkels 2026’. Alle gegevens komen uit openbare bronnen – controleer details, prijzen en data rechtstreeks bij de aanbieder."
+  },
+  {
+   "primary": "Kambo",
+   "slug": "celtickambo",
+   "id": "308ea399-13d1-429c-a178-043ca4f58286",
+   "name": "Celtickambo",
+   "categories": [
+    "Kambo"
+   ],
+   "kambo": true,
+   "city": "Galway",
+   "country": "Ireland",
+   "countryCode": "IE",
+   "lang": "en",
+   "website": "https://www.celtickambo.ie",
+   "instagram": "https://instagram.com/celticawakening",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.celtickambo.ie/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Private Kambo Ceremony: €200",
+     "type": "event",
+     "price": 200,
+     "currency": "EUR",
+     "duration": "30 days",
+     "url": "https://www.celtickambo.ie/ceremony"
+    },
+    {
+     "title": "Kambo and Breathwork: €280",
+     "type": "event",
+     "price": 280,
+     "currency": "EUR",
+     "duration": "30 days",
+     "url": "https://www.celtickambo.ie/ceremony"
+    },
+    {
+     "title": "Kambo and Sananga: €250",
+     "type": "event",
+     "price": 250,
+     "currency": "EUR",
+     "duration": "30 days",
+     "url": "https://www.celtickambo.ie/ceremony"
+    },
+    {
+     "title": "Inoculation (3 Ceremonies): €510",
+     "type": "event",
+     "price": 510,
+     "currency": "EUR",
+     "duration": "30 days",
+     "url": "https://www.celtickambo.ie/ceremony"
+    }
+   ],
+   "description": "Celtickambo offers kambo in Galway, Ireland. Their website lists offers including “Private Kambo Ceremony: €200”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Kambo",
+   "slug": "kambo-danmark",
+   "id": "90e25a14-e299-4423-af7e-b1dba561a438",
+   "name": "Kambo Danmark",
+   "categories": [
+    "Kambo"
+   ],
+   "kambo": true,
+   "city": "København",
+   "country": "Denmark",
+   "countryCode": "DK",
+   "lang": "en",
+   "website": "https://www.kambodk.dk",
+   "instagram": "https://instagram.com/kambodanmark",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.kambodk.dk/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Kambo privat session - 2 personer",
+     "type": "product",
+     "price": 1700,
+     "currency": "DKK",
+     "duration": null,
+     "url": "https://www.kambodk.dk/product-page/kambo-privat-session-2-personer"
+    },
+    {
+     "title": "Kambo privat gruppe session - 3+ personer",
+     "type": "product",
+     "price": 2100,
+     "currency": "DKK",
+     "duration": null,
+     "url": "https://www.kambodk.dk/product-page/kambo-privat-gruppe-session-3-personer"
+    },
+    {
+     "title": "Kambo solo session",
+     "type": "product",
+     "price": 1000,
+     "currency": "DKK",
+     "duration": null,
+     "url": "https://www.kambodk.dk/product-page/kambo-solo-session"
+    }
+   ],
+   "description": "Kambo Danmark offers kambo in København, Denmark. Their website lists offers including “Kambo privat session - 2 personer”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Sauna & Heat",
+   "slug": "spiral-wood-fired-banya-ritual",
+   "id": "2ec46537-349d-4159-aedb-e80ca62d6e0b",
+   "name": "Spiral – wood-fired banya ritual",
+   "categories": [
+    "Sauna & Heat"
+   ],
+   "kambo": false,
+   "city": "Funchal",
+   "country": "Portugal",
+   "countryCode": "PT",
+   "lang": "en",
+   "website": "https://www.spiralpark.com",
+   "instagram": "https://instagram.com/spiral_madeira",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.spiralpark.com/",
+   "sourceDate": "2026-10-30",
+   "offers": [
+    {
+     "title": "Come as you are",
+     "type": "product",
+     "price": 120,
+     "currency": "EUR",
+     "duration": "3 hours",
+     "url": "https://www.spiralpark.com/"
+    },
+    {
+     "title": "Open ritual",
+     "type": "service",
+     "price": 120,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.spiralpark.com/"
+    },
+    {
+     "title": "Private ritual",
+     "type": "service",
+     "price": 460,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.spiralpark.com/"
+    },
+    {
+     "title": "The door is not locked",
+     "type": "service",
+     "price": 120,
+     "currency": "EUR",
+     "duration": "3 hours",
+     "url": "https://www.spiralpark.com/"
+    }
+   ],
+   "description": "Spiral – wood-fired banya ritual offers sauna & heat in Funchal, Portugal. Their website lists offers including “Come as you are”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Sauna & Heat",
+   "slug": "the-original-hamam",
+   "id": "3f6c01f2-81cd-4887-b1c0-b9e636172374",
+   "name": "The Original Hamam",
+   "categories": [
+    "Sauna & Heat"
+   ],
+   "kambo": false,
+   "city": "Köln",
+   "country": "Germany",
+   "countryCode": "DE",
+   "lang": "de",
+   "website": "https://www.the-original-hamam.de",
+   "instagram": "https://instagram.com/theoriginal_hamam",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.the-original-hamam.de/",
+   "sourceDate": "2026-10-29",
+   "offers": [
+    {
+     "title": "Basic Paket",
+     "type": "product",
+     "price": 39,
+     "currency": "EUR",
+     "duration": "2 Std",
+     "url": "https://www.the-original-hamam.de/booking-calendar/basic-paket"
+    },
+    {
+     "title": "Classic Paket",
+     "type": "product",
+     "price": 55,
+     "currency": "EUR",
+     "duration": "2 Std",
+     "url": "https://www.the-original-hamam.de/booking-calendar/classic-paket"
+    },
+    {
+     "title": "Medium Paket",
+     "type": "product",
+     "price": 89,
+     "currency": "EUR",
+     "duration": "3 Std",
+     "url": "https://www.the-original-hamam.de/booking-calendar/medium-paket"
+    },
+    {
+     "title": "Premium Paket",
+     "type": "product",
+     "price": 119,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.the-original-hamam.de/booking-calendar/premium-paket-1"
+    },
+    {
+     "title": "Optional buchbar",
+     "type": "product",
+     "price": 25,
+     "currency": "EUR",
+     "duration": "25 Minuten",
+     "url": "https://www.the-original-hamam.de/wellness-pakete"
+    }
+   ],
+   "description": "The Original Hamam ist im Bereich Sauna & Wärme tätig, mit Sitz in Köln (Deutschland). Auf der eigenen Website werden Angebote genannt, darunter „Basic Paket“. Alle Angaben stammen aus öffentlichen Quellen – Details, Preise und Termine bitte direkt beim Anbieter prüfen."
+  },
+  {
+   "primary": "Sauna & Heat",
+   "slug": "sauna-finnika",
+   "id": "e8dafb48-ffca-4ebc-9638-fd26f29b5e51",
+   "name": "Sauna Finnika",
+   "categories": [
+    "Sauna & Heat"
+   ],
+   "kambo": false,
+   "city": "Neuchâtel",
+   "country": "Switzerland",
+   "countryCode": "CH",
+   "lang": "fr",
+   "website": "https://sauna-finnika.ch",
+   "instagram": "https://instagram.com/sauna_finnika",
+   "source": "web search (bing/yandex) / practitioner site",
+   "sourceUrl": "https://sauna-finnika.ch/horaires-et-tarifs/",
+   "sourceDate": "2026-10-30",
+   "offers": [
+    {
+     "title": "Jusqu’à 6 personnes",
+     "type": "service",
+     "price": 250,
+     "currency": "CHF",
+     "duration": null,
+     "url": "https://sauna-finnika.ch/informations-pratiques/"
+    },
+    {
+     "title": "Jusqu’à 12 personnes",
+     "type": "service",
+     "price": 300,
+     "currency": "CHF",
+     "duration": null,
+     "url": "https://sauna-finnika.ch/informations-pratiques/"
+    },
+    {
+     "title": "En semaine",
+     "type": "service",
+     "price": 200,
+     "currency": "CHF",
+     "duration": null,
+     "url": "https://sauna-finnika.ch/informations-pratiques/"
+    }
+   ],
+   "description": "Sauna Finnika propose une pratique de sauna & heat à Neuchâtel (Suisse). Son site web présente des offres, dont « Jusqu’à 6 personnes ». Ces informations proviennent de sources publiques ; merci de vérifier les détails, prix et dates directement auprès du praticien."
+  },
+  {
+   "primary": "Ice Bathing",
+   "slug": "revive-madrid",
+   "id": "c1121de4-794c-4688-b9ed-3bed7ae0e412",
+   "name": "Revive Madrid",
+   "categories": [
+    "Ice Bathing"
+   ],
+   "kambo": false,
+   "city": "Madrid",
+   "country": "Spain",
+   "countryCode": "ES",
+   "lang": "en",
+   "website": "https://revivespain.com",
+   "instagram": "https://instagram.com/revive_spain",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://revivespain.com/ice-bath-madrid/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Infrarrojos",
+     "type": "service",
+     "price": 79,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://revivespain.com/infrarrojos-madrid/"
+    },
+    {
+     "title": "Presoterapia",
+     "type": "service",
+     "price": 79,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://revivespain.com/presoterapia-madrid/"
+    },
+    {
+     "title": "Prueba Revive una semana entera",
+     "type": "service",
+     "price": 69,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://revivespain.com/"
+    },
+    {
+     "title": "Una semana para descubrir Revive",
+     "type": "service",
+     "price": 69,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://revivespain.com/intro-offers/"
+    }
+   ],
+   "description": "Revive Madrid offers ice bathing in Madrid, Spain. Their website lists offers including “Infrarrojos”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Ice Bathing",
+   "slug": "arctic-devils-winterzwemmen-deventer",
+   "id": "0a6d75ca-8054-4e9f-98c9-a64dcb7265f8",
+   "name": "Arctic Devils – Winterzwemmen Deventer",
+   "categories": [
+    "Ice Bathing"
+   ],
+   "kambo": false,
+   "city": "Deventer",
+   "country": "Netherlands",
+   "countryCode": "NL",
+   "lang": "nl",
+   "website": "https://arcticdevils.nl",
+   "instagram": "https://instagram.com/arcticdevils",
+   "source": "web search (bing) / practitioner site",
+   "sourceUrl": "https://arcticdevils.nl/",
+   "sourceDate": "2026-10-31",
+   "offers": [
+    {
+     "title": "Arctic Devils Abonnement (maandelijks)",
+     "type": "service",
+     "price": 40.95,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://arcticdevils.nl/product/arctic-devils-abonnement-maandelijks/"
+    },
+    {
+     "title": "Arctic Devils half jaar abonnement",
+     "type": "service",
+     "price": 199.5,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://arcticdevils.nl/product/arctic-devils-half-jaar-abonnement/"
+    },
+    {
+     "title": "Arctic Devils jaarabonnement",
+     "type": "service",
+     "price": 385,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://arcticdevils.nl/product/arctic-devils-jaarabonnement/"
+    }
+   ],
+   "description": "Arctic Devils – Winterzwemmen Deventer is actief in ijsbaden in Deventer (Nederland). Op de eigen website staat aanbod vermeld, waaronder ‘Arctic Devils Abonnement (maandelijks)’. Alle gegevens komen uit openbare bronnen – controleer details, prijzen en data rechtstreeks bij de aanbieder."
+  },
+  {
+   "primary": "Ice Bathing",
+   "slug": "powerful-by-nature-pia",
+   "id": "e43037fa-c4f0-4e78-a42c-75d14d1a072a",
+   "name": "Powerful by Nature – Pia",
+   "categories": [
+    "Sauna & Heat",
+    "Ice Bathing"
+   ],
+   "kambo": false,
+   "city": "Jægerspris",
+   "country": "Denmark",
+   "countryCode": "DK",
+   "lang": "en",
+   "website": "https://powerfulbynature.dk",
+   "instagram": "https://instagram.com/powerfulbynature.dk",
+   "source": "GoSauna.dk gussteder / practitioner site",
+   "sourceUrl": "https://gosauna.dk/saunagus/powerful-by-nature",
+   "sourceDate": "2026-10-29",
+   "offers": [
+    {
+     "title": "Godnat Gus",
+     "type": "event",
+     "price": 260,
+     "currency": "DKK",
+     "duration": null,
+     "url": "https://www.powerfulbynature.dk/event/godnat-gus-80/"
+    },
+    {
+     "title": "ICE & FIRE event",
+     "type": "event",
+     "price": 315,
+     "currency": "DKK",
+     "duration": null,
+     "url": "https://www.powerfulbynature.dk/event/ice-fire-event-10/"
+    },
+    {
+     "title": "Godnat Gus Med Gusmester Luisa",
+     "type": "event",
+     "price": 260,
+     "currency": "DKK",
+     "duration": null,
+     "url": "https://www.powerfulbynature.dk/event/godnat-gus-med-gusmester-luisa/"
+    },
+    {
+     "title": "Godnat Gus M.Luisa",
+     "type": "event",
+     "price": 260,
+     "currency": "DKK",
+     "duration": null,
+     "url": "https://www.powerfulbynature.dk/event/godnat-gus-85/"
+    },
+    {
+     "title": "Yin Yoga & Gong Lydbad",
+     "type": "event",
+     "price": 395,
+     "currency": "DKK",
+     "duration": null,
+     "url": "https://www.powerfulbynature.dk/event/yin-yoga-gong-lydbad-2/"
+    }
+   ],
+   "description": "Powerful by Nature – Pia offers ice bathing and sauna & heat in Jægerspris, Denmark. Their website lists offers including “Godnat Gus”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Ice Bathing",
+   "slug": "zenctuary",
+   "id": "6ea09f64-dc05-4114-bcc3-af8263384e8f",
+   "name": "Zenctuary",
+   "categories": [
+    "Ice Bathing"
+   ],
+   "kambo": false,
+   "city": "Berlin",
+   "country": "Germany",
+   "countryCode": "DE",
+   "lang": "de",
+   "website": "https://zenctuary.de",
+   "instagram": "https://instagram.com/zenctuary.berlin",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://zenctuary.de/de",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Für zwei Zenctuary Escape Retreat for two",
+     "type": "course",
+     "price": 80,
+     "currency": "EUR",
+     "duration": "4 Stunden",
+     "url": "https://zenctuary.de/de/fire-ice"
+    },
+    {
+     "title": "Extended Stay 4H",
+     "type": "product",
+     "price": 39,
+     "currency": "EUR",
+     "duration": "4H",
+     "url": "https://zenctuary.de/de"
+    },
+    {
+     "title": "Yoga & Breathwork",
+     "type": "product",
+     "price": 18,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://zenctuary.de/de"
+    },
+    {
+     "title": "Free Flow 2H",
+     "type": "service",
+     "price": 27.5,
+     "currency": "EUR",
+     "duration": "2H",
+     "url": "https://zenctuary.de/de"
+    },
+    {
+     "title": "All Day",
+     "type": "service",
+     "price": 45,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://zenctuary.de/de"
+    }
+   ],
+   "description": "Zenctuary ist im Bereich Eisbaden tätig, mit Sitz in Berlin (Deutschland). Auf der eigenen Website werden Angebote genannt, darunter „Für zwei Zenctuary Escape Retreat for two“. Alle Angaben stammen aus öffentlichen Quellen – Details, Preise und Termine bitte direkt beim Anbieter prüfen."
+  },
+  {
+   "primary": "Ice Bathing",
+   "slug": "adventurehealth",
+   "id": "c70f0640-6c99-49e3-bedd-627a8497af9f",
+   "name": "AdventureHealth",
+   "categories": [
+    "Ice Bathing"
+   ],
+   "kambo": false,
+   "city": "Davos",
+   "country": "Switzerland",
+   "countryCode": "CH",
+   "lang": "de",
+   "website": "https://adventurehealth.ch",
+   "instagram": "https://instagram.com/adventurehealth.ch",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://adventurehealth.ch/de/eisbad/",
+   "sourceDate": "2026-10-27",
+   "offers": [
+    {
+     "title": "Group sessions",
+     "type": "event",
+     "price": 60,
+     "currency": "CHF",
+     "duration": "1 hour",
+     "url": "https://adventurehealth.ch/eisbad/"
+    },
+    {
+     "title": "Talk to us · 30 min, free",
+     "type": "freebie",
+     "price": null,
+     "currency": null,
+     "duration": "30 min",
+     "url": "https://adventurehealth.ch/contact/?topic=expedition"
+    },
+    {
+     "title": "Quick Chill",
+     "type": "product",
+     "price": 120,
+     "currency": "CHF",
+     "duration": "2 hours",
+     "url": "https://adventurehealth.ch/eisbad/"
+    },
+    {
+     "title": "Cold Rush",
+     "type": "product",
+     "price": 180,
+     "currency": "CHF",
+     "duration": "3 hours",
+     "url": "https://adventurehealth.ch/eisbad/"
+    },
+    {
+     "title": "Arctic Pro Exclusive",
+     "type": "product",
+     "price": 350,
+     "currency": "CHF",
+     "duration": null,
+     "url": "https://adventurehealth.ch/eisbad/"
+    },
+    {
+     "title": "Cold Rush Exclusive",
+     "type": "product",
+     "price": 280,
+     "currency": "CHF",
+     "duration": null,
+     "url": "https://adventurehealth.ch/eisbad/"
+    }
+   ],
+   "description": "AdventureHealth ist im Bereich Eisbaden tätig, mit Sitz in Davos (Schweiz). Auf der eigenen Website werden Angebote genannt, darunter „Group sessions“. Alle Angaben stammen aus öffentlichen Quellen – Details, Preise und Termine bitte direkt beim Anbieter prüfen."
+  },
+  {
+   "primary": "Yoga",
+   "slug": "kashi-kriya-yoga-centre",
+   "id": "0e6c0c82-c447-4158-9b31-a8b67ece9803",
+   "name": "Kashi Kriya Yoga Centre",
+   "categories": [
+    "Yoga"
+   ],
+   "kambo": false,
+   "city": "Perugia",
+   "country": "Italy",
+   "countryCode": "IT",
+   "lang": "en",
+   "website": "https://www.kashikriyayoga.org",
+   "instagram": "https://instagram.com/kashi_kriya_yoga_centre",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.kashikriyayoga.org/",
+   "sourceDate": "2026-10-27",
+   "offers": [
+    {
+     "title": "PIZHICHIL + UDVARTANA 90'",
+     "type": "service",
+     "price": 100,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.kashikriyayoga.org/orari-e-costi/"
+    },
+    {
+     "title": "PINDA SWEDA 60’- 90’ / 100,00",
+     "type": "service",
+     "price": 70,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.kashikriyayoga.org/orari-e-costi/"
+    },
+    {
+     "title": "MASSAGGIO RILASSANTE 60'",
+     "type": "service",
+     "price": 65,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.kashikriyayoga.org/orari-e-costi/"
+    },
+    {
+     "title": "LEZIONI INDIVIDUALI (IN PRESENZA)",
+     "type": "service",
+     "price": 16,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.kashikriyayoga.org/orari-e-costi/"
+    },
+    {
+     "title": "MASSAGGIO DECONTRATTURANTE 60'",
+     "type": "event",
+     "price": 65,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.kashikriyayoga.org/orari-e-costi/"
+    }
+   ],
+   "description": "Kashi Kriya Yoga Centre offers yoga in Perugia, Italy. Their website lists offers including “PIZHICHIL + UDVARTANA 90'”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Yoga",
+   "slug": "mag-alexandra-eichenauer-knoll",
+   "id": "03035179-70b3-40b2-a8f5-dc90111ff10d",
+   "name": "Mag. Alexandra Eichenauer-Knoll",
+   "categories": [
+    "Yoga"
+   ],
+   "kambo": false,
+   "city": "Hainfeld",
+   "country": "Austria",
+   "countryCode": "AT",
+   "lang": "de",
+   "website": "http://vyana.at",
+   "instagram": null,
+   "source": "YOGA Austria (BYO) Yogalehrende finden directory",
+   "sourceUrl": "https://www.yoga.at/yogalehrende-finden-details/?uid=1323",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Kurs ab 3 Personen auf Anfrage",
+     "type": "course",
+     "price": 120,
+     "currency": "EUR",
+     "duration": "90min",
+     "url": "https://www.vyana.at/kurs-termin/yoga-basics-i/"
+    },
+    {
+     "title": "Kurs für Ehe- oder Freund:innenpaare auf Anfrage",
+     "type": "course",
+     "price": 150,
+     "currency": "EUR",
+     "duration": "90min",
+     "url": "https://www.vyana.at/kurs-termin/yoga-basics-i/"
+    },
+    {
+     "title": "Kurs für Einzelpersonen auf Anfrage",
+     "type": "course",
+     "price": 250,
+     "currency": "EUR",
+     "duration": "90min",
+     "url": "https://www.vyana.at/kurs-termin/yoga-basics-i/"
+    },
+    {
+     "title": "Offener Kurs, pro Stunde",
+     "type": "service",
+     "price": 12,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.vyana.at/kurs-termin/mit-yoga-das-wesentliche-erspueren/"
+    },
+    {
+     "title": "Auf Anfrage: Yoga Basic II",
+     "type": "service",
+     "price": 120,
+     "currency": "EUR",
+     "duration": "90min",
+     "url": "https://www.vyana.at/kurs-termin/yoga-basics-ii/"
+    },
+    {
+     "title": "Auf Anfrage: Yoga maßgeschneidert",
+     "type": "service",
+     "price": 40,
+     "currency": "EUR",
+     "duration": "1h",
+     "url": "https://www.vyana.at/kurs-termin/yoga-masgeschneidert/"
+    }
+   ],
+   "description": "Mag. Alexandra Eichenauer-Knoll ist im Bereich Yoga tätig, mit Sitz in Hainfeld (Österreich). Auf der eigenen Website werden Angebote genannt, darunter „Kurs ab 3 Personen auf Anfrage“. Alle Angaben stammen aus öffentlichen Quellen – Details, Preise und Termine bitte direkt beim Anbieter prüfen."
+  },
+  {
+   "primary": "Yoga",
+   "slug": "lardinois-delphine-kolam-yogaensoi",
+   "id": "008ba73c-bc97-4d1d-89f0-78fb9f6a5bd0",
+   "name": "LARDINOIS Delphine (Kolam ~ YogaEnSoi)",
+   "categories": [
+    "Yoga"
+   ],
+   "kambo": false,
+   "city": "Faycelles",
+   "country": "France",
+   "countryCode": "FR",
+   "lang": "fr",
+   "website": "https://www.kolam-ayurveda.com/",
+   "instagram": null,
+   "source": "bksiyengar.com certified Iyengar teacher directory",
+   "sourceUrl": "https://bksiyengar.com/Modules/Teacher/teacher.asp?Country=France",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "GROSSESSE",
+     "type": "service",
+     "price": 75,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.kolam-ayurveda.com/massage-pendant-et-apr%C3%A8s-la-grossesse"
+    },
+    {
+     "title": "NAISSANCE",
+     "type": "service",
+     "price": 75,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.kolam-ayurveda.com/massage-pendant-et-apr%C3%A8s-la-grossesse"
+    },
+    {
+     "title": "MASSAGE BEBE",
+     "type": "service",
+     "price": 40,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.kolam-ayurveda.com/psychomotricit%C3%A9"
+    },
+    {
+     "title": "MASSAGE PARENTS / BEBE",
+     "type": "service",
+     "price": 40,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.kolam-ayurveda.com/psychomotricit%C3%A9"
+    }
+   ],
+   "description": "LARDINOIS Delphine (Kolam ~ YogaEnSoi) propose une pratique de yoga à Faycelles (France). Son site web présente des offres, dont « GROSSESSE ». Ces informations proviennent de sources publiques ; merci de vérifier les détails, prix et dates directement auprès du praticien."
+  },
+  {
+   "primary": "Yoga",
+   "slug": "studio-yogasana",
+   "id": "0869fe2a-3feb-4122-9b93-3c5b0240cbfe",
+   "name": "Studio Yogasana",
+   "categories": [
+    "Yoga"
+   ],
+   "kambo": false,
+   "city": "Gouda",
+   "country": "Netherlands",
+   "countryCode": "NL",
+   "lang": "nl",
+   "website": "https://www.studioyogasana.nl",
+   "instagram": "https://instagram.com/studio.yogasana",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.studioyogasana.nl/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Donderdag 20:45-22:00uur",
+     "type": "service",
+     "price": 14,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.studioyogasana.nl/lessen"
+    },
+    {
+     "title": "YOGA",
+     "type": "service",
+     "price": 14,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.studioyogasana.nl/lessen"
+    },
+    {
+     "title": "LOSSE LES",
+     "type": "service",
+     "price": 14,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.studioyogasana.nl/lessen"
+    },
+    {
+     "title": "MAANDELIJKS",
+     "type": "service",
+     "price": 13.5,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.studioyogasana.nl/lessen"
+    },
+    {
+     "title": "PERIODE",
+     "type": "service",
+     "price": 13,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.studioyogasana.nl/lessen"
+    },
+    {
+     "title": "ONLINE",
+     "type": "service",
+     "price": 6.5,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.studioyogasana.nl/lessen"
+    }
+   ],
+   "description": "Studio Yogasana is actief in yoga in Gouda (Nederland). Op de eigen website staat aanbod vermeld, waaronder ‘Donderdag 20:45-22:00uur’. Alle gegevens komen uit openbare bronnen – controleer details, prijzen en data rechtstreeks bij de aanbieder."
+  },
+  {
+   "primary": "BodyWork",
+   "slug": "relaxy",
+   "id": "11f818d1-4e66-4eb3-af50-4907151dd960",
+   "name": "Relaxy",
+   "categories": [
+    "BodyWork"
+   ],
+   "kambo": false,
+   "city": "Kortrijk",
+   "country": "Belgium",
+   "countryCode": "BE",
+   "lang": "en",
+   "website": "https://www.relaxy.be",
+   "instagram": "https://instagram.com/relaxy.be",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.relaxy.be/en/massagetherapie-danny",
+   "sourceDate": "2026-10-28",
+   "offers": [
+    {
+     "title": "Sauna Atlantis",
+     "type": "service",
+     "price": 210,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.relaxy.be/sauna-atlantis/wellness-complex?offer=149948cd-87ba-47a5-b7a8-944a123a843e"
+    },
+    {
+     "title": "Sensations",
+     "type": "service",
+     "price": 225,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.relaxy.be/sensations/under-the-sea?offer=c4284f90-61e6-4f4c-ab96-a0d03c819ce8"
+    },
+    {
+     "title": "Nirvana Privésauna",
+     "type": "service",
+     "price": 144,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.relaxy.be/nirvana-privesauna/orchid?offer=078912c1-09ef-474d-8b7c-5e99d31717fa"
+    },
+    {
+     "title": "Godendo",
+     "type": "service",
+     "price": 125,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.relaxy.be/godendo?offer=d4b5dcc7-28f6-41e0-9d3d-b19ec0ea724d"
+    },
+    {
+     "title": "Wellsense",
+     "type": "service",
+     "price": 210,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.relaxy.be/wellsense?offer=3461c873-7a46-4470-9fde-af026eddb6fe"
+    },
+    {
+     "title": "Oxygen-House",
+     "type": "service",
+     "price": 160,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.relaxy.be/oxygen-house/prive-sauna?offer=f4a245d2-08db-4556-885a-785d66da96a1"
+    }
+   ],
+   "description": "Relaxy offers bodywork in Kortrijk, Belgium. Their website lists offers including “Sauna Atlantis”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "BodyWork",
+   "slug": "hyvinvointikeskus-taika-hieronta-ja-valmennus-kuopio",
+   "id": "09374c79-a868-44dc-8b64-c8052ed2566a",
+   "name": "Hyvinvointikeskus Taika - hieronta ja valmennus Kuopio",
+   "categories": [
+    "BodyWork"
+   ],
+   "kambo": false,
+   "city": "Kuopio",
+   "country": "Finland",
+   "countryCode": "FI",
+   "lang": "en",
+   "website": "https://www.hyvinvointikeskustaika.fi",
+   "instagram": "https://instagram.com/hyvinvointikeskustaika",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.hyvinvointikeskustaika.fi/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Metsän taika hemmotteluhoito",
+     "type": "service",
+     "price": 85,
+     "currency": "EUR",
+     "duration": "75 min",
+     "url": "https://www.hyvinvointikeskustaika.fi/Hinnasto/"
+    },
+    {
+     "title": "ÄÄNIMALJAN taika SYVÄRENTOUTUShoito",
+     "type": "service",
+     "price": 85,
+     "currency": "EUR",
+     "duration": "75 min",
+     "url": "https://www.hyvinvointikeskustaika.fi/Hinnasto/"
+    },
+    {
+     "title": "KEHOTERAPEUTTINEN HOITO",
+     "type": "service",
+     "price": 135,
+     "currency": "EUR",
+     "duration": "90 min",
+     "url": "https://www.hyvinvointikeskustaika.fi/Hinnasto/"
+    },
+    {
+     "title": "Hieronta 45 min",
+     "type": "service",
+     "price": 49,
+     "currency": "EUR",
+     "duration": "45 min",
+     "url": "https://www.hyvinvointikeskustaika.fi/Hinnasto/"
+    },
+    {
+     "title": "Hieronta 60 min",
+     "type": "service",
+     "price": 59,
+     "currency": "EUR",
+     "duration": "60 min",
+     "url": "https://www.hyvinvointikeskustaika.fi/Hinnasto/"
+    },
+    {
+     "title": "Hieronta 90 min",
+     "type": "service",
+     "price": 80,
+     "currency": "EUR",
+     "duration": "90 min",
+     "url": "https://www.hyvinvointikeskustaika.fi/Hinnasto/"
+    }
+   ],
+   "description": "Hyvinvointikeskus Taika - hieronta ja valmennus Kuopio offers bodywork in Kuopio, Finland. Their website lists offers including “Metsän taika hemmotteluhoito”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "BodyWork",
+   "slug": "anna-goodere-shiatsu",
+   "id": "58d8dfa3-da03-43de-8036-7653d9f1a55a",
+   "name": "Anna Goodere – Shiatsu",
+   "categories": [
+    "BodyWork"
+   ],
+   "kambo": false,
+   "city": "Rathnew",
+   "country": "Ireland",
+   "countryCode": "IE",
+   "lang": "en",
+   "website": "http://www.annagoodere.com",
+   "instagram": null,
+   "source": "Shiatsu Society Ireland register (shiatsusocietyireland.org, RPSSI registered practitioners)",
+   "sourceUrl": "https://shiatsusocietyireland.org/wicklow-practitioners/",
+   "sourceDate": "2026-10-27",
+   "offers": [
+    {
+     "title": "COURSE OF ACUPUNCTURE TREATMENTS",
+     "type": "product",
+     "price": 300,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://annagoodere.com/price-list/"
+    },
+    {
+     "title": "ACUPUNTURE – 1st Consulation and treatment 1hr/1hr 15",
+     "type": "service",
+     "price": 70,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://annagoodere.com/price-list/"
+    },
+    {
+     "title": "ACUPUNCTURE – Follow-up treatment 50 mins – 1hr",
+     "type": "service",
+     "price": 60,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://annagoodere.com/price-list/"
+    },
+    {
+     "title": "SHIATSU – 1 hour",
+     "type": "service",
+     "price": 70,
+     "currency": "EUR",
+     "duration": "1 hour",
+     "url": "https://annagoodere.com/price-list/"
+    },
+    {
+     "title": "MASSAGE – 1 hour",
+     "type": "service",
+     "price": 70,
+     "currency": "EUR",
+     "duration": "1 hour",
+     "url": "https://annagoodere.com/price-list/"
+    },
+    {
+     "title": "ACUPUNCTURE AND MASSAGE/or SHIATSU combined 1 hr",
+     "type": "service",
+     "price": 75,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://annagoodere.com/price-list/"
+    }
+   ],
+   "description": "Anna Goodere – Shiatsu offers bodywork in Rathnew, Ireland. Their website lists offers including “COURSE OF ACUPUNCTURE TREATMENTS”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "BodyWork",
+   "slug": "body-soul-graz",
+   "id": "12a2b27b-ce18-41d7-95c8-737092014dac",
+   "name": "Body & Soul Graz",
+   "categories": [
+    "BodyWork"
+   ],
+   "kambo": false,
+   "city": "Graz",
+   "country": "Austria",
+   "countryCode": "AT",
+   "lang": "de",
+   "website": "https://bodysoul-graz.at",
+   "instagram": "https://instagram.com/bodysoulgraz",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://bodysoul-graz.at/",
+   "sourceDate": "2026-10-27",
+   "offers": [
+    {
+     "title": "Erstsitzung",
+     "type": "service",
+     "price": 135,
+     "currency": "EUR",
+     "duration": "90 Min",
+     "url": "https://bodysoul-graz.at/"
+    },
+    {
+     "title": "Folgesitzungen",
+     "type": "service",
+     "price": 110,
+     "currency": "EUR",
+     "duration": "60 Min",
+     "url": "https://bodysoul-graz.at/"
+    },
+    {
+     "title": "Erstberatung",
+     "type": "service",
+     "price": 135,
+     "currency": "EUR",
+     "duration": "90 Min",
+     "url": "https://bodysoul-graz.at/"
+    },
+    {
+     "title": "Folgeberatung",
+     "type": "service",
+     "price": 110,
+     "currency": "EUR",
+     "duration": "120 Min",
+     "url": "https://bodysoul-graz.at/"
+    },
+    {
+     "title": "Einheit",
+     "type": "service",
+     "price": 135,
+     "currency": "EUR",
+     "duration": "90 MIn",
+     "url": "https://bodysoul-graz.at/"
+    },
+    {
+     "title": "Erstgespräch, Testung und Therapie",
+     "type": "service",
+     "price": 155,
+     "currency": "EUR",
+     "duration": "90 Min",
+     "url": "https://bodysoul-graz.at/"
+    }
+   ],
+   "description": "Body & Soul Graz ist im Bereich Körperarbeit tätig, mit Sitz in Graz (Österreich). Auf der eigenen Website werden Angebote genannt, darunter „Erstsitzung“. Alle Angaben stammen aus öffentlichen Quellen – Details, Preise und Termine bitte direkt beim Anbieter prüfen."
+  },
+  {
+   "primary": "Meditation",
+   "slug": "still-wyld",
+   "id": "1961f219-13f1-49f0-b16f-56209eda35cc",
+   "name": "Still Wyld",
+   "categories": [
+    "Meditation"
+   ],
+   "kambo": false,
+   "city": "Newquay",
+   "country": "United Kingdom",
+   "countryCode": "UK",
+   "lang": "en",
+   "website": "https://www.stillwyld.com",
+   "instagram": "https://instagram.com/stillwyld_cornwall",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.stillwyld.com/",
+   "sourceDate": "2026-10-28",
+   "offers": [
+    {
+     "title": "Tipi Sattva",
+     "type": "event",
+     "price": 65,
+     "currency": "GBP",
+     "duration": null,
+     "url": "https://www.stillwyld.com/private-sessions"
+    },
+    {
+     "title": "A Love in at the Zen Den",
+     "type": "event",
+     "price": 75,
+     "currency": "GBP",
+     "duration": null,
+     "url": "https://www.stillwyld.com/service-page/a-love-in-at-the-zen-den-1"
+    },
+    {
+     "title": "Wisdom Journey",
+     "type": "product",
+     "price": 75,
+     "currency": "GBP",
+     "duration": null,
+     "url": "https://www.stillwyld.com/private-sessions"
+    },
+    {
+     "title": "Embody the Elements - 5 weekly Sessions",
+     "type": "service",
+     "price": 60,
+     "currency": "GBP",
+     "duration": null,
+     "url": "https://www.stillwyld.com/service-page/embody-the-elements-5-weekly-sessions"
+    },
+    {
+     "title": "Inhabit - Free Form Dynamic Meditation",
+     "type": "service",
+     "price": 12,
+     "currency": "GBP",
+     "duration": null,
+     "url": "https://www.stillwyld.com/private-sessions"
+    },
+    {
+     "title": "Lion Heart",
+     "type": "service",
+     "price": 75,
+     "currency": "GBP",
+     "duration": null,
+     "url": "https://www.stillwyld.com/private-sessions"
+    }
+   ],
+   "description": "Still Wyld offers meditation in Newquay, the United Kingdom. Their website lists offers including “Tipi Sattva”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Meditation",
+   "slug": "maison-losseau",
+   "id": "0540f9d4-63bf-4061-9f01-fa0849bc4c50",
+   "name": "Maison Losseau",
+   "categories": [
+    "Meditation"
+   ],
+   "kambo": false,
+   "city": "Mons",
+   "country": "Belgium",
+   "countryCode": "BE",
+   "lang": "en",
+   "website": "https://www.maisonlosseau.be",
+   "instagram": "https://instagram.com/maisonlosseau",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.maisonlosseau.be/event/cycle-de-reduction-du-stress-basee-sur-la-pleine-conscience/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Free",
+     "type": "freebie",
+     "price": null,
+     "currency": null,
+     "duration": null,
+     "url": "https://www.maisonlosseau.be/practical-information/"
+    },
+    {
+     "title": "Adults",
+     "type": "service",
+     "price": 9,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.maisonlosseau.be/practical-information/"
+    },
+    {
+     "title": "Children",
+     "type": "service",
+     "price": 7,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.maisonlosseau.be/practical-information/"
+    },
+    {
+     "title": "Article 27",
+     "type": "service",
+     "price": 27,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.maisonlosseau.be/practical-information/"
+    },
+    {
+     "title": "Student",
+     "type": "service",
+     "price": 7,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.maisonlosseau.be/practical-information/"
+    }
+   ],
+   "description": "Maison Losseau offers meditation in Mons, Belgium. Their website lists offers including “Free”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Mindfulness",
+   "slug": "mindful-academy-solterreno-bodhin-philip-woodward",
+   "id": "044d7a33-8729-47d7-a7c1-755272e1edad",
+   "name": "Mindful Academy Solterreno – Bodhin Philip Woodward",
+   "categories": [
+    "Mindfulness",
+    "Meditation"
+   ],
+   "kambo": false,
+   "city": "Marina Alta (Alicante)",
+   "country": "Spain",
+   "countryCode": "ES",
+   "lang": "en",
+   "website": "https://solterreno.com",
+   "instagram": "https://instagram.com/mindfulacademysolterreno",
+   "source": "Mindful Academy Solterreno MBSR graduates directory / practitioner site",
+   "sourceUrl": "https://mbsr.website/faculty-staff/bodhin",
+   "sourceDate": "2026-10-31",
+   "offers": [
+    {
+     "title": "Silent retreat balance, Online",
+     "type": "event",
+     "price": 190,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.solterreno.com/product/silent-retreat-balance-online/"
+    },
+    {
+     "title": "Silent retreat test",
+     "type": "event",
+     "price": 5,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.solterreno.com/product/silent-retreat-test/"
+    },
+    {
+     "title": "Silent retreat balance",
+     "type": "event",
+     "price": 190,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.solterreno.com/shop/"
+    },
+    {
+     "title": "MBSR TT depost, Online",
+     "type": "service",
+     "price": 500,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.solterreno.com/product/mbsr-tt-depost-online/"
+    },
+    {
+     "title": "MBSR TT Online, balance of payemt",
+     "type": "service",
+     "price": 895,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.solterreno.com/product/mbsr-tt-online-balance-of-payemt/"
+    },
+    {
+     "title": "MBSR TT depost",
+     "type": "service",
+     "price": 500,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.solterreno.com/shop/"
+    }
+   ],
+   "description": "Mindful Academy Solterreno – Bodhin Philip Woodward offers mindfulness and meditation in Marina Alta (Alicante), Spain. Their website lists offers including “Silent retreat balance, Online”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Mindfulness",
+   "slug": "il-tempo-ritrovato",
+   "id": "01a12c42-92ee-4de1-9927-6c06086025b5",
+   "name": "Il Tempo Ritrovato",
+   "categories": [
+    "Mindfulness"
+   ],
+   "kambo": false,
+   "city": "Venezia",
+   "country": "Italy",
+   "countryCode": "IT",
+   "lang": "en",
+   "website": "https://www.iltemporitrovato.org",
+   "instagram": "https://instagram.com/iltemporitrovatocorsi",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.iltemporitrovato.org/corso/mindfulness-base/venezia-mestre",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "ABC della Cucina",
+     "type": "event",
+     "price": 149,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.iltemporitrovato.org/"
+    },
+    {
+     "title": "Uncinetto",
+     "type": "event",
+     "price": 109,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.iltemporitrovato.org/"
+    },
+    {
+     "title": "Autostima",
+     "type": "event",
+     "price": 99,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.iltemporitrovato.org/"
+    },
+    {
+     "title": "Comunicazione e relazioni interpersonali",
+     "type": "event",
+     "price": 99,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.iltemporitrovato.org/"
+    },
+    {
+     "title": "Degustazione champagne",
+     "type": "event",
+     "price": 69,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.iltemporitrovato.org/"
+    },
+    {
+     "title": "Degustazione vini",
+     "type": "event",
+     "price": 99,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.iltemporitrovato.org/"
+    }
+   ],
+   "description": "Il Tempo Ritrovato offers mindfulness in Venezia, Italy. Their website lists offers including “ABC della Cucina”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Spiritual Growth",
+   "slug": "ehjaeksi-lotta-kvist",
+   "id": "7a4951db-1f15-46df-8d94-4546be00d2e0",
+   "name": "Ehjäksi – Lotta Kvist",
+   "categories": [
+    "Spiritual Growth"
+   ],
+   "kambo": false,
+   "city": "Helsinki",
+   "country": "Finland",
+   "countryCode": "FI",
+   "lang": "en",
+   "website": "https://lottakvist.fi",
+   "instagram": "https://instagram.com/hoitolaehjaksi",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://lottakvist.fi/energiahoidot/",
+   "sourceDate": "2026-10-28",
+   "offers": [
+    {
+     "title": "yksilöohjaus Lauttasaaressa tai etänä 4 x 1 h",
+     "type": "service",
+     "price": 388,
+     "currency": "EUR",
+     "duration": "1 h",
+     "url": "https://lottakvist.fi/hinnasto/"
+    },
+    {
+     "title": "yksilöohjaus Lauttasaaressa 2 h",
+     "type": "service",
+     "price": 188,
+     "currency": "EUR",
+     "duration": "2 h",
+     "url": "https://lottakvist.fi/hinnasto/"
+    },
+    {
+     "title": "yksilöohjaus etänä 2 h",
+     "type": "service",
+     "price": 173,
+     "currency": "EUR",
+     "duration": "2 h",
+     "url": "https://lottakvist.fi/hinnasto/"
+    },
+    {
+     "title": "yksilöohjaus etänä tai puhelimitse 30 min",
+     "type": "service",
+     "price": 67,
+     "currency": "EUR",
+     "duration": "30 min",
+     "url": "https://lottakvist.fi/hinnasto/"
+    },
+    {
+     "title": "regressioterapia Lauttasaaressa 2 h (tarvittaessa max",
+     "type": "service",
+     "price": 188,
+     "currency": "EUR",
+     "duration": "2 h",
+     "url": "https://lottakvist.fi/hinnasto/"
+    },
+    {
+     "title": "regressioterapia 3 x 2 h",
+     "type": "service",
+     "price": 549,
+     "currency": "EUR",
+     "duration": "2 h",
+     "url": "https://lottakvist.fi/hinnasto/"
+    }
+   ],
+   "description": "Ehjäksi – Lotta Kvist offers spiritual growth in Helsinki, Finland. Their website lists offers including “yksilöohjaus Lauttasaaressa tai etänä 4 x 1 h”. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Spiritual Growth",
+   "slug": "paulo-nogueira-terapias",
+   "id": "1eb815b4-fd27-4d7b-bac5-23cdedc38084",
+   "name": "Paulo Nogueira Terapias",
+   "categories": [
+    "Spiritual Growth"
+   ],
+   "kambo": false,
+   "city": "Lisboa",
+   "country": "Portugal",
+   "countryCode": "PT",
+   "lang": "en",
+   "website": "https://www.paulonogueiraterapias.com",
+   "instagram": "https://instagram.com/paulonogueiraterapias",
+   "source": "web search (ddgs) / practitioner site",
+   "sourceUrl": "https://www.paulonogueiraterapias.com/reiki-lisboa/",
+   "sourceDate": "2026-10-26",
+   "offers": [
+    {
+     "title": "Workshop “O Poder das Velas”",
+     "type": "event",
+     "price": 20,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.paulonogueiraterapias.com/"
+    },
+    {
+     "title": "Workshop “O Poder das Ervas”",
+     "type": "event",
+     "price": 20,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.paulonogueiraterapias.com/"
+    },
+    {
+     "title": "Workshop “O Poder dos Cristais”",
+     "type": "event",
+     "price": 60,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.paulonogueiraterapias.com/"
+    },
+    {
+     "title": "Cura Arcturiana",
+     "type": "event",
+     "price": 50,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.paulonogueiraterapias.com/produto/cura-arcturiana/"
+    },
+    {
+     "title": "Tarot",
+     "type": "event",
+     "price": 50,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.paulonogueiraterapias.com/produto/sessao-de-tarot/"
+    },
+    {
+     "title": "Reiki Online",
+     "type": "product",
+     "price": 15,
+     "currency": "EUR",
+     "duration": null,
+     "url": "https://www.paulonogueiraterapias.com/produto/reiki-online/"
+    }
+   ],
+   "description": "Paulo Nogueira Terapias offers spiritual growth in Lisboa, Portugal. Their website lists offers including “Workshop “O Poder das Velas””. All details come from public sources – please confirm details, prices and dates directly with the provider."
+  },
+  {
+   "primary": "Personal Coaching",
+   "slug": "besonders-du-body-mind-yoga",
+   "id": "3623e2cc-9f5a-415d-90ee-edf982d78b7a",
+   "name": "Besonders Du – Body, Mind & Yoga",
+   "categories": [
+    "Personal Coaching",
+    "Yoga"
+   ],
+   "kambo": false,
+   "city": "Klagenfurt",
+   "country": "Austria",
+   "countryCode": "AT",
+   "lang": "de",
+   "website": "https://www.besonders-du.at",
+   "instagram": "https://instagram.com/besondersdu_body_mind_yoga",
+   "source": "web search (bing/ddg/yandex) / practitioner site",
+   "sourceUrl": "https://www.besonders-du.at/personal-training/",
+   "sourceDate": "2026-10-30",
+   "offers": [
+    {
+     "title": "Besonders Fit BASIC",
+     "type": "course",
+     "price": 249,
+     "currency": "EUR",
+     "duration": "30min",
+     "url": "https://www.besonders-du.at/personal-training/"
+    },
+    {
+     "title": "Besonders Fit PLUS",
+     "type": "course",
+     "price": 499,
+     "currency": "EUR",
+     "duration": "30min",
+     "url": "https://www.besonders-du.at/personal-training/"
+    },
+    {
+     "title": "Mein Angebot für dein Mentaltraining",
+     "type": "service",
+     "price": 80,
+     "currency": "EUR",
+     "duration": "30min",
+     "url": "https://www.besonders-du.at/mentaltraining/"
+    },
+    {
+     "title": "Einzeltraining: Besonders Du im Fokus",
+     "type": "service",
+     "price": 80,
+     "currency": "EUR",
+     "duration": "30min",
+     "url": "https://www.besonders-du.at/mentaltraining/"
+    },
+    {
+     "title": "Mein Yoga-Angebot für dich",
+     "type": "service",
+     "price": 80,
+     "currency": "EUR",
+     "duration": "50min",
+     "url": "https://www.besonders-du.at/yoga/"
+    },
+    {
+     "title": "Personal Yoga: 1:1 Namasté",
+     "type": "service",
+     "price": 80,
+     "currency": "EUR",
+     "duration": "50min",
+     "url": "https://www.besonders-du.at/yoga/"
+    }
+   ],
+   "description": "Besonders Du – Body, Mind & Yoga ist im Bereich Personal Coaching und Yoga tätig, mit Sitz in Klagenfurt (Österreich). Auf der eigenen Website werden Angebote genannt, darunter „Besonders Fit BASIC“. Alle Angaben stammen aus öffentlichen Quellen – Details, Preise und Termine bitte direkt beim Anbieter prüfen."
+  }
+ ]
+}

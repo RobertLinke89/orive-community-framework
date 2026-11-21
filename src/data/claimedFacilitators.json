@@ -52,5 +52,13 @@
     "status": "claimed",
     "claimedAt": "2026-09-24T12:52:29.520Z",
     "calendarActive": true
+  },
+  "fac-robert-linke-me-com": {
+    "facilitatorId": "fac-robert-linke-me-com",
+    "email": "robert.linke@me.com",
+    "name": "robert.linke@me.com",
+    "onboardingComplete": true,
+    "city": "Rudolstadt",
+    "practice": "Heine Park"
   }
 }

@@ -56,11 +56,13 @@ export async function POST(req: Request, { params }: Ctx) {
       role?: string;
       text?: string;
       offerings?: ChatSessionOffering[];
+      directory?: unknown;
       whatsapp?: string | null;
     }) => ({
       role: item.role === 'assistant' ? ('assistant' as const) : ('user' as const),
       text: String(item.text || '').slice(0, 4000),
       offerings: Array.isArray(item.offerings) ? item.offerings : undefined,
+      directory: item.role === 'assistant' && item.directory && typeof item.directory === 'object' ? item.directory : undefined,
       whatsapp: item.whatsapp || null,
     }))
     .filter((item) => item.text.trim());

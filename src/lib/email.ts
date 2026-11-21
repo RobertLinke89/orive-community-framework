@@ -1,4 +1,4 @@
-
+import { checkRecipients } from "./outboundMailGuard";
 /**
  * ORIVE Centralized Email Service
  * Supports Resend API with automated graceful fallback for testing & local development.
@@ -11,6 +11,8 @@ interface SendEmailParams {
   text?: string;
   replyTo?: string;
   from?: string;
+  /** When set, directory_inquiries mode may allow this exact To address. */
+  enquiryResolvedTo?: string;
 }
 
 interface EmailResult {
@@ -27,22 +29,19 @@ export async function sendEmail({
   text,
   replyTo,
   from,
+  enquiryResolvedTo,
 }: SendEmailParams): Promise<EmailResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const toAddresses = Array.isArray(to) ? to : [to];
 
-  // Sender must be on Orive's own verified Resend domain (EMAIL_FROM, e.g. "ORIVE <hello@mail.orive.co>").
-  // resend.dev / foreign domains are refused whenever a real send would happen.
-  const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
-  const senderCheck = resolveSender(from);
-  if (!senderCheck.ok) {
-    if (apiKey && !apiKey.startsWith('re_placeholder') && !apiKey.startsWith('test_')) {
-      console.error(`[Email Service] refusing to send: ${senderCheck.error}`);
-      return { success: false, mode: 'resend', error: 'sender_not_configured' };
-    }
+  // Allowlist: internal_only or directory_inquiries (narrow facilitator To). Checked before anything else.
+  const guard = checkRecipients(toAddresses, { enquiryResolvedTo });
+  if (!guard.ok) {
+    console.warn(`[Email Service] blocked by outbound allowlist: ${guard.blocked} recipient(s) refused, nothing sent`);
+    return { success: false, mode: 'resend', error: 'recipient_not_allowed' };
   }
-  const sender = senderCheck.ok ? senderCheck.sender : 'ORIVE <no-reply@orive.invalid>';
-  replyTo = replyTo || process.env.EMAIL_REPLY_TO || undefined;
+
+  const sender = from || process.env.EMAIL_FROM || 'ORIVE <hello@orive.co>';
 
   if (apiKey && !apiKey.startsWith('re_placeholder') && !apiKey.startsWith('test_')) {
     try {
@@ -64,11 +63,11 @@ export async function sendEmail({
 
       if (response.ok) {
         const data = await response.json();
-        console.log(`[Email Service] Sent via Resend to ${toAddresses.length} recipient(s) (ID: ${data?.id})`);
+        console.log(`[Email Service] Successfully dispatched email via Resend to ${toAddresses.join(', ')} (ID: ${data?.id})`);
         return { success: true, messageId: data?.id, mode: 'resend' };
       } else {
         const errorText = await response.text();
-        console.warn(`[Email Service] Resend API error (status ${response.status})`);
+        console.warn(`[Email Service] Resend API error: ${errorText}`);
         return { success: false, mode: 'resend', error: errorText };
       }
     } catch (err: any) {
@@ -77,13 +76,9 @@ export async function sendEmail({
     }
   }
 
-  // Graceful simulation fallback for local / testing environments only
-  if (isProd) {
-    console.error('[Email Service] RESEND_API_KEY missing in production; e-mail not sent.');
-    return { success: false, mode: 'resend', error: 'not_configured' };
-  }
+  // Graceful simulation fallback for local / testing environments
   const simId = `sim-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
-  console.log(`[Email Service - Simulated] ${toAddresses.length} recipient(s) | Subject: "${subject}" | (SimID: ${simId})`);
+  console.log(`[Email Service - Simulated] To: ${toAddresses.join(', ')} | Subject: "${subject}" | (SimID: ${simId})`);
   return {
     success: true,
     messageId: simId,
@@ -400,22 +395,4 @@ export function renderCancellationEmail(input: {
     subject: `Storno · ${input.sessionTitle}`,
     html: `<p>${who} hat <strong>${title}</strong> am ${when} storniert. Der Platz ist wieder frei. Es wird nichts belastet.</p>`,
   };
-}
-
-
-
-/**
- * Validates the sender. Env: EMAIL_FROM ("Name <local@domain>"), EMAIL_SENDER_DOMAIN (default "orive.co";
- * the sender domain must equal it or be a subdomain, e.g. mail.orive.co). resend.dev is never allowed.
- */
-export function resolveSender(from?: string): { ok: true; sender: string; domain: string } | { ok: false; error: string } {
-  const sender = (from || process.env.EMAIL_FROM || '').trim();
-  if (!sender) return { ok: false, error: 'EMAIL_FROM not set' };
-  const m = /<?([^<>\s@]+)@([^<>\s@]+?)>?$/.exec(sender);
-  if (!m) return { ok: false, error: 'EMAIL_FROM malformed' };
-  const domain = m[2].toLowerCase();
-  const base = (process.env.EMAIL_SENDER_DOMAIN || 'orive.co').toLowerCase();
-  if (domain === 'resend.dev' || domain.endsWith('.resend.dev')) return { ok: false, error: 'resend.dev sandbox sender not allowed' };
-  if (domain !== base && !domain.endsWith(`.${base}`)) return { ok: false, error: `sender domain ${domain} is not ${base}` };
-  return { ok: true, sender, domain };
 }

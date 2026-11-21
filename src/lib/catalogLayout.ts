@@ -197,5 +197,46 @@ export function packTetrisCatalog(
     }
   });
 
-  return placed;
+  return closeRaggedBottom(placed, cols);
+}
+
+/**
+ * Avoid the big empty block under the grid: when the last row is only partly filled because some 2-row tiles
+ * stick out below the others, shrink those tiles to one row so the grid ends on a clean line.
+ */
+function closeRaggedBottom(placed: TetrisPlacement[], cols: number): TetrisPlacement[] {
+  if (!placed.length) return placed;
+  const lastRow = Math.max(...placed.map((t) => t.row + t.rowSpan - 1));
+  const covered = new Set<number>();
+  for (const t of placed) {
+    if (t.row + t.rowSpan - 1 >= lastRow) for (let c = t.col; c < t.col + t.colSpan; c += 1) covered.add(c);
+  }
+  if (covered.size === cols) return placed; // last row is full
+  const startsInLast = placed.some((t) => t.row === lastRow);
+  if (startsInLast) return placed; // real partial row of 1-row tiles: keep it (left aligned)
+  return placed.map((t) => {
+    if (t.rowSpan > 1 && t.row + t.rowSpan - 1 === lastRow) {
+      const size: TetrisSize = t.colSpan > 1 ? 'wide' : 'compact';
+      return { ...t, rowSpan: t.rowSpan - 1, size };
+    }
+    return t;
+  });
+}
+
+/** Deterministic shuffle (mulberry32 PRNG). Same seed -> same order, so a single page view stays stable. */
+export function seededShuffle<T>(items: T[], seed: number): T[] {
+  const out = items.slice();
+  let a = (seed >>> 0) || 1;
+  const rnd = () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  for (let i = out.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(rnd() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
 }

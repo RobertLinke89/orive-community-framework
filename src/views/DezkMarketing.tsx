@@ -224,7 +224,7 @@ const de = {
       },
       {
         title: "Workspace",
-        detail: "Kanban, Boards und Timer aus dem ORYVE Desktop — Prep und Follow-ups im selben Raum wie Termine und Angebote.",
+        detail: "Kanban, Boards und Timer aus dem ORIVE Desktop — Prep und Follow-ups im selben Raum wie Termine und Angebote.",
       },
       {
         title: "Angebote & Termine",
@@ -315,7 +315,7 @@ const en = {
       },
       {
         title: "Workspace",
-        detail: "Kanban, boards, and timer from ORYVE Desktop — prep and follow-ups in the same room as dates and offerings.",
+        detail: "Kanban, boards, and timer from ORIVE Desktop — prep and follow-ups in the same room as dates and offerings.",
       },
       {
         title: "Offerings & dates",

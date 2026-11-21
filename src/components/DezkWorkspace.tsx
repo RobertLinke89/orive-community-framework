@@ -216,7 +216,7 @@ export default function DezkWorkspace({
             {copy("Workspace", "Workspace")}
           </p>
           <h2 className="mt-1 text-xl font-semibold tracking-tight">
-            {copy("Boards, Tasks und Fokus — wie in ORYVE Desktop.", "Boards, tasks, and focus — as in ORYVE Desktop.")}
+            {copy("Boards, Tasks und Fokus — wie in ORIVE Desktop.", "Boards, tasks, and focus — as in ORIVE Desktop.")}
           </h2>
           <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-500">
             {copy(

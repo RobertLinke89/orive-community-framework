@@ -1,11 +1,6 @@
-"use client";
-import PageComponent from "../../../views/ProductDetail";
-import { Suspense } from "react";
+import { notFound } from "next/navigation";
 
-export default function Page(props) {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <PageComponent {...props} />
-    </Suspense>
-  );
+// 2026-11-10: the shop is not active; product pages answer 404 (old view: src/views/ProductDetail.tsx).
+export default function Page() {
+  notFound();
 }

@@ -6,6 +6,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
+import { IMPRESSUM_READY } from '@/lib/impressumData';
 
 export function Footer() {
   const { copy } = useLanguage();
@@ -36,8 +37,8 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link href="/" className="hover:text-slate-900 dark:hover:text-white/90 transition-colors">
-                  {copy("Marktplatz Übersicht", "Marketplace Directory")}
+                <Link href="/facilitators" className="hover:text-slate-900 dark:hover:text-white/90 transition-colors">
+                  {copy("Facilitator-Verzeichnis", "Facilitator Directory")}
                 </Link>
               </li>
               <li>
@@ -108,11 +109,6 @@ export function Footer() {
                   {copy("Mission & Europäischer Footprint", "Mission & European Footprint")}
                 </Link>
               </li>
-              <li>
-                <Link href="/whatsapp-assistant" className="hover:text-slate-900 dark:hover:text-white/90 transition-colors">
-                  {copy("WhatsApp Concierge & Assistent", "WhatsApp Concierge & Assistant")}
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -126,26 +122,6 @@ export function Footer() {
                   {copy("Über uns & Vision", "About Us & Vision")}
                 </Link>
               </li>
-              <li>
-                <Link href="/invest" className="hover:text-slate-900 dark:hover:text-white/90 transition-colors">
-                  {copy("Investoren", "Investors")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="hover:text-slate-900 dark:hover:text-white/90 transition-colors">
-                  {copy("Magazin & Wissen", "Wellbeing Magazine & Blog")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/shop" className="hover:text-slate-900 dark:hover:text-white/90 transition-colors">
-                  {copy("ORIVE Shop & Ausrüstung", "ORIVE Shop & Gear")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/formation" className="hover:text-slate-900 dark:hover:text-white/90 transition-colors">
-                  {copy("ORIVE Formation", "ORIVE Formation")}
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -157,7 +133,7 @@ export function Footer() {
               <li>
                 <Link href="/protection" className="inline-flex items-center gap-1.5 hover:text-slate-900 dark:hover:text-white/90 transition-colors">
                   <Shield className="w-3.5 h-3.5 text-[#00CDAC]/70" />
-                  <span>{copy("Buchung & Zahlung", "Booking & payment")}</span>
+                  <span>{copy("Buchung & Zahlung (noch nicht aktiv)", "Booking & payment (not active yet)")}</span>
                 </Link>
               </li>
               <li>
@@ -170,6 +146,11 @@ export function Footer() {
                   {copy("Datenschutzerklärung", "Privacy Policy")}
                 </Link>
               </li>
+              {IMPRESSUM_READY ? (
+                <li>
+                  <Link href="/impressum" className="hover:text-slate-900 dark:hover:text-white/90 transition-colors">Impressum</Link>
+                </li>
+              ) : null}
               <li>
                 <Link href="/partner-terms" className="hover:text-slate-900 dark:hover:text-white/90 transition-colors">
                   {copy("Partner AGB & Vergütung", "Partner terms & payouts")}
@@ -184,13 +165,13 @@ export function Footer() {
         <div className="max-w-[1600px] mx-auto px-4 sm:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1.5 text-slate-500 dark:text-slate-400">
             <span>© 2026 ORIVE</span>
-            <a href="https://heybotti.com" className="hover:underline">{copy("Eine Marke von heybotti", "A heybotti brand")}</a>
             <Link href="/agb" className="hover:underline">{copy("AGB", "Terms")}</Link>
             <Link href="/datenschutz" className="hover:underline">{copy("Datenschutz", "Privacy")}</Link>
+            {IMPRESSUM_READY ? <Link href="/impressum" className="hover:underline">Impressum</Link> : null}
           </div>
 
           <div className="flex items-center gap-4 text-slate-700 dark:text-slate-200 font-semibold shrink-0">
-            <LanguageSwitcher />
+            <LanguageSwitcher side="top" />
             <span className="text-slate-400 dark:text-slate-500">·</span>
             <span className="text-slate-600 dark:text-slate-300">€ EUR</span>
             {mounted && (

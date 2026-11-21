@@ -1,175 +1,176 @@
 import { NextResponse } from 'next/server';
-import type Stripe from 'stripe';
+import Stripe from 'stripe';
+import fs from 'fs';
+import path from 'path';
 import { sendEmail, renderPaymentReceiptEmail } from '@/lib/email';
 import { notifyFacilitatorOfIntake } from '@/lib/intakeMail';
-import { allowStripeSimulation, CONCIERGE_FEE_CENTS } from '@/lib/payments';
-import { getBooking, listBookings, markBookingChargeFailed, markBookingCharged, markBookingPaid, markBookingRefunded, markIntakeSent, markReceiptSent } from '@/lib/oriveStore';
+import { allowStripeSimulation, isProductionRuntime, isStripeKeyUsable, CONCIERGE_FEE_CENTS } from '@/lib/payments';
+import { getBooking, listBookings, markBookingChargeFailed, markBookingCharged, markBookingPaid, markBookingRefunded, markIntakeSent } from '@/lib/oriveStore';
 import { confirmSetupSession } from '@/lib/settlement';
 import { findStripeAccount } from '@/lib/facilitatorPayout';
 import { grantChatCredits, resolveChatCreditPlan } from '@/lib/chatCredits';
-import { bookingPassUrl } from '@/lib/legacyBookingLinks';
-import { getRepos } from '@/lib/paymentRepo';
-import { logError } from '@/lib/safeLog';
-import {
-  SETUP_TYPE,
-  onAccountUpdated,
-  onChargeRefunded,
-  onCheckoutExpired,
-  onPaymentIntent,
-  onSetupCompleted,
-} from '@/lib/sessionPayments';
-import { stripeForWebhooks } from '@/lib/stripeClient';
 
 export const dynamic = 'force-dynamic';
 
-/**
- * Stripe webhook.
- *  - S6: signature is mandatory; unsigned JSON only in local `next dev` with ALLOW_STRIPE_SIMULATION (never on Vercel).
- *  - S5: every event id is claimed in public.stripe_events first; duplicates return 200 without side effects;
- *        on failure the claim is released so Stripe's retry is processed.
- *  - S13: no internal error messages in responses.
- */
+const OUTREACH_LOG_FILE = path.resolve(process.cwd(), 'src/data/outreachLog.json');
+
 export async function POST(req: Request) {
-  const rawBody = await req.text();
-  const signature = req.headers.get('stripe-signature');
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-
-  let event: Stripe.Event;
-  if (webhookSecret && signature) {
-    try {
-      event = stripeForWebhooks().webhooks.constructEvent(rawBody, signature, webhookSecret);
-    } catch {
-      return NextResponse.json({ error: 'Invalid signature.' }, { status: 400 });
-    }
-  } else if (allowStripeSimulation() && !webhookSecret) {
-    try {
-      event = JSON.parse(rawBody);
-    } catch {
-      return NextResponse.json({ error: 'Invalid payload.' }, { status: 400 });
-    }
-  } else {
-    return NextResponse.json({ error: 'Webhook signature required.' }, { status: 400 });
-  }
-
-  const { events } = getRepos();
-  let fresh: boolean;
   try {
-    fresh = await events.claim(event.id, event.type);
-  } catch (error) {
-    logError('webhook.claim', error, { eventId: event.id });
-    return NextResponse.json({ error: 'Temporarily unavailable.' }, { status: 503 });
-  }
-  if (!fresh) return NextResponse.json({ received: true, duplicate: true });
+    const rawBody = await req.text();
+    const signature = req.headers.get('stripe-signature');
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
-  try {
-    const outcome = await dispatch(event);
-    await events.markProcessed(event.id);
-    return NextResponse.json({ received: true, outcome });
-  } catch (error) {
-    logError('webhook.process', error, { eventId: event.id, type: event.type });
-    await events.release(event.id).catch(() => undefined);
-    return NextResponse.json({ error: 'Processing failed.' }, { status: 500 });
-  }
-}
+    let event: Stripe.Event;
 
-async function dispatch(event: Stripe.Event): Promise<string> {
-  switch (event.type) {
-    case 'checkout.session.completed': {
+    if (webhookSecret && isStripeKeyUsable(stripeSecretKey) && signature) {
+      const stripe = new Stripe(stripeSecretKey as string, {
+        apiVersion: '2024-06-20' as any,
+      });
+
+      try {
+        event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
+      } catch (err: any) {
+        console.error('[Stripe Webhook Signature Verification Failed]:', err.message);
+        return NextResponse.json({ error: `Webhook Signature Error: ${err.message}` }, { status: 400 });
+      }
+    } else if (isProductionRuntime() || !allowStripeSimulation()) {
+      return NextResponse.json({ error: 'Webhook signature required.' }, { status: 400 });
+    } else {
+      try {
+        event = JSON.parse(rawBody);
+      } catch {
+        return NextResponse.json({ error: 'Invalid JSON payload' }, { status: 400 });
+      }
+    }
+
+    console.log(`[Stripe Webhook] Received event type: ${event.type}`);
+
+    // Handle checkout session completion
+    if (event.type === 'checkout.session.completed') {
       const session = event.data.object as Stripe.Checkout.Session;
-      if (session.metadata?.type === SETUP_TYPE) return onSetupCompleted(session);
       if (session.mode === 'setup' && session.id) {
         await confirmSetupSession(session.id);
-        return 'legacy_setup';
+        return NextResponse.json({ received: true });
       }
-      if (session.metadata?.type === 'orive_chat_credits') return chatCredits(session);
-      if (session.metadata?.bookingId) return legacyPaymentCompleted(session);
-      return 'ignored';
+      if (session.metadata?.type === 'orive_chat_credits') {
+        const plan = resolveChatCreditPlan(session.metadata.plan);
+        const visitorKey = session.metadata.visitorKey;
+        if (plan && visitorKey) {
+          const customerId =
+            typeof session.customer === 'string' ? session.customer : session.customer?.id;
+          grantChatCredits({
+            visitorKey,
+            plan,
+            stripeSessionId: session.id,
+            stripeCustomerId: customerId,
+          });
+        }
+        return NextResponse.json({ received: true });
+      }
+      const bookingId = session.metadata?.bookingId;
+      const customerEmail = session.customer_details?.email || session.customer_email || session.metadata?.customerEmail;
+      const customerName = session.customer_details?.name || session.metadata?.customerName || 'Kunde';
+      const sessionTitle = session.metadata?.sessionTitle || 'ORIVE Wellbeing Session';
+      const amountTotal = (session.amount_total || 9500) / 100;
+
+      if (bookingId) {
+        console.log(`[Stripe Webhook] Updating booking ${bookingId} to paid/confirmed.`);
+        const paidBooking = await markBookingPaid(bookingId, session.id);
+        if (paidBooking && !paidBooking.intakeSent) {
+          try {
+            await notifyFacilitatorOfIntake(paidBooking);
+            await markIntakeSent(paidBooking.id);
+          } catch (err) {
+            console.warn('[Stripe Webhook] Facilitator intake mail failed:', err);
+          }
+        }
+
+        try {
+          if (fs.existsSync(OUTREACH_LOG_FILE)) {
+            const content = fs.readFileSync(OUTREACH_LOG_FILE, 'utf-8');
+            let logs = JSON.parse(content || '[]');
+            logs = logs.map((entry: any) => {
+              if (entry.inquiryId === bookingId || entry.bookingReference === bookingId || entry.bookingId === bookingId) {
+                return {
+                  ...entry,
+                  status: 'confirmed',
+                  paymentStatus: 'paid',
+                  stripeSessionId: session.id,
+                  amountPaid: `${amountTotal} €`,
+                  paidAt: new Date().toISOString(),
+                };
+              }
+              return entry;
+            });
+            fs.writeFileSync(OUTREACH_LOG_FILE, JSON.stringify(logs, null, 2), 'utf-8');
+          }
+        } catch (err) {
+          console.warn('[Stripe Webhook] Could not update outreach log:', err);
+        }
+
+        // Send official payment receipt email
+        if (customerEmail) {
+          const receiptNumber = `REC-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
+          const origin = process.env.NEXT_PUBLIC_APP_URL || 'https://orive.co';
+          const bookingPassUrl = `${origin}/booking/${bookingId}`;
+
+          const stored = await getBooking(bookingId);
+          const sessionAmount = stored ? stored.priceCents / 100 : Math.max(amountTotal - CONCIERGE_FEE_CENTS / 100, 0);
+          const feeAmount = stored ? (stored.feeCents ?? CONCIERGE_FEE_CENTS) / 100 : CONCIERGE_FEE_CENTS / 100;
+          const receiptTemplate = renderPaymentReceiptEmail({
+            receiptNumber,
+            bookingReference: bookingId,
+            sessionTitle,
+            clientName: customerName,
+            clientEmail: customerEmail,
+            amount: sessionAmount + feeAmount,
+            sessionAmount,
+            feeAmount,
+            currency: 'EUR',
+            date: new Date().toLocaleDateString('de-DE'),
+            bookingPassUrl,
+          });
+
+          await sendEmail({
+            to: customerEmail,
+            subject: receiptTemplate.subject,
+            html: receiptTemplate.html,
+            from: 'ORIVE Abrechnung <onboarding@resend.dev>',
+          });
+        }
+      }
     }
-    case 'checkout.session.expired':
-      return onCheckoutExpired(event.data.object as Stripe.Checkout.Session);
-    case 'payment_intent.succeeded': {
+
+    if (event.type === 'payment_intent.succeeded') {
       const intent = event.data.object as Stripe.PaymentIntent;
-      if (intent.metadata?.type === 'orive_settlement' && intent.metadata.bookingId) {
-        const booking = await getBooking(intent.metadata.bookingId);
-        const account = booking ? await findStripeAccount(booking.facilitatorId, booking.facilitatorEmail) : null;
-        await markBookingCharged(intent.metadata.bookingId, {
+      const bookingId = intent.metadata?.bookingId;
+      if (bookingId && intent.metadata?.type === 'orive_settlement') {
+        const booking = await getBooking(bookingId);
+        const account = booking ? findStripeAccount(booking.facilitatorId, booking.facilitatorEmail) : null;
+        await markBookingCharged(bookingId, {
           stripePaymentIntentId: intent.id,
           payoutStatus: account ? 'transferred' : 'awaiting_connect',
         });
-        return 'legacy_charged';
       }
-      return onPaymentIntent(intent, true);
     }
-    case 'payment_intent.payment_failed': {
+
+    if (event.type === 'payment_intent.payment_failed') {
       const intent = event.data.object as Stripe.PaymentIntent;
-      if (intent.metadata?.type === 'orive_settlement' && intent.metadata.bookingId) {
-        await markBookingChargeFailed(intent.metadata.bookingId);
-        return 'legacy_failed';
-      }
-      return onPaymentIntent(intent, false);
+      const bookingId = intent.metadata?.bookingId;
+      if (bookingId) await markBookingChargeFailed(bookingId);
     }
-    case 'charge.refunded': {
+
+    if (event.type === 'charge.refunded') {
       const charge = event.data.object as Stripe.Charge;
-      const session = await onChargeRefunded(charge);
-      if (session !== 'ignored') return session;
-      const intentId = typeof charge.payment_intent === 'string' ? charge.payment_intent : charge.payment_intent?.id;
-      const bookingId = charge.metadata?.bookingId || (intentId ? (await listBookings()).find((item) => item.stripePaymentIntentId === intentId)?.id : undefined);
-      if (bookingId && charge.refunded) {
-        await markBookingRefunded(bookingId);
-        return 'legacy_refunded';
-      }
-      return 'ignored';
+      const intentId = typeof charge.payment_intent === 'string' ? charge.payment_intent : '';
+      const bookingId = charge.metadata?.bookingId || (await listBookings()).find((item) => item.stripePaymentIntentId === intentId)?.id;
+      if (bookingId) await markBookingRefunded(bookingId);
     }
-    case 'account.updated':
-      return onAccountUpdated(event.data.object as Stripe.Account);
-    default:
-      return 'ignored';
-  }
-}
 
-async function chatCredits(session: Stripe.Checkout.Session) {
-  const plan = resolveChatCreditPlan(session.metadata?.plan);
-  const visitorKey = session.metadata?.visitorKey;
-  if (plan && visitorKey) {
-    const customerId = typeof session.customer === 'string' ? session.customer : session.customer?.id;
-    grantChatCredits({ visitorKey, plan, stripeSessionId: session.id, stripeCustomerId: customerId });
+    return NextResponse.json({ received: true });
+  } catch (error: any) {
+    console.error('[Stripe Webhook Error]:', error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
-  return 'chat_credits';
-}
-
-/** Legacy pay-link flow (/pay/[bookingId]): mark paid, one intake mail, one receipt. No JSON log file (S10). */
-async function legacyPaymentCompleted(session: Stripe.Checkout.Session) {
-  const bookingId = session.metadata?.bookingId as string;
-  const before = await getBooking(bookingId);
-  if (!before) return 'unknown_booking';
-  const paidBooking = await markBookingPaid(bookingId, session.id);
-  if (paidBooking && !paidBooking.intakeSent) {
-    try {
-      await notifyFacilitatorOfIntake(paidBooking);
-      await markIntakeSent(paidBooking.id);
-    } catch (error) {
-      logError('webhook.intake', error, { bookingId });
-    }
-  }
-  const customerEmail = session.customer_details?.email || session.customer_email || paidBooking?.customerEmail;
-  if (customerEmail && paidBooking && !paidBooking.receiptSent) {
-    const sessionAmount = paidBooking.priceCents / 100;
-    const feeAmount = (paidBooking.feeCents ?? CONCIERGE_FEE_CENTS) / 100;
-    const receipt = renderPaymentReceiptEmail({
-      receiptNumber: `REC-${new Date().getFullYear()}-${paidBooking.id.slice(-6).toUpperCase()}`,
-      bookingReference: bookingId,
-      sessionTitle: paidBooking.sessionTitle,
-      clientName: session.customer_details?.name || paidBooking.customerName || 'Kunde',
-      clientEmail: customerEmail,
-      amount: sessionAmount + feeAmount,
-      sessionAmount,
-      feeAmount,
-      currency: 'EUR',
-      date: new Date().toLocaleDateString('de-DE'),
-      bookingPassUrl: bookingPassUrl(bookingId),
-    });
-    await sendEmail({ to: customerEmail, subject: receipt.subject, html: receipt.html });
-    await markReceiptSent(paidBooking.id);
-  }
-  return 'legacy_paid';
 }

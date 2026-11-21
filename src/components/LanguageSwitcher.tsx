@@ -10,15 +10,42 @@ export function LanguageSwitcher({
   className,
   align = "right",
   compact = false,
+  side = "auto",
 }: {
   className?: string;
   align?: "left" | "right";
+  /** Where the list opens. "auto" flips above the trigger when there is not enough room below. */
+  side?: "top" | "bottom" | "auto";
   /** Navbar style: globe + locale code only */
   compact?: boolean;
 }) {
   const { language, setLanguage, languages } = useLanguage();
   const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState<{ up: boolean; maxH: number }>({ up: side === "top", maxH: 288 });
   const rootRef = useRef<HTMLDivElement>(null);
+
+  // Collision handling: measure free space above/below the trigger and cap the list height so it is fully visible.
+  useEffect(() => {
+    if (!open) return;
+    const place = () => {
+      const r = rootRef.current?.getBoundingClientRect();
+      if (!r) return;
+      const margin = 12;
+      const below = window.innerHeight - r.bottom - margin;
+      const above = r.top - margin;
+      const wanted = 288;
+      const up = side === "top" ? true : side === "bottom" ? false : below < Math.min(wanted, 200) && above > below;
+      const room = Math.max(120, (up ? above : below) - 8);
+      setPlacement({ up, maxH: Math.min(wanted, room) });
+    };
+    place();
+    window.addEventListener("resize", place);
+    window.addEventListener("scroll", place, true);
+    return () => {
+      window.removeEventListener("resize", place);
+      window.removeEventListener("scroll", place, true);
+    };
+  }, [open, side]);
 
   useEffect(() => {
     if (!open) return;
@@ -75,9 +102,11 @@ export function LanguageSwitcher({
           role="listbox"
           aria-label="Language"
           className={cn(
-            "absolute z-[60] mt-2 max-h-72 w-[15.5rem] overflow-y-auto rounded-xl border border-slate-200 bg-white py-1.5 shadow-xl dark:border-white/12 dark:bg-[#02182B]",
+            "absolute z-[60] w-[15.5rem] overflow-y-auto overscroll-contain rounded-xl border border-slate-200 bg-white py-1.5 shadow-xl dark:border-white/12 dark:bg-[#02182B]",
+            placement.up ? "bottom-full mb-2" : "top-full mt-2",
             align === "right" ? "right-0" : "left-0"
           )}
+          style={{ maxHeight: placement.maxH }}
         >
           {languages.map((lang) => {
             const active = language === lang.code;

@@ -29,7 +29,9 @@ import { toast } from 'sonner';
 import { formatOfferingWhenLine, offeringSpan } from '@/lib/offeringSpan';
 import { OfferingImageStage } from '@/components/OfferingImageStage';
 import { OfferingHeroHeading } from '@/components/OfferingHeroHeading';
-import { ensureOfferingDescription } from '@/lib/offeringDescription';
+import { cleanDescription, isSafeAvatarUrl } from '@/lib/offerQuality';
+import { ElementAvatar } from '@/components/directory/ElementAvatar';
+import { ELEMENT_OF } from '@/components/directory/elements';
 
 function formatDuration(duration: string, isDe: boolean): string {
   const raw = String(duration || '').trim();
@@ -132,9 +134,9 @@ export default function ExperienceDetail() {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-3xl font-bold mb-4">{copy('Angebot nicht gefunden', 'Experience Not Found')}</h1>
+          <h1 className="text-3xl font-bold mb-4">{copy('Angebot nicht gefunden', 'Offer not found')}</h1>
           <Link href="/marketplace">
-            <Button>{copy('Zum Marketplace', 'Browse Experiences')}</Button>
+            <Button>{copy('Zum Marktplatz', 'Browse the marketplace')}</Button>
           </Link>
         </div>
       </Layout>
@@ -146,6 +148,7 @@ export default function ExperienceDetail() {
     ? optimizeOfferingImage(experience.image, 1600)
     : experience.image;
   const gallery = offeringGalleryOf({
+    id: experience.id,
     image: experience.image,
     tags: experience.tags,
     title: experience.title,
@@ -153,16 +156,8 @@ export default function ExperienceDetail() {
   });
   const initials = experience.facilitatorName.split(' ').map((n) => n[0]).join('').toUpperCase();
   const facilitatorTags = facilitator?.tags || (experience.category ? [experience.category] : []);
-  const aboutText = ensureOfferingDescription({
-    title: experience.title,
-    description: experience.description,
-    tags: experience.tags,
-    category: experience.category,
-    location: experience.location,
-    facilitatorName: experience.facilitatorName,
-    type: experience.type,
-    lang: language === "de" ? "de" : "en",
-  });
+  // Original (sanitized) partner description only – no generated template copy.
+  const aboutText = cleanDescription(experience.description);
   const durationLabel = experience.duration ? formatDuration(experience.duration, isDe) : '';
   const dates = experience.dates || [];
   const showRating = fulfillment === 'orive' && typeof experience.rating === 'number' && experience.rating > 0;
@@ -331,10 +326,19 @@ export default function ExperienceDetail() {
                   onClick={() => navigate.push(`/facilitator/${experience.facilitatorId}`)}
                   className="w-full flex items-center gap-4 text-left group"
                 >
-                  <Avatar className="w-14 h-14">
-                    <AvatarImage src={experience.facilitatorAvatar || facilitator?.avatar} alt={experience.facilitatorName} />
-                    <AvatarFallback>{initials}</AvatarFallback>
-                  </Avatar>
+                  {(() => {
+                    const av = [experience.facilitatorAvatar, facilitator?.avatar].find((u) => isSafeAvatarUrl(u));
+                    if (av) {
+                      return (
+                        <Avatar className="w-14 h-14">
+                          <AvatarImage src={av} alt={experience.facilitatorName} />
+                          <AvatarFallback>{initials}</AvatarFallback>
+                        </Avatar>
+                      );
+                    }
+                    const el = (experience.tags || []).map((t: string) => ELEMENT_OF[t === 'Bodywork' ? 'BodyWork' : t]).find(Boolean) || null;
+                    return <ElementAvatar element={el} size={56} />;
+                  })()}
                   <div className="min-w-0 flex-1">
                     <p className="font-semibold text-slate-900 dark:text-white group-hover:text-[#00CDAC] transition-colors">
                       {experience.facilitatorName}

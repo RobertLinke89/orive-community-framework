@@ -1,13 +1,11 @@
 import { NextResponse } from 'next/server';
 import { getBooking } from '@/lib/oriveStore';
 import { CONCIERGE_FEE_CENTS, cancelDeadline } from '@/lib/payments';
-import { tokenFromRequest, verifyBookingToken } from '@/lib/bookingToken';
-import { facilitatorFromRequest } from '@/lib/facilitatorAuth';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(
-  request: Request,
+  _request: Request,
   { params }: { params: { bookingId: string } }
 ) {
   const rawId = params.bookingId;
@@ -15,15 +13,8 @@ export async function GET(
     return NextResponse.json({ error: 'Missing booking ID' }, { status: 400 });
   }
 
-  // S2: the booking pass needs the signed token from the e-mail/redirect, or the owning facilitator's JWT.
-  const tokenOk = verifyBookingToken(tokenFromRequest(request), rawId);
   const booking = await getBooking(rawId);
-  let allowed = tokenOk;
-  if (!allowed && booking) {
-    const actor = await facilitatorFromRequest(request);
-    allowed = Boolean(actor && actor.email === booking.facilitatorEmail.trim().toLowerCase());
-  }
-  if (!booking || !allowed) {
+  if (!booking) {
     return NextResponse.json({ error: 'Booking not found.' }, { status: 404 });
   }
 
@@ -61,8 +52,9 @@ export async function GET(
       clientName: booking.customerName,
       clientEmail: booking.customerEmail,
       facilitatorName: booking.facilitatorName,
+      facilitatorEmail: booking.facilitatorEmail,
       location: booking.location,
       createdAt: booking.createdAt,
     },
-  }, { headers: { 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer' } });
+  });
 }

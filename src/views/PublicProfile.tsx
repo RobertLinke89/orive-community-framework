@@ -3,11 +3,12 @@ import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import { useEffect, useState, useRef, useMemo } from "react";
 
-import { getAvatarUrl, getBannerUrl } from "@/lib/imageUrl";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { SafeImage } from "@/components/SafeImage";
+import { isSafeAvatarUrl } from "@/lib/safeImage";
 import { cn } from "@/lib/utils";
 import {
   MapPin,
@@ -35,7 +36,6 @@ import { getAnonClientHeaders } from "@/lib/anonClientToken";
 import { getOpsTelemetryFromInvoke } from "@/lib/opsTelemetry";
 import { setMetaDescription, setPageTitle } from "@/lib/branding";
 import { useConnectivityBannerStore } from "@/stores/connectivityBannerStore";
-import { facilitators as mockFacilitators } from "@/data/facilitatorsData";
 import { toast } from "sonner";
 // ── Components ──
 import { SessionBookingModal } from "@/components/SessionBookingModal";
@@ -150,38 +150,7 @@ export default function PublicProfile() {
       setOpsPolicy(profileTelemetry.policy);
 
       if (error) {
-        // Fallback to local mock data if username matches
-        if (username) {
-          const mock = mockFacilitators.find(f => f.username === username || f.name.toLowerCase().replace(/\s+/g, '-') === username);
-          if (mock) {
-            const mappedProfile: Profile = {
-              id: mock.id,
-              username: mock.username || username,
-              full_name: mock.name,
-              professional_title: mock.professionalTitle || "Wellness Facilitator",
-              expertise: mock.tags.join(', '),
-              bio: mock.bio || `Expert in ${mock.tags.join(' and ')}. Helping you achieve holistic wellbeing through professional guidance and personalized support.`,
-              location: mock.location,
-              avatar_url: mock.avatar,
-              banner_url: null
-            };
-            setProfile(mappedProfile);
-            setOfferings([{
-              id: `mock-offering-${mock.id}`,
-              type: 'session',
-              title: `${mock.tags[0]} with ${mock.name}`,
-              description: `A personalized ${mock.tags[0].toLowerCase()} session designed to help you reach your wellness goals.`,
-              price: mock.hourlyRate,
-              duration: 60,
-              location: mock.location,
-              image_url: null
-            }]);
-            setPageTitle(mock.name);
-            setLoading(false);
-            return;
-          }
-        }
-
+        // No demo/sample fallback anymore (removed 2026-11-09): only real profiles are shown.
         if (status === 404 || data?.error === "Profile not public") {
           setProfile(null);
           setProfileNotPublic(true);
@@ -323,18 +292,18 @@ export default function PublicProfile() {
           ) : !profile ? (
             <div className="text-center p-12 bg-gray-100 dark:bg-white/5 backdrop-blur-xl rounded-md border border-gray-200 dark:border-white/10 max-w-xl mx-auto shadow-2xl mt-12">
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                {profileNotPublic ? "Private Profile" : "Profile Not Found"}
+                {profileNotPublic ? "Privates Profil" : "Profil nicht gefunden"}
               </h1>
               <p className="text-gray-500 dark:text-white/60 mb-10 text-lg">
                 {profileNotPublic
-                  ? "This facilitator's profile is currently set to private."
-                  : "We couldn't find the profile you were looking for. It might have been moved or removed."}
+                  ? "Dieses Profil ist derzeit privat."
+                  : "Dieses Profil gibt es nicht (mehr). Vielleicht wurde es verschoben oder entfernt."}
               </p>
               <Button 
                 onClick={() => navigate.push("/marketplace")} 
                 className="bg-[#00CDAC] text-white hover:bg-[#00CDAC]/90 font-bold rounded-md px-10 h-14 text-lg transition-all shadow-glow"
               >
-                Browse Marketplace
+                Zum Marktplatz
               </Button>
             </div>
           ) : (
@@ -381,7 +350,9 @@ export default function PublicProfile() {
                       <div className="relative">
                         <div className="absolute -inset-1.5 bg-gradient-to-br from-[#00CDAC] to-[#02AAB0] rounded-full blur-md opacity-20" />
                         <Avatar className="w-32 h-32 border-2 border-gray-200 dark:border-white/10 p-1 bg-gray-100 dark:bg-white/5">
-                          <AvatarImage src={getAvatarUrl(profile.avatar_url)} className="rounded-full object-cover" />
+                          {isSafeAvatarUrl(profile.avatar_url) ? (
+                            <AvatarImage src={profile.avatar_url || undefined} className="rounded-full object-cover" />
+                          ) : null}
                           <AvatarFallback className="text-4xl bg-[#0f2137] text-[#00CDAC]">
                             {profile.full_name?.charAt(0)}
                           </AvatarFallback>
@@ -403,7 +374,7 @@ export default function PublicProfile() {
                         <div className="flex-1 text-center">
                           <div className="flex items-center justify-center gap-1 text-gray-900 dark:text-white text-lg font-bold">
                             <Star className="w-4 h-4 text-[#FDDB5B] fill-[#FDDB5B]" />
-                            <span>{profile.rating?.toFixed(1) || "5.0"}</span>
+                            <span>{typeof profile.rating === "number" && profile.rating > 0 && (profile.reviewCount ?? 0) > 0 ? profile.rating.toFixed(1) : "–"}</span>
                           </div>
                           <p className="text-gray-400 dark:text-white/40 text-[10px] uppercase tracking-widest mt-1">Rating</p>
                         </div>
@@ -528,7 +499,7 @@ export default function PublicProfile() {
                           >
                             <div className="relative aspect-[4/3] rounded-md overflow-hidden mb-4 bg-gray-100 dark:bg-[#0a1628] border border-gray-100 dark:border-white/5 group-hover:border-[#00CDAC]/30 transition-all duration-500">
                               {offering.image_url ? (
-                                <img src={offering.image_url} alt={offering.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <SafeImage src={offering.image_url} alt={offering.title} kind="cover" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                               ) : (
                                 <div className="w-full h-full bg-gradient-to-br from-[#02AAB0]/20 to-transparent flex items-center justify-center">
                                   <Calendar className="w-12 h-12 text-gray-300 dark:text-white/10" />

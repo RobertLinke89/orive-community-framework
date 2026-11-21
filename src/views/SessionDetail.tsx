@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { isSafeAvatarUrl } from "@/lib/safeImage";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,7 +31,7 @@ import { OfferingFactPills } from "@/components/OfferingFactPills";
 import { OfferingThingsToKnow, bookingPriceNote } from "@/components/OfferingThingsToKnow";
 import { useLanguage } from "@/hooks/useLanguage";
 import { toast } from "sonner";
-import { getAvatarUrl, offeringGalleryOf } from "@/lib/imageUrl";
+import { offeringGalleryOf } from "@/lib/imageUrl";
 import { OfferingImageStage } from "@/components/OfferingImageStage";
 import { OfferingHeroHeading } from "@/components/OfferingHeroHeading";
 import { getSessionById } from "@/data/sessionsData";
@@ -88,6 +89,8 @@ export default function SessionDetail() {
 
   const fetchSessionData = async () => {
     try {
+      // Only real UUIDs exist in the DB; anything else would just produce a 400 + console error.
+      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(sessionId))) throw new Error("not-a-uuid");
       const { data: sessionData, error: sessionError } = await supabase
         .from("offerings")
         .select("*")
@@ -144,8 +147,7 @@ export default function SessionDetail() {
           });
         }
       } else {
-        console.error("Error fetching session:", error);
-        toast.error("Failed to load session details");
+        // not found: the page shows the "Angebot nicht gefunden" state below (server already answers 404 for invalid ids)
       }
     } finally {
       setLoading(false);
@@ -221,10 +223,10 @@ export default function SessionDetail() {
     return (
       <Layout>
         <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
-          <h1 className="text-3xl font-bold text-foreground mb-4">Session Not Found</h1>
-          <p className="text-muted-foreground mb-8 text-center max-w-md">This session may have been removed or doesn't exist.</p>
+          <h1 className="text-3xl font-bold text-foreground mb-4">Angebot nicht gefunden</h1>
+          <p className="text-muted-foreground mb-8 text-center max-w-md">Dieses Angebot wurde entfernt oder existiert nicht.</p>
           <Button onClick={() => navigate.push("/marketplace")} size="lg">
-            Browse Offerings
+            Zum Marktplatz
           </Button>
         </div>
       </Layout>
@@ -232,6 +234,7 @@ export default function SessionDetail() {
   }
 
   const gallery = offeringGalleryOf({
+    id: session.id,
     image_url: session.image_url,
     tags: session.tags,
     title: session.title,
@@ -409,7 +412,9 @@ export default function SessionDetail() {
                       className="flex items-start gap-4 md:gap-6 p-4 md:p-6 rounded-lg bg-gradient-to-br from-muted/50 to-muted/20 hover:from-muted hover:to-muted/40 transition-all cursor-pointer group border border-border/50"
                     >
                       <Avatar className="w-16 h-16 md:w-20 md:h-20 border-2 border-highlight/20 shadow-sm">
-                        <AvatarImage src={getAvatarUrl(facilitator.avatar_url)} alt={facilitator.full_name} />
+                        {isSafeAvatarUrl(facilitator.avatar_url) ? (
+                          <AvatarImage src={facilitator.avatar_url || undefined} alt={facilitator.full_name} />
+                        ) : null}
                         <AvatarFallback className="text-xl bg-highlight/10 text-highlight font-semibold">
                           {initials}
                         </AvatarFallback>

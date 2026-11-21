@@ -14,6 +14,7 @@ import {
   type DiscoveryOffering,
 } from "@/components/ChatDiscoveryPanel";
 import { FREE_MONTHLY_CREDITS } from "@/lib/chatCreditEngine";
+import { DirectorySearchResults, type DirectoryPayload } from "@/components/DirectorySearchResults";
 import { cn } from "@/lib/utils";
 
 type ChatTurn = {
@@ -21,6 +22,7 @@ type ChatTurn = {
   role: "user" | "assistant";
   text: string;
   offerings?: DiscoveryOffering[];
+  directory?: DirectoryPayload | null;
   whatsapp?: string | null;
   topic?: string | null;
 };
@@ -222,6 +224,7 @@ export default function OriveChat() {
               role: item.role,
               text: item.text,
               offerings: item.offerings,
+              directory: item.directory || null,
               whatsapp: item.whatsapp,
             }))
           : []
@@ -325,6 +328,7 @@ export default function OriveChat() {
           role: item.role,
           text: item.text,
           offerings: item.offerings,
+          directory: item.directory || undefined,
           whatsapp: item.whatsapp,
         })),
       }),
@@ -420,7 +424,8 @@ export default function OriveChat() {
         assistant = {
           role: "assistant",
           text: data.reply || copy("Keine Antwort.", "No reply."),
-          offerings: Array.isArray(data.offerings) ? data.offerings : [],
+          offerings: data.directory ? [] : Array.isArray(data.offerings) ? data.offerings : [],
+          directory: data.directory || null,
           whatsapp: data.whatsapp || null,
         };
       }
@@ -794,6 +799,7 @@ export default function OriveChat() {
                       )}
                     >
                       <p className="whitespace-pre-line">{turn.text}</p>
+                      {turn.directory ? <DirectorySearchResults data={turn.directory} de={isDe} /> : null}
                       {turn.offerings?.length ? (
                         <ul className="mt-3 space-y-2">
                           {turn.offerings.map((hit) => (

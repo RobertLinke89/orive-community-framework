@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { memo, useMemo } from 'react';
+import { SafeImage } from '@/components/SafeImage';
 
 import { CheckCircle, ChevronRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -131,9 +132,10 @@ const FacilitatorCard = memo(function FacilitatorCard({
         <div className="relative bg-white dark:bg-[#0f2137] rounded-lg border border-gray-100 dark:border-[#1a3a5c] group-hover/card:border-gray-200 dark:group-hover/card:border-transparent transition-all duration-300 overflow-hidden">
           {/* Image */}
           <div className="relative aspect-[3/4] overflow-hidden">
-            <img
+            <SafeImage
               src={facilitator.avatar}
               alt={facilitator.name}
+              kind="cover"
               className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-102"
             />
             {/* Subtle gradient overlay */}

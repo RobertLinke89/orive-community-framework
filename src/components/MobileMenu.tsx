@@ -41,15 +41,13 @@ export function MobileMenu() {
   };
 
   const navItems = [
-    { title: t('home') || 'Home', url: '/' },
-    { title: 'Marketplace', url: '/marketplace' },
+    { title: copy('Start', 'Home'), url: '/' },
+    { title: copy('Facilitators entdecken', 'Discover facilitators'), url: '/facilitators' },
+    { title: copy('Marktplatz', 'Marketplace'), url: '/marketplace' },
     { title: copy('Für Facilitators', 'For Facilitators'), url: '/for-facilitators' },
     { title: 'ORIVE dezk', url: '/orive-dezk' },
-    { title: 'Formation', url: '/formation' },
-    { title: 'Blog', url: '/blog' },
-    { title: 'Shop', url: '/shop' },
     { title: 'Affiliate & Partner', url: '/affiliate' },
-    { title: t('about') || 'About', url: '/about' },
+    { title: copy('Über uns', 'About'), url: '/about' },
   ];
 
   const handleLinkClick = () => {
@@ -114,7 +112,7 @@ export function MobileMenu() {
           </Link>
 
           <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <LanguageSwitcher align="left" className="text-foreground font-semibold" />
+            <LanguageSwitcher align="left" side="top" className="text-foreground font-semibold" />
 
             {/* Theme: System, Light, Dark - Instant touch/click segmented toggle */}
             {mounted && (

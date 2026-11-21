@@ -1,64 +1,40 @@
 "use client";
 
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUp } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, ArrowUp } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
-import { getAnonClientHeaders, getAnonClientToken } from "@/lib/anonClientToken";
+import { getAnonClientToken } from "@/lib/anonClientToken";
 import { FREE_MONTHLY_CREDITS } from "@/lib/chatCreditEngine";
 
-type CreditBalance = {
-  remaining: number | null;
-  freeRemaining: number;
-  prepaid: number;
-  lifetime: boolean;
-};
+// Search examples: the hero input searches all directory facilitators + offers (AI search) and opens the results in the chat.
+const CHIPS_DE = ["Eisbaden in Hamburg", "Yoga in München", "Breathwork Berlin", "Klangschalen Wien"];
+const CHIPS_EN = ["Ice bathing in Hamburg", "Yoga in Munich", "Breathwork Berlin", "Sound bath Vienna"];
 
-const CHIPS_DE = ["Ich fühle mich überfordert", "Abend-Ausklang begleiten", "Morgenritual vorschlagen", "Was braucht mein Körper?"];
-const CHIPS_EN = ["I feel overwhelmed", "Guide my evening wind-down", "Suggest a morning ritual", "What does my body need?"];
-
-function openChatTab(message: string) {
-  const url = `/chat?q=${encodeURIComponent(message.trim())}`;
-  window.open(url, "_blank", "noopener,noreferrer");
-}
 
 export function HeroConciergeChat() {
   const { language, copy } = useLanguage();
+  const router = useRouter();
   const isDe = language === "de";
   const chips = isDe ? CHIPS_DE : CHIPS_EN;
 
   const [input, setInput] = useState("");
-  const [balance, setBalance] = useState<CreditBalance | null>(null);
-
-  const refreshBalance = useCallback(async () => {
-    getAnonClientToken();
-    try {
-      const res = await fetch("/api/chat/credits", {
-        headers: getAnonClientHeaders(),
-      });
-      if (!res.ok) return;
-      const data = await res.json();
-      setBalance({
-        remaining: data.remaining,
-        freeRemaining: data.freeRemaining,
-        prepaid: data.prepaid,
-        lifetime: Boolean(data.lifetime),
-      });
-    } catch {
-      // ignore
-    }
-  }, []);
+  const [dirTotal, setDirTotal] = useState<number | null>(null);
 
   useEffect(() => {
-    void refreshBalance();
-  }, [refreshBalance]);
+    let alive = true;
+    fetch("/api/directory/stats").then((r) => (r.ok ? r.json() : null)).then((j) => { if (alive && j && typeof j.total === "number" && j.total > 0) setDirTotal(j.total); }).catch(() => {});
+    return () => { alive = false; };
+  }, []);
+
 
   function launch(raw: string) {
     const message = raw.trim();
     if (!message) return;
     getAnonClientToken();
-    setInput("");
-    openChatTab(message);
+    // Same tab: a new tab from a form submit is blocked by many mobile browsers and loses the user.
+    router.push(`/chat?q=${encodeURIComponent(message)}`);
   }
 
   function onSubmit(event: FormEvent) {
@@ -66,11 +42,6 @@ export function HeroConciergeChat() {
     launch(input);
   }
 
-  const balanceLabel = balance?.lifetime
-    ? copy("Unbegrenzt", "Unlimited")
-    : typeof balance?.remaining === "number"
-      ? copy(`${balance.remaining} Credits`, `${balance.remaining} credits`)
-      : null;
 
   return (
     <div className="mx-auto w-full max-w-3xl px-2">
@@ -84,15 +55,15 @@ export function HeroConciergeChat() {
             value={input}
             onChange={(event) => setInput(event.target.value)}
             placeholder={copy(
-              "z. B. Ich kann nicht schlafen — was hilft heute Nacht?",
-              "e.g. I can't sleep — what helps tonight?"
+              "z. B. Eisbaden in Hamburg, Yoga in München …",
+              "e.g. ice bathing in Hamburg, yoga in Munich …"
             )}
             className="min-w-0 flex-1 bg-transparent border-0 px-2 py-2 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:text-white dark:placeholder:text-white/35"
           />
           <button
             type="submit"
             disabled={!input.trim()}
-            aria-label={copy("Im Chat öffnen", "Open in chat")}
+            aria-label={copy("Suchen", "Search")}
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#00CDAC] to-[#02AAB0] text-white disabled:opacity-40"
           >
             <ArrowUp className="w-4 h-4" strokeWidth={2.5} />
@@ -100,7 +71,7 @@ export function HeroConciergeChat() {
         </div>
       </form>
 
-      <div className="mt-2.5 flex flex-nowrap items-center justify-center gap-1.5 overflow-x-auto px-1 no-scrollbar sm:gap-2">
+      <div className="mt-2.5 hidden lg:mt-5 lg:flex flex-nowrap items-center justify-center gap-2 overflow-x-auto px-1 no-scrollbar">
         {chips.map((chip) => (
           <button
             key={chip}
@@ -113,20 +84,24 @@ export function HeroConciergeChat() {
         ))}
       </div>
 
-      <p className="mt-2 text-center text-[11px] text-slate-400 dark:text-white/35">
-        {balanceLabel
-          ? copy(
-              `${balanceLabel} · ${FREE_MONTHLY_CREDITS} gratis / Monat · Kein Abo`,
-              `${balanceLabel} · ${FREE_MONTHLY_CREDITS} free / month · No subscription`
-            )
-          : copy(
-              `${FREE_MONTHLY_CREDITS} gratis Credits / Monat · Danach Prepaid · Kein Abo`,
-              `${FREE_MONTHLY_CREDITS} free credits / month · Then prepaid · No subscription`
-            )}
-        {" · "}
-        <Link href="/chat" target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">
-          {copy("Volle Ansicht", "Full view")}
+      <div className="mt-3 hidden lg:mt-5 lg:flex justify-center">
+        <Link
+          href="/facilitators"
+          data-testid="hero-directory-cta"
+          className="group inline-flex items-center gap-1.5 rounded-full bg-white/85 px-4 py-2 text-xs font-bold text-[#008975] shadow-sm ring-1 ring-[#00CDAC]/30 backdrop-blur transition hover:bg-white hover:ring-[#00CDAC]/60 dark:bg-white/10 dark:text-[#00CDAC] sm:text-sm"
+        >
+          {dirTotal
+            ? copy(`Alle ${dirTotal.toLocaleString("de-DE")} Facilitators entdecken`, `Discover all ${dirTotal.toLocaleString("en-GB")} facilitators`)
+            : copy("Alle Facilitators entdecken", "Discover all facilitators")}
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
         </Link>
+      </div>
+
+      <p className="mt-2 hidden lg:mt-4 lg:block text-center text-[11px] text-slate-500 dark:text-white/45">
+        {copy(
+          `KI-Suche über alle Facilitators und Angebote · ${FREE_MONTHLY_CREDITS} Anfragen pro Monat kostenlos, ohne Abo`,
+          `AI search across all facilitators and offers · ${FREE_MONTHLY_CREDITS} free requests per month, no subscription`
+        )}
       </p>
     </div>
   );

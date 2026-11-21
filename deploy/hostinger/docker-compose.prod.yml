@@ -1,0 +1,18 @@
+services:
+  orive-web:
+    image: node:20-slim
+    container_name: orive-web
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+      - PORT=8089
+    command: [npm, run, start]
+    networks:
+      - brand-network
+
+networks:
+  brand-network:
+    external: true

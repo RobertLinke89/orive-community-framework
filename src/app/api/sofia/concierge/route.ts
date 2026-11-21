@@ -11,6 +11,7 @@ import {
   creditExhaustedMessage,
 } from '@/lib/chatCreditEngine';
 import { geminiConciergeReply } from '@/lib/geminiConcierge';
+import { searchDirectory, type DirectorySearchResult } from '@/lib/directorySearch';
 
 export const dynamic = 'force-dynamic';
 
@@ -88,9 +89,19 @@ export async function POST(req: Request) {
     );
   }
 
-  const local = await answerConcierge(message, languageHint);
+  const [local, dir] = await Promise.all([
+    answerConcierge(message, languageHint),
+    searchDirectory(message, { languageHint }).catch((e): DirectorySearchResult | null => {
+      console.error('[directory-search]', String(e?.message || e));
+      return null;
+    }),
+  ]);
+  const directoryHit = !local.crisis && dir && (dir.cards.length > 0 || dir.alternatives.length > 0);
 
-  if (!local.crisis) {
+  if (directoryHit && dir) {
+    // Directory profiles are the primary search results; the text is grounded in those cards only.
+    local.reply = dir.text;
+  } else if (!local.crisis) {
     try {
       const gemini = await geminiConciergeReply({
         message,
@@ -148,5 +159,16 @@ export async function POST(req: Request) {
     whatsapp: whatsapp
       ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(message || 'Breathwork Berlin')}`
       : null,
+    ...(directoryHit && dir
+      ? {
+          provider: dir.provider ? `directory+${dir.provider}` : 'directory',
+          directory: {
+            cards: dir.cards,
+            total: dir.total,
+            alternatives: dir.alternatives.map((a) => ({ label: a.label, cards: a.cards })),
+            widened: dir.widened,
+          },
+        }
+      : {}),
   });
 }

@@ -20,8 +20,9 @@ import { Layout } from "@/components/Layout";
 import { SessionBookingModal } from "@/components/SessionBookingModal";
 import { OfferingCard } from "@/components/OfferingCard";
 import { toast } from "sonner";
-import { getAvatarUrl } from "@/lib/imageUrl";
 import { getFacilitatorById } from "@/data/facilitatorsData";
+import { ElementAvatar } from "@/components/directory/ElementAvatar";
+import { ELEMENT_OF, type ElementKey } from "@/components/directory/elements";
 import { allMockOfferings } from "@/data/offeringsData";
 import { useLanguage } from "@/hooks/useLanguage";
 import type { PublicOffering } from "@/hooks/usePublicOfferings";
@@ -41,6 +42,8 @@ interface FacilitatorData {
   rating?: number | null;
   reviewCount?: number | null;
   hourlyRate?: string | null;
+  languages?: string[] | string | null;
+  responseTime?: string | null;
 }
 
 interface Offering {
@@ -253,11 +256,19 @@ export default function FacilitatorProfile() {
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             <div className="lg:col-span-7 space-y-12">
               <header className="flex items-start gap-5 sm:gap-7">
-                <img
-                  src={getAvatarUrl(facilitator.avatar_url)}
-                  alt={facilitator.full_name}
-                  className="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl object-cover bg-slate-100 dark:bg-[#01223F] shrink-0"
-                />
+                <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#01223F] shrink-0 flex items-center justify-center">
+                  <ElementAvatar
+                    element={
+                      (facilitator.expertise || facilitator.professional_title || "")
+                        .split(",")
+                        .map((t) => t.trim())
+                        .map((t) => ELEMENT_OF[t === "Bodywork" ? "BodyWork" : t] as ElementKey | undefined)
+                        .find(Boolean) || "aether"
+                    }
+                    avatar={facilitator.avatar_url}
+                    size={112}
+                  />
+                </div>
                 <div className="min-w-0 pt-1">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400 mb-2">
                     {facilitator.professional_title || (copy("Facilitator", "Facilitator"))}
@@ -281,10 +292,18 @@ export default function FacilitatorProfile() {
                         {facilitator.location}
                       </span>
                     )}
+                    {(() => {
+                      const raw = facilitator.languages;
+                      const langs = (Array.isArray(raw) ? raw : String(raw || "").split(/[,|/]/))
+                        .map((s) => s.trim())
+                        .filter(Boolean);
+                      return langs.length > 0 ? (
                     <span className="inline-flex items-center gap-1.5">
                       <Languages className="w-3.5 h-3.5" />
-                      {copy("Englisch, Deutsch", "English, German")}
+                      {langs.join(", ")}
                     </span>
+                      ) : null;
+                    })()}
                   </div>
                 </div>
               </header>
@@ -357,13 +376,15 @@ export default function FacilitatorProfile() {
                       <dd className="text-slate-900 dark:text-white font-medium text-right">{facilitator.location}</dd>
                     </div>
                   )}
+                  {facilitator.responseTime ? (
                   <div className="flex items-center justify-between gap-4">
                     <dt className="text-slate-400 inline-flex items-center gap-2">
                       <Clock className="w-3.5 h-3.5" />
                       {copy("Antwort", "Replies")}
                     </dt>
-                    <dd className="text-slate-900 dark:text-white font-medium">{copy("in der Regel am selben Tag", "usually same day")}</dd>
+                    <dd className="text-slate-900 dark:text-white font-medium">{facilitator.responseTime}</dd>
                   </div>
+                  ) : null}
                 </dl>
 
                 <button

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { format, parseISO } from "date-fns";
@@ -69,28 +69,6 @@ export default function CustomerBookingPass() {
   const [checkingOut, setCheckingOut] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
 
-  // S2/S9: signed booking token from the e-mail/redirect link. Kept in sessionStorage and
-  // removed from the address bar so it does not leak via Referer or screenshots.
-  const tokenKey = `orive-booking-token:${rawId}`;
-  const bookingToken = useMemo(() => {
-    if (typeof window === "undefined" || !rawId) return "";
-    const fromUrl = new URLSearchParams(window.location.search).get("t");
-    if (fromUrl) {
-      window.sessionStorage.setItem(tokenKey, fromUrl);
-      return fromUrl;
-    }
-    return window.sessionStorage.getItem(tokenKey) || "";
-  }, [rawId, tokenKey]);
-  const authHeaders = useMemo(() => ({ "x-booking-token": bookingToken }), [bookingToken]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && new URLSearchParams(window.location.search).has("t")) {
-      const url = new URL(window.location.href);
-      url.searchParams.delete("t");
-      window.history.replaceState(null, "", url.toString());
-    }
-  }, []);
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const urlParams = new URLSearchParams(window.location.search);
@@ -101,9 +79,9 @@ export default function CustomerBookingPass() {
       if (sessionId && rawId) {
         fetch("/api/checkout/confirm", {
           method: "POST",
-          headers: { "Content-Type": "application/json", ...authHeaders },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sessionId, bookingId: rawId }),
-        }).then(() => fetch(`/api/booking/${encodeURIComponent(rawId)}`, { headers: authHeaders }).then((res) => res.json()).then((json) => {
+        }).then(() => fetch(`/api/booking/${encodeURIComponent(rawId)}`).then((res) => res.json()).then((json) => {
           if (json.booking) setBooking(json.booking);
         })).catch(() => {});
       }
@@ -112,13 +90,13 @@ export default function CustomerBookingPass() {
         toast.success(copy("Zahlung erfolgreich bestätigt!", "Payment confirmed successfully!"));
       }
     }
-  }, [isDe, rawId, authHeaders]);
+  }, [isDe, rawId]);
 
   useEffect(() => {
     async function fetchBooking() {
       try {
         setLoading(true);
-        const res = await fetch(`/api/booking/${encodeURIComponent(rawId)}`, { headers: authHeaders });
+        const res = await fetch(`/api/booking/${encodeURIComponent(rawId)}`);
         const json = await res.json();
         if (res.ok && json.booking) {
           setBooking(json.booking);
@@ -132,7 +110,7 @@ export default function CustomerBookingPass() {
     if (rawId) {
       fetchBooking();
     }
-  }, [rawId, authHeaders]);
+  }, [rawId]);
 
   const handleStripeCheckout = async () => {
     if (!booking) return;
@@ -530,19 +508,17 @@ export default function CustomerBookingPass() {
                     try {
                       const res = await fetch(`/api/booking/${encodeURIComponent(booking.id)}/cancel`, {
                         method: "POST",
-                        headers: { "Content-Type": "application/json", ...authHeaders },
-                        body: JSON.stringify({ by: "guest" }),
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email: booking.clientEmail, by: "guest" }),
                       });
                       const data = await res.json();
-                      if (data.willBeCharged) {
-                        toast.error(copy("Die kostenlose Stornofrist (24 h) ist vorbei. Die Session wird nach dem Termin berechnet.", "The free cancellation window (24h) has passed. The session is charged after the date."));
-                      } else if (!res.ok) {
+                      if (!res.ok) {
                         toast.error(data.error || (copy("Storno nicht möglich.", "Could not cancel.")));
                       } else {
                         toast.success(data.charged
                           ? (copy("Die Frist ist vorbei. Die Karte wird belastet.", "The window has passed. The card is charged."))
                           : (copy("Storniert. Es wird nichts abgebucht.", "Cancelled. Nothing will be charged.")));
-                        const next = await fetch(`/api/booking/${encodeURIComponent(booking.id)}`, { headers: authHeaders });
+                        const next = await fetch(`/api/booking/${encodeURIComponent(booking.id)}`);
                         const json = await next.json();
                         if (json.booking) setBooking(json.booking);
                       }

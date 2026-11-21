@@ -5,8 +5,8 @@ import { FactList, FactPage, FactSection } from "@/components/FactPage";
 import { useLanguage } from "@/hooks/useLanguage";
 
 const CONTACT = "robert.linke@me.com";
-const UPDATED_DE = "Stand: 28. September 2026";
-const UPDATED_EN = "Updated: 28 September 2026";
+const UPDATED_DE = "Stand: 10. November 2026";
+const UPDATED_EN = "Updated: 10 November 2026";
 
 export function Terms() {
   const { language, copy } = useLanguage();
@@ -18,6 +18,12 @@ export function Terms() {
       title={copy("Allgemeine Geschäftsbedingungen", "Terms of use")}
       updated={de ? UPDATED_DE : UPDATED_EN}
     >
+      <FactSection title={copy("Derzeit aktiver Umfang", "What is active at the moment")}>
+        <p>
+          {copy("Buchungen und Zahlungen über ORIVE („Auf ORIVE buchen“, Stripe), Auszahlungen an Facilitators (Stripe Connect), der ORIVE-Käuferschutz und der ORIVE Shop sind derzeit nicht aktiv. ORIVE nimmt derzeit kein Geld ein. Aktiv sind das Facilitator-Verzeichnis mit Anfrage-, Übernahme- und Entfernungsformular, die Suche sowie Konten. Die Abschnitte zu ORIVE-Buchungen, Preisen und Zahlung, Auszahlungen sowie Stornierung gelten erst, wenn diese Funktionen freigeschaltet werden.", "Bookings and payments via ORIVE (“Book on ORIVE”, Stripe), payouts to facilitators (Stripe Connect), ORIVE buyer protection and the ORIVE Shop are not active at the moment. ORIVE currently takes no money. Active are the facilitator directory with its enquiry, claim and removal forms, the search and accounts. The sections on ORIVE bookings, prices and payment, payouts and cancellation only apply once these features are switched on.")}
+        </p>
+      </FactSection>
+
       <FactSection title={copy("1. Geltungsbereich", "1. Scope")}>
         <p>
           {copy("Diese Bedingungen gelten für die Nutzung von orive.co (ORIVE) und für Buchungen, die über ORIVE verkauft werden. Anbieter ist heybotti, Inhaber Robert Linke, Stiftsgasse 17, 07407 Rudolstadt, Deutschland. Mit Registrierung, Veröffentlichung eines Angebots oder Abschluss einer Buchung akzeptierst du diese Bedingungen.", "These terms govern use of orive.co (ORIVE) and bookings sold through ORIVE. The operator is heybotti, proprietor Robert Linke, Stiftsgasse 17, 07407 Rudolstadt, Germany. By registering, publishing a listing or completing a booking you accept these terms.")}
@@ -44,13 +50,13 @@ export function Terms() {
         />
       </FactSection>
 
-      <FactSection title={copy("3. Vertragsschluss (ORIVE-Buchungen)", "3. Contract formation (ORIVE bookings)")}>
+      <FactSection title={copy("3. Vertragsschluss (ORIVE-Buchungen, derzeit nicht aktiv)", "3. Contract formation (ORIVE bookings, not active yet)")}>
         <p>
           {copy("Ein Listing auf orive.co ist eine Einladung zur Buchung. Bei Angeboten mit „Auf ORIVE buchen“ kommt der Vertrag zustande, wenn die Karte bei Stripe erfolgreich hinterlegt bzw. die Zahlung freigegeben ist und ORIVE die Buchung bestätigt (Buchungspass / Bestätigung).", "A listing on orive.co is an invitation to book. For “Book on ORIVE” listings, the contract is formed when the card is successfully saved or payment is authorised on Stripe and ORIVE confirms the booking (booking pass / confirmation).")}
         </p>
       </FactSection>
 
-      <FactSection title={copy("4. Preise und Zahlung", "4. Prices and payment")}>
+      <FactSection title={copy("4. Preise und Zahlung (derzeit nicht aktiv)", "4. Prices and payment (not active yet)")}>
         <FactList
           items={
             de
@@ -101,20 +107,20 @@ export function Terms() {
                   "Nur Angebote listen, zu deren Durchführung die erforderliche Qualifikation, Versicherung und Genehmigung vorliegen.",
                   "Gebuchte Termine zuverlässig halten oder rechtzeitig und nachvollziehbar stornieren bzw. umbuchen.",
                   "Gast- und Intake-Daten nur für die gebuchte Leistung nutzen und datenschutzkonform behandeln.",
-                  "Auszahlungen setzen ein gültiges Stripe-Connect-Konto und korrekte steuerliche Angaben voraus; Facilitators sind für ihre Steuerpflichten selbst verantwortlich.",
+                  "Auszahlungen (derzeit nicht aktiv) setzen ein gültiges Stripe-Connect-Konto und korrekte steuerliche Angaben voraus; Facilitators sind für ihre Steuerpflichten selbst verantwortlich.",
                 ]
               : [
                   "Listings, prices, capacity, location and description must be accurate and current (description quality per ORIVE requirements).",
                   "Only list offerings you are qualified, insured and authorised to deliver.",
                   "Honour booked dates or cancel/reschedule in time with a clear trail.",
                   "Use guest and intake data only for the booked service and handle it lawfully.",
-                  "Payouts require a valid Stripe Connect account and correct tax details; facilitators remain responsible for their own tax obligations.",
+                  "Payouts (not active yet) require a valid Stripe Connect account and correct tax details; facilitators remain responsible for their own tax obligations.",
                 ]
           }
         />
       </FactSection>
 
-      <FactSection title={copy("7. Stornierung und Widerruf", "7. Cancellation and withdrawal")}>
+      <FactSection title={copy("7. Stornierung und Widerruf (ORIVE-Buchungen, derzeit nicht aktiv)", "7. Cancellation and withdrawal (ORIVE bookings, not active yet)")}>
         <FactList
           items={
             de
@@ -187,7 +193,7 @@ export function Terms() {
           </a>
           {" · "}
           <Link href="/protection" className="text-slate-900 dark:text-white underline underline-offset-4">
-            {copy("Buchung & Zahlung", "Booking & payment")}
+            {copy("Buchung & Zahlung (derzeit nicht aktiv)", "Booking & payment (not active yet)")}
           </Link>
           {" · "}
           <Link href="/partner-terms" className="text-slate-900 dark:text-white underline underline-offset-4">

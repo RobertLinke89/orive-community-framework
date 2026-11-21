@@ -3,6 +3,7 @@ import Invest from "@/views/Invest";
 
 export const metadata: Metadata = {
   title: "Investoren | ORIVE",
+  robots: { index: false, follow: false },
   description:
     "ORIVE ist das Zuhause einer Generation, die Einkommen, Körper und Unternehmen aus dem Arbeitsvertrag löst. Die Einordnung für Investoren.",
   openGraph: {

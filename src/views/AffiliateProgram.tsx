@@ -422,9 +422,9 @@ const de = {
           "Nicht nur Einzelsessions: auch Workshops und Retreats (oft 650–1.200 €). Bis zu 150 €+ pro vermittelter Buchung sind realistisch.",
       },
       {
-        title: "Kuratierte Qualität",
+        title: "Echte Angebote",
         detail:
-          "Facilitators auf ORIVE werden auf Erfahrung und Angebot geprüft. Du empfiehlst Termine mit Substanz.",
+          "Du empfiehlst konkrete Sessions, Workshops und Retreats von Facilitators aus ganz Europa – mit Ort, Termin und Preis.",
       },
       {
         title: "Links, Widgets, API",
@@ -564,8 +564,8 @@ const en: typeof de = {
           "Not only 1:1 sessions: workshops and retreats (often €650–1,200). €150+ per referred booking is realistic.",
       },
       {
-        title: "Curated quality",
-        detail: "Facilitators on ORIVE are reviewed for experience and offering. You recommend dates with substance.",
+        title: "Real offerings",
+        detail: "You recommend concrete sessions, workshops and retreats from facilitators across Europe – with place, date and price.",
       },
       {
         title: "Links, widgets, API",
